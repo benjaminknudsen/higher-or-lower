@@ -1,0 +1,82 @@
+/* A restrained stadium treatment, isolated to gameplay and results. */
+.game-shell {
+  --game-dark: #080c14;
+  --game-purple: #a71938;
+  --game-lime: #f5e9ed;
+  --arena: #11131e;
+  background: #080c14;
+}
+.game-shell .header-best > span { color: #e35b72; }
+.game-shell .player-pick-prompt { color: #b9b9c3; }
+.game-playing .player-comparison { background: #080c14; gap: 10px; }
+.game-playing .player-card,
+.game-playing .player-card-challenger {
+  isolation: isolate;
+  color: #f9f6f7;
+  background-color: #10121c;
+  background-image:
+    radial-gradient(ellipse at 94% 2%, #e49ca32e 0%, transparent 37%),
+    radial-gradient(ellipse at 83% 64%, #8d153d66 0%, transparent 65%),
+    linear-gradient(125deg, #141a28 0%, #18121f 46%, #3a1424 100%);
+  box-shadow: inset 0 1px 0 #ffffff14, 0 8px 22px #0006;
+}
+.game-playing .player-card-challenger {
+  background-image:
+    radial-gradient(ellipse at 94% 2%, #ffced43b 0%, transparent 37%),
+    radial-gradient(ellipse at 82% 61%, #ac254b68 0%, transparent 62%),
+    linear-gradient(125deg, #121723 0%, #22101d 48%, #461222 100%);
+}
+/* Light falls behind the figure; a foreground veil unifies the cutout and field. */
+.game-playing .player-card::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background:
+    linear-gradient(0deg, #080b15e0 0%, #0d101d33 23%, transparent 49%),
+    linear-gradient(90deg, #0c101bd9 0%, #0d101a88 32%, transparent 65%);
+}
+.game-playing .player-card::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background-image: url('/images/card-grain.svg');
+  opacity: .055;
+  mix-blend-mode: screen;
+}
+.game-playing .player-avatar,
+.game-playing .player-card-challenger .player-avatar {
+  z-index: 1;
+  filter: saturate(.72) contrast(1.08) brightness(.9) drop-shadow(-8px 6px 12px #0008) drop-shadow(1px -1px 1px #f3b1bd60);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 67%, #000b 81%, transparent 98%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 67%, #000b 81%, transparent 98%);
+  transform: none;
+}
+.game-playing .player-details,
+.game-playing .player-stat { z-index: 4; }
+.game-playing .player-details h2 { color: #faf8f8; text-shadow: 0 2px 14px #000b; }
+.game-playing .player-stat strong { color: #fff; text-shadow: 0 4px 22px #000a; }
+.game-playing .player-stat > span { color: #d5cbd0; text-shadow: 0 2px 8px #000; }
+.game-playing .player-select { z-index: 5; }
+.game-playing .player-selection-mark { z-index: 6; }
+.game-playing .game-versus { z-index: 7; background: #16131d; color: #edb3bf; box-shadow: 0 0 0 1px #9b4f6255, 0 5px 14px #0008; }
+/* Selection remains about depth, not a different card colour. */
+.game-playing .player-selected,
+.game-playing .player-card-challenger.player-selected {
+  box-shadow: inset 0 0 0 2px #f6c7d49c, inset 0 -5px 18px #0004, 0 6px 22px #000c, 0 0 16px #ad244a24;
+}
+.game-playing .player-comparison:has(.player-selected) .player-card:not(.player-selected) { filter: brightness(.8); }
+.game-playing .player-selected .player-selection-mark { background: #971b37; border-color: #f6c7d4; color: #fff; box-shadow: 0 4px 12px #0008; }
+.game-playing .player-card-challenger .player-select:focus-visible,
+.game-playing .player-select:focus-visible { outline-color: #fff; }
+.game-shell .confirm-answer { background: #a71938; color: #fff; border-top: 1px solid #f7809833; }
+.game-shell .confirm-answer:disabled { background: #24151f; color: #b49aa4; }
+.game-shell .confirm-answer:not(:disabled):active { background: #84142b; }
+.game-shell .confirm-answer:focus-visible,
+.game-shell .game-back:focus-visible { outline-color: #f8c8d4; }
+.game-shell .answer-feedback:not(.feedback-idle) { background: #11131eee; box-shadow: 0 5px 18px #0008; }
+.game-shell .personal-best { background: #221722; }
+.game-shell .game-secondary-button { background: #2d1824; }
+.game-shell .game-result .primary-button { background: #a71938; color: #fff; }
+.game-shell .game-result .final-score strong { color: #fff; }
+.game-shell .has-new-record .result-record-message { color: #efabbc; }
+@media (hover: hover) and (pointer: fine) {
+  .game-shell .confirm-answer:not(:disabled):hover { background: #bd2144; }
+}

@@ -1,0 +1,94 @@
+/* Use the photographic alpha contour as an atmospheric background shadow only. */
+.game-playing .player-card {
+  --player-field: #6743e7;
+  isolation: isolate;
+  background-image: radial-gradient(ellipse at 86% 12%, #ffffff0d, transparent 65%);
+}
+.game-playing .player-card-challenger { --player-field: #c3f54c; }
+.game-playing .player-avatar,
+.game-playing .player-card-challenger .player-avatar {
+  width: 68%; height: 100%; right: 0; bottom: 0;
+  z-index: 1; opacity: .76; transform: none;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #0004 32%, #000 73%);
+  mask-image: linear-gradient(to right, transparent 0%, #0004 32%, #000 73%);
+}
+.game-playing .player-illustration-shadow {
+  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  /* brightness(0) removes all skin, fabric and other photographic detail. */
+  filter: brightness(0) drop-shadow(0 0 9px #100c1c55);
+  -webkit-mask-image: linear-gradient(to bottom, #000b 0%, #000 20%, #000c 60%, #0004 85%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000b 0%, #000 20%, #000c 60%, #0004 85%, transparent 100%);
+}
+.game-playing .player-card::before {
+  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(to right, var(--player-field) 3%, transparent 76%);
+}
+.game-playing .player-card::after {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: url('/images/card-grain.svg'); opacity: .035; mix-blend-mode: soft-light;
+}
+.game-playing .player-details,
+.game-playing .player-stat { z-index: 4; }
+@media (min-width: 700px) {
+  .game-playing .player-avatar,
+  .game-playing .player-card-challenger .player-avatar { width: 65%; }
+}
+/* Larger figure, anchored below the name rather than against the card's top. */
+.game-playing .player-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  row-gap: 8px;
+}
+.game-playing .player-details { grid-area: 1 / 1; align-self: start; }
+.game-playing .player-stat { grid-area: 2 / 1; align-self: end; }
+.game-playing .player-avatar,
+.game-playing .player-card-challenger .player-avatar {
+  grid-area: 2 / 1;
+  position: relative;
+  align-self: stretch;
+  justify-self: end;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  right: auto;
+  bottom: auto;
+}
+.game-playing .player-illustration-shadow {
+  object-position: center top;
+}
+@media (min-width: 700px) {
+  .game-playing .player-avatar,
+  .game-playing .player-card-challenger .player-avatar { width: 100%; }
+}
+/* Anchor the silhouette to the card, independent of the number of name lines. */
+.game-playing .player-avatar,
+.game-playing .player-card-challenger .player-avatar {
+  position: absolute;
+  grid-area: auto;
+  top: 112px;
+  right: 24px;
+  bottom: 0;
+  width: calc(100% - 48px);
+  height: auto;
+}
+@media (max-width: 699px) and (max-height: 620px) {
+  .game-playing .player-avatar,
+  .game-playing .player-card-challenger .player-avatar { top: 88px; }
+}
+@media (min-width: 700px) {
+  .game-playing .player-avatar,
+  .game-playing .player-card-challenger .player-avatar {
+    top: 190px;
+    right: 48px;
+    width: calc(100% - 96px);
+  }
+}
+/* Offset the artwork to the right without changing its vertical anchor or size. */
+.game-playing .player-avatar,
+.game-playing .player-card-challenger .player-avatar { right: -44px; }
+@media (min-width: 700px) {
+  .game-playing .player-avatar,
+  .game-playing .player-card-challenger .player-avatar { right: -44px; }
+}

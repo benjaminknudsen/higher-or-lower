@@ -1,0 +1,28 @@
+{
+  "name": "higher-or-lower",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run data:check && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "test": "node --test src/game/*.test.js src/data/*.test.js",
+    "data:check": "node scripts/check-data.mjs",
+    "data:ready": "node scripts/check-data.mjs --require-minimum",
+    "dev:game": "vite --open /dev/game.html",
+    "data:playable": "node scripts/check-data.mjs --require-playable"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "vite": "^8.3.0"
+  }
+}

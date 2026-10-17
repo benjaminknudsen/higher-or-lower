@@ -1,0 +1,75 @@
+{
+  "reviewedAt": "2026-10-17T18:36:38Z",
+  "status": "transfermarkt_selected_manual_or_permitted_export_required",
+  "playersImported": 0,
+  "statisticsImported": 0,
+  "alternativesAuthorizedByUser": true,
+  "providers": [
+    {
+      "id": "superstats",
+      "urls": [
+        "https://superstats.dk/om",
+        "https://superstats.dk/hold/alltime?id=5"
+      ],
+      "suitability": "Strong candidate for Danish historical data. Superliga, domestic cup, lower division and European sections must be kept separate and checked for coverage.",
+      "access": "Agreement required for systematic collection, larger datasets, automation or use in a service. The provider states that it may supply an appropriate data format.",
+      "nextRequirement": "A data-use agreement and export; confirm earliest seasons, competition coverage, assists coverage and website/mobile distribution.",
+      "contactPublishedByProvider": "superstats@superstats.dk",
+      "contacted": false,
+      "bulkCollectionAttempted": false
+    },
+    {
+      "id": "sportmonks",
+      "urls": [
+        "https://www.sportmonks.com/football-api/",
+        "https://www.sportmonks.com/glossary/seasons/",
+        "https://www.sportmonks.com/integrity-support/"
+      ],
+      "suitability": "Documented JSON API with squads, player statistics, seasons and transfers. The public free-plan description includes Danish Superliga, but this does not verify full FCM historical coverage.",
+      "access": "Account/API token required. Historical access depends on subscription/add-on. Product display and storage are described as permitted; raw-data redistribution needs approval.",
+      "nextRequirement": "A user-owned account/token, confirmation of historical seasons and permission for the intended static frontend/mobile distribution. Check missing competitions and fields before computing club totals.",
+      "accountCreated": false,
+      "apiCalled": false,
+      "purchaseMade": false
+    },
+    {
+      "id": "api-football",
+      "urls": [
+        "https://www.api-football.com/coverage",
+        "https://www.api-football.com/terms",
+        "https://www.api-football.com/documentation-v3"
+      ],
+      "suitability": "Public coverage list includes Danish Superliga and DBU Pokalen. Per-season historical player coverage and transfer-fee completeness remain unverified.",
+      "access": "API access and intended storage/distribution rights need to be established before import.",
+      "apiCalled": false
+    },
+    {
+      "id": "wikidata",
+      "urls": [
+        "https://www.wikidata.org/wiki/Wikidata:Copyright",
+        "https://www.wikidata.org/wiki/Wikidata:Data_access"
+      ],
+      "suitability": "CC0 structured identity/linking data can support a candidate roster. Complete club appearances, goals, assists, transfer fees and season coverage have not been verified; do not use identity records as statistics verification.",
+      "access": "Published CC0 and documented data interfaces. Observe the published access/rate-limit guidelines.",
+      "statisticalImportApproved": false
+    },
+    {
+      "id": "fcm-official",
+      "urls": [
+        "https://www.fcm.dk/"
+      ],
+      "suitability": "Official club announcements and match reports are suitable for targeted cross-checking. No complete, reusable 150-player statistical export was established during this review.",
+      "bulkReusePermissionEstablished": false
+    },
+    {
+      "id": "wikipedia-list",
+      "urls": [
+        "https://en.wikipedia.org/wiki/List_of_FC_Midtjylland_players"
+      ],
+      "suitability": "Rejected as a statistical source: the list states an old statistics cutoff and warns of unclear sourcing. No listed numbers were imported.",
+      "statisticsImported": 0
+    }
+  ],
+  "recommendation": "Transfermarkt is the user-selected primary reference. No automated copying or search-index statistics import. Await directly reviewed data with documented reuse basis or a permitted export. API-Football is no longer the default workflow.",
+  "scopeDecision": "Keep the existing all-official-competitions definition until an alternative dataset is actually verified. If only Superliga data is licensed, create and label a separate Superliga-only scope; never relabel it as all competitions."
+}

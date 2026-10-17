@@ -1,0 +1,4 @@
+.player-illustration { display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; user-select: none; }
+.player-illustration-photo { object-fit: contain; object-position: center bottom; }
+/* Lighting is baked into the original local render; no UI glow or recolouring. */
+.player-illustration-realistic { opacity: .94; }

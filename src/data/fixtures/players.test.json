@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "isTestData": true,
+  "notice": "TESTDATA: Alle spillernavne og statistikker i dette datasæt er fiktive. De beskriver ikke historiske FC Midtjylland-spillere.",
+  "clubs": {
+    "fcm": {
+      "players": [
+        { "id": "fcm-test-01", "name": "Testspiller Alfa", "stats": { "goals": 12 } },
+        { "id": "fcm-test-02", "name": "Testspiller Bravo", "stats": { "goals": 24 } },
+        { "id": "fcm-test-03", "name": "Testspiller Charlie", "stats": { "goals": 8 } },
+        { "id": "fcm-test-04", "name": "Testspiller Delta", "stats": { "goals": 24 } },
+        { "id": "fcm-test-05", "name": "Testspiller Echo", "stats": { "goals": 0 } },
+        { "id": "fcm-test-06", "name": "Testspiller Foxtrot", "stats": { "goals": 36 } },
+        { "id": "fcm-test-07", "name": "Testspiller Golf", "stats": { "goals": 8 } },
+        { "id": "fcm-test-08", "name": "Testspiller Hotel", "stats": { "goals": 18 } },
+        { "id": "fcm-test-09", "name": "Testspiller India", "stats": { "goals": 42 } },
+        { "id": "fcm-test-10", "name": "Testspiller Juliett", "stats": { "goals": 30 } }
+      ]
+    }
+  }
+}

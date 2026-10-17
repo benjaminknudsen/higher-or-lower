@@ -1,0 +1,40 @@
+/* Both cards share the same three-digit column, line box and unit baseline. */
+.game-playing .player-stat .concealed-statistic { position: relative; width: 3ch; }
+.concealed-statistic::before { content: '000'; visibility: hidden; }
+.concealed-statistic-bars { position: absolute; inset: 0; display: flex; align-items: center; justify-content: flex-start; gap: .09em; }
+.concealed-statistic-bars i {
+  display: block; width: .25em; height: .075em; border-radius: .025em;
+  background: currentColor;
+  transform-origin: center;
+  animation: concealed-think 1.8s cubic-bezier(.45, 0, .35, 1) infinite;
+}
+.concealed-statistic-bars i:nth-child(2) { animation-delay: .18s; }
+.concealed-statistic-bars i:nth-child(3) { animation-delay: .36s; }
+.concealed-statistic-number { position: absolute; inset: 0; text-align: left; }
+.statistic-number-reveal { animation: concealed-reveal .24s ease-out both; }
+@keyframes concealed-think {
+  0%, 55%, 100% { opacity: .45; transform: translateY(0) scaleX(.92); }
+  15%, 25% { opacity: 1; transform: translateY(-3px) scaleX(1); }
+  42% { opacity: .55; transform: translateY(0) scaleX(.95); }
+}
+@keyframes concealed-reveal { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .concealed-statistic-bars i, .concealed-statistic-number { animation: none; }
+}
+/* Move both unit labels equally without disturbing the shared statistic column. */
+.game-playing .player-stat > span { position: relative; left: -82px; }
+
+/* Keep long revealed totals clear of the unit at its closer position. */
+.concealed-statistic-number.statistic-three-digits { font-size: .7em; line-height: 1.571429; }
+
+@media (max-width: 389px) {
+  .concealed-statistic-number.statistic-three-digits { font-size: .4em; line-height: 2.75; }
+}
+
+@media (max-width: 389px) {
+  .concealed-statistic-number:not(.statistic-three-digits) { font-size: .6em; line-height: 1.833333; }
+  .concealed-statistic-bars { gap: .06em; }
+  .concealed-statistic-bars i { width: .16em; }
+}
+/* Nudge only the decorative dashes; keep the statistic slot and unit fixed. */
+.concealed-statistic-bars { left: 16px; }
