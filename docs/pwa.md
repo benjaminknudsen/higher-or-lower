@@ -42,3 +42,19 @@ Lokalt produktionsbuild er browser-testet med manifest, ikoner, service-worker-s
 Fysisk iPhone-installation og den publicerede PWA skal kontrolleres efter deployment; lokal Chrome-test erstatter ikke Safari på en iPhone. Spil, spillerdata og eksisterende skærmstyles er uændrede.
 
 Referencer: [Vite PWA](https://vite-pwa-org.netlify.app/guide/), [Apple: Configuring Web Applications](https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html).
+
+## Rettelse af hvid bund og overscroll
+
+Den gamle globale `:root`-baggrund var stadig hvid (`--paper`), mens appens skærme var mørke. `body` og `#root` havde heller ikke deres egen dækkende baggrund. Derfor kunne dokumentets hvide canvas blive synligt under iOS-opstart og rubber-band-effekten. `html`, `body` og `#root` har nu den eksisterende forside-/manifestfarve `#161625`. En lille inline-style maler baggrunden, før ekstern CSS og JavaScript er klar. Gameplayets egen `--game-dark`-farve er bevaret.
+
+Forside, dokumentrod og gameplay bruger nu samme `--app-viewport-height`. Almindelige browserfaner bruger `100dvh` med `100vh` som fallback. I standalone måler `src/viewport.js` den synlige højde før første React-render og synkroniserer ved viewport-resize, `pageshow` og genåbning. To animation frames lader opstart/rotation falde på plads uden at kræve et scroll; der er ingen polling eller scroll-hacks. Pinch-zoom får ikke appen til at skifte størrelse. Svarområdets proportioner beregnes fra samme højde. Safe areas indgår fortsat kun én gang i hver skærms border-box.
+
+Dokumentets scrolling er ikke låst eller skjult. Små skærme må stadig scrolle lodret, når indholdets minimumshøjde kræver det.
+
+Kontrol: 70 tests, lint, build og PWA-check består. WebKit og Chromium er testet ved 320×568, 375×667, 390×844, 430×932 og desktop, både normal visning og simuleret standalone med safe areas. Forside og gameplay er kontrolleret ved første indlæsning, efter navigation og efter viewport-ændringer. Ved 390×844 er der ingen scrolling. Offline-spil, bevaret highscore og en ventende worker, som aktiveres på forsiden, er også testet. WebKit-testen kører på macOS og simulerer standalone/safe areas; fysisk iOS-opstart og iOS' faktiske rubber-band-animation kan ikke bekræftes her.
+
+Efter deployment: Åbn hjemmeskærmsappen med net, gå til forsiden og lad den hente/aktivere opdateringen. Luk og åbn derefter appen fra ikonet. En gammel worker kan vise den tidligere CSS, indtil dette er sket. Ryd ikke webstedsdata, da rekorder ligger i localStorage.
+
+Baggrund: [WebKit om dynamiske viewport-enheder](https://webkit.org/blog/12445/new-webkit-features-in-safari-15-4/).
+
+Farvematch ved overscroll: Dokumentets canvas følger nu den aktive skærm via `:root:has(.gameplay-app)`. Forsiden bruger fortsat `#161625`; under gameplay bruger `html`, `body` og `#root` præcis gameplayets `--game-dark` (`#121116`). Tidligere blev forsidefarven også brugt bag gameplay, hvilket gav en synlig forskel. Skærmenes egne farver er ikke ændret.

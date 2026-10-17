@@ -4,7 +4,7 @@
 .game-playing {
   --header-height: 48px;
   --prompt-height: 28px;
-  --answer-height: clamp(80px, 15dvh, 126px);
+  --answer-height: clamp(80px, calc(var(--app-viewport-height) * .15), 126px);
   --comparison-min-height: 386px; /* two 180px fields, 10px gap, 16px padding */
   grid-template-rows: var(--header-height) var(--prompt-height) minmax(var(--comparison-min-height), 1fr) var(--answer-height);
   /* Very short screens can scroll naturally instead of clipping names/actions. */
@@ -28,7 +28,7 @@
   .game-playing .player-stat strong { font-size: clamp(56px, 32cqh, 72px); }
 }
 @media (min-width: 700px) {
-  .game-playing { --header-height: 56px; --prompt-height: 32px; --answer-height: clamp(90px, 15dvh, 136px); --comparison-min-height: 360px; }
+  .game-playing { --header-height: 56px; --prompt-height: 32px; --answer-height: clamp(90px, calc(var(--app-viewport-height) * .15), 136px); --comparison-min-height: 360px; }
   .game-playing .player-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 /* Direct higher/lower answers; player fields are display-only again. */

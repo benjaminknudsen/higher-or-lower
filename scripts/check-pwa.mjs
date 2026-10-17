@@ -11,10 +11,14 @@ const cached = new Set([...sw.matchAll(/\{url:"([^"]+)",revision:/g)].map(match 
 
 assert.equal(manifest.name, 'FCM Higher or Lower')
 assert.equal(manifest.display, 'standalone')
+assert.equal(manifest.background_color, '#161625')
+assert.equal(manifest.theme_color, '#161625')
 for (const key of ['start_url', 'scope', 'id']) assert.equal(manifest[key], base)
 assert.ok(html.includes(`href="${base}manifest.webmanifest"`))
+assert.ok(html.includes(`rel="icon" type="image/png" href="${base}app-logo.png?v=2"`), 'Browser favicon must use the app logo')
 assert.ok(html.includes('name="apple-mobile-web-app-capable" content="yes"'))
 assert.ok(html.includes('viewport-fit=cover'))
+assert.ok(/<style>html,body,#root\{background:var\(--app-background,#121116\)\}/.test(html), 'Missing dark first-paint canvas')
 
 for (const path of cached) {
   const url = new URL(path, origin + base)
@@ -44,7 +48,9 @@ for (const path of ['index.html', 'manifest.webmanifest', 'images/card-grain.svg
   assert.ok(cached.has(path), `Missing offline asset: ${path}`)
 }
 for (const [, path] of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
-  assert.ok(path.startsWith(base), `HTML asset missing base: ${path}`)
-  assert.ok(existsSync(`dist/${path.slice(base.length)}`), `Missing HTML asset: ${path}`)
+  const url = new URL(path, origin + base)
+  assert.ok(url.pathname.startsWith(base), `HTML asset missing base: ${path}`)
+  assert.ok(existsSync(`dist/${url.pathname.slice(base.length)}`), `Missing HTML asset: ${path}`)
 }
+assert.ok(cached.has('app-logo.png'), 'App logo missing from offline cache')
 console.log(`PWA OK: standalone manifest, scoped asset URLs, opaque icons and ${cached.size} offline assets.`)

@@ -1,5 +1,5 @@
 /* A calm, mobile-first football quiz. */
-.app { min-height: 100svh; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); background: var(--paper); }
+.app { min-height: var(--app-viewport-height); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); background: var(--app-background); }
 .shell { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: max(22px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-right, 0px)); }
 .site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding-block: 16px; border-bottom: 1px solid #e5eaf1; }
 .brand { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; font-size: 24px; font-weight: 800; letter-spacing: -.8px; }
