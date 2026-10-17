@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run data:check && vite build",
+    "build": "npm run data:check && vite build && npm run pwa:check",
     "lint": "oxlint",
     "preview": "vite preview",
+    "pwa:check": "node scripts/check-pwa.mjs",
     "test": "node --test src/game/*.test.js src/data/*.test.js",
     "data:check": "node scripts/check-data.mjs",
     "data:ready": "node scripts/check-data.mjs --require-minimum",
@@ -23,6 +24,7 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "oxlint": "^1.81.0",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "vite-plugin-pwa": "^2.0.0"
   }
 }
