@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { clubs, gameModes as modeDefinitions } from './data/game'
-import GameModeCard from './components/GameModeCard'
-import HomeHero from './components/HomeHero'
-import Icon from './components/Icon'
+import HomeScreen from './components/HomeScreen'
 import GameScreen from './components/game/GameScreen'
 import playerDataset from './data/players.json'
 import { getVerifiedPlayers } from './data/quality'
@@ -18,6 +16,7 @@ function App() {
   const [hash, setHash] = useState(() => window.location.hash)
   const [session, setSession] = useState(0)
   const activeMode = gameModes.find((mode) => mode.implemented && hash === `#spil/${mode.id}`)
+  const highScorePage = hash === '#rekord'
 
   useEffect(() => {
     const onHashChange = () => setHash(window.location.hash)
@@ -37,19 +36,16 @@ function App() {
     <GameScreen key={`${activeMode.id}-${session}`} club={club} mode={activeMode} dataset={playerDataset} onRestart={() => setSession((value) => value + 1)} />
   </div>
 
-  return <div className="app menu-app">
-    <a className="skip-link" href="#spiltilstande">Spring til spiltilstande</a>
-    <header className="menu-header">
-      <span className="menu-brand-icon" aria-hidden="true"><Icon name="ball" /></span>
-      <h1><span>FCM</span> Higher or Lower</h1>
-    </header>
-    <main className="menu-main" id="indhold">
-      <HomeHero clubId={club.id} />
-      <section className="menu-grid" id="spiltilstande" aria-label="Vælg spiltilstand">
-        {gameModes.map(mode => <GameModeCard key={mode.id} mode={mode} onSelect={startGame} />)}
-      </section>
-    </main>
-  </div>
+  return <HomeScreen
+    clubId={club.id}
+    gameModes={gameModes}
+    onSelect={startGame}
+    highScorePage={highScorePage}
+    onCloseHighScore={() => {
+      window.history.pushState(null, '', window.location.pathname + window.location.search)
+      setHash('')
+    }}
+  />
 }
 
 export default App

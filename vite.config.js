@@ -9,7 +9,7 @@ export default defineConfig({
     registerType: 'prompt',
     injectRegister: false,
     scope: '/higher-or-lower/',
-    includeAssets: ['favicon.svg', 'icons/*.png', 'images/**/*.webp', 'images/card-grain.svg'],
+    includeAssets: ['favicon.svg', 'app-logo.png', 'icons/*.png', 'images/**/*.webp', 'images/card-grain.svg'],
     manifest: {
       id: '/higher-or-lower/',
       name: 'FCM Higher or Lower',
