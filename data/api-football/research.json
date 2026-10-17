@@ -1,0 +1,28 @@
+{
+  "reviewedOn": "2026-10-17",
+  "selectedByUser": true,
+  "provider": "api-football",
+  "officialSources": [
+    "https://www.api-football.com/documentation-v3",
+    "https://www.api-football.com/news/post/how-to-get-started-with-api-football-the-complete-beginners-guide",
+    "https://www.api-football.com/news/post/how-to-optimize-api-sports-calls-and-quota-usage",
+    "https://www.api-football.com/pricing",
+    "https://www.api-football.com/terms"
+  ],
+  "referenceAccess": "Interactive documentation had no readable web-tool text; direct request returned HTTP 403. Official guide, coverage article, pricing and terms were readable. No access restrictions bypassed.",
+  "freePlanPublishedRequestsPerDay": 100,
+  "freePlanExactAccessibleSeasons": null,
+  "freePlanExactSeasonsReason": "No fixed year list established in official public sources; no authenticated account probe performed.",
+  "teamId": null,
+  "liveImportPerformed": false,
+  "playersImported": 0,
+  "termsAssessment": {
+    "applicationWebsiteGameUseDescribed": true,
+    "directDataResaleProhibited": true,
+    "permanentStorageConfirmedForProject": false,
+    "publicRawJsonDistributionConfirmedForProject": false,
+    "postSubscriptionUseConfirmedForProject": false,
+    "thirdPartyRightsMayApply": true,
+    "providerContacted": false
+  }
+}

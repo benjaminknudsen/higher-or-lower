@@ -1,0 +1,84 @@
+/* Gameplay owns safe-area padding once, inside its border-box viewport height. */
+.app.gameplay-app { padding: 0; min-height: 0; min-width: 0; }
+.game-shell { min-width: 0; max-width: 100%; grid-template-columns: minmax(0, 1fr); }
+.game-playing {
+  --header-height: 48px;
+  --prompt-height: 28px;
+  --answer-height: clamp(80px, 15dvh, 126px);
+  --comparison-min-height: 386px; /* two 180px fields, 10px gap, 16px padding */
+  grid-template-rows: var(--header-height) var(--prompt-height) minmax(var(--comparison-min-height), 1fr) var(--answer-height);
+  /* Very short screens can scroll naturally instead of clipping names/actions. */
+  min-height: calc(var(--header-height) + var(--prompt-height) + var(--comparison-min-height) + var(--answer-height) + env(safe-area-inset-top, 0px) + env(safe-area-inset-bottom, 0px));
+}
+.game-playing > *, .game-playing .player-comparison { min-width: 0; min-height: 0; }
+.game-playing .player-comparison { grid-template-columns: minmax(0, 1fr); }
+.game-playing .player-avatar,
+.game-playing .player-card-challenger .player-avatar {
+  /* The previous 108% height, -13% bottom and negative right overflowed the card. */
+  height: 100%; bottom: 0; right: 0;
+}
+.game-playing .player-stat { width: max-content; max-width: 100%; }
+.game-playing .player-stat strong { line-height: 1.1; }
+.game-playing .player-details h2 { line-height: 1.12; }
+.game-playing .answer-dock .answer-feedback {
+  bottom: calc(var(--answer-height) + env(safe-area-inset-bottom, 0px) + 12px);
+}
+@media (max-width: 699px) and (max-height: 620px) {
+  .game-playing .player-details h2 { font-size: clamp(22px, 12cqh, 28px); }
+  .game-playing .player-stat strong { font-size: clamp(56px, 32cqh, 72px); }
+}
+@media (min-width: 700px) {
+  .game-playing { --header-height: 56px; --prompt-height: 32px; --answer-height: clamp(90px, 15dvh, 136px); --comparison-min-height: 360px; }
+  .game-playing .player-comparison { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Direct higher/lower answers; player fields are display-only again. */
+.game-playing .direct-answer-dock { padding: 8px 12px 10px; }
+.direct-answer-dock .guess-buttons { height: 100%; gap: 10px; }
+.direct-answer-dock .guess-button {
+  align-items: center; justify-content: center;
+  padding: 8px; border: 0; border-radius: 16px;
+  transition: transform .12s, opacity .12s, background-color .12s;
+}
+.direct-answer-dock .guess-higher { background: var(--game-lime); color: #18182d; }
+.direct-answer-dock .guess-lower { background: var(--game-purple); color: #fff; }
+.direct-answer-dock .zone-label { font-size: clamp(18px, 4.8vw, 25px); gap: 8px; }
+.direct-answer-dock .guess-arrow { background: none; color: inherit; width: auto; height: auto; }
+.direct-answer-dock .guess-button:disabled { opacity: .45; }
+.direct-answer-dock .guess-button.was-chosen { opacity: 1; box-shadow: inset 0 0 0 3px #fff9; }
+.direct-answer-dock .guess-button:not(:disabled):active { transform: scale(.96); }
+.direct-answer-dock .guess-button:focus-visible { outline: 3px solid #fff; outline-offset: -5px; }
+.round-positive .direct-answer-dock .was-chosen { background: #4cce85; color: #102b1a; }
+.round-negative .direct-answer-dock .was-chosen { background: #b52d49; color: #fff; }
+@media (hover: hover) and (pointer: fine) {
+  .direct-answer-dock .guess-button:not(:disabled):hover { filter: brightness(1.1); }
+}
+/* Sculpted arcade arrows, with speed marks and a small dimensional highlight. */
+.direct-answer-dock .guess-higher { --arrow-highlight: #ecffc6; --arrow-step: -3px; }
+.direct-answer-dock .guess-lower { --arrow-highlight: #b99bff; --arrow-step: 3px; }
+.direct-answer-dock .guess-arrow { display: grid; place-items: center; width: 35px; height: 35px; flex-shrink: 0; }
+.game-answer-arrow { width: 35px; height: 35px; overflow: visible; }
+.game-answer-arrow.arrow-down { transform: rotate(180deg); }
+.direct-answer-dock .guess-button:not(:disabled):active .guess-arrow { transform: translateY(var(--arrow-step)); }
+@media (hover: hover) and (pointer: fine) {
+  .direct-answer-dock .guess-button:not(:disabled):hover .guess-arrow { transform: translateY(var(--arrow-step)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .direct-answer-dock .guess-button .guess-arrow { transform: none !important; }
+}
+/* Two equal, edge-to-edge answer surfaces fill the entire bottom dock. */
+.game-playing .direct-answer-dock { padding: 0; }
+.direct-answer-dock .guess-buttons { width: 100%; height: 100%; gap: 0; }
+.direct-answer-dock .guess-button { height: 100%; border-radius: 0; padding: 8px; }
+.direct-answer-dock .guess-button:not(:disabled):active { transform: none; }
+/* Straight top edge, softened with a shadow instead of rounded corners. */
+.game-playing .direct-answer-dock { box-shadow: 0 -8px 20px #0004; z-index: 2; }
+/* Let each button's colour emerge softly from the dark arena at the top. */
+.direct-answer-dock .guess-button { position: relative; }
+.direct-answer-dock .guess-button::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 22px;
+  background: linear-gradient(to bottom, var(--game-dark), transparent);
+  pointer-events: none;
+}

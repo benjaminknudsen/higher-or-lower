@@ -1,0 +1,56 @@
+{
+  "checkedAt": "2026-10-17T18:24:08Z",
+  "provider": "transfermarkt",
+  "decision": "do_not_collect_without_permission",
+  "playersImported": 0,
+  "statisticsImported": 0,
+  "legalAssessment": "No legal opinion is asserted. Collection was stopped to respect the user's requirement and the provider's published restriction.",
+  "observations": [
+    {
+      "url": "https://www.transfermarkt.com/robots.txt",
+      "method": "web_tool_direct_read",
+      "result": "readable",
+      "summary": "General user agents are allowed by robots.txt; wget is disallowed. Robots permission does not grant data reuse rights or override the terms."
+    },
+    {
+      "url": "https://www.transfermarkt.com/intern/anb",
+      "method": "web_tool_direct_read",
+      "result": "http_403"
+    },
+    {
+      "url": "https://www.transfermarkt.co.uk/intern/anb",
+      "method": "web_tool_search_index_and_attempted_direct_read",
+      "result": "indexed_terms_read_direct_http_403",
+      "section": "11.1",
+      "summary": "The indexed official terms prohibit accessing or copying digital content using bots, spiders, screen scraping or other automated processes. No exception or project license was obtained."
+    },
+    {
+      "url": "https://www.transfermarkt.com/fc-midtjylland/startseite/verein/865",
+      "method": "web_tool_direct_read",
+      "result": "http_403"
+    }
+  ],
+  "notUsed": [
+    "scrapers",
+    "headless_browser_for_transfermarkt",
+    "proxies",
+    "captcha_bypass",
+    "alternate_domains_for_player_data",
+    "cached_statistics_import",
+    "third_party_scraped_datasets"
+  ],
+  "nextRequirement": "A written permission or licensed export covering acquisition, storage, transformation and publication in the website and a future mobile app.",
+  "latestReview": {
+    "reviewedOn": "2026-10-17",
+    "userSelectedPrimaryReference": "transfermarkt",
+    "termsUrl": "https://www.transfermarkt.com/intern/anb",
+    "termsReadVia": "official_page_search_index",
+    "termsSection": "11.1",
+    "directReadResult": "web_tool_internal_error",
+    "recordScorersIndexedUrl": "https://www.transfermarkt.com/fc-midtjylland/toptorschuetzen/verein/865",
+    "statisticValuesCopied": false,
+    "playerProfileVerificationCompleted": false,
+    "playersImported": 0,
+    "decision": "No automated collection. Prepare local import of directly reviewed data with documented reuse basis or permitted export. Search-index statistics are not accepted as verified game data."
+  }
+}
