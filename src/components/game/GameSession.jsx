@@ -4,6 +4,7 @@ import { scheduleNextRound } from '../../game/roundTiming'
 import { assignSilhouettes } from '../../game/silhouettes'
 import { celebrationForScore, milestoneForScore } from '../../game/celebration'
 import useHighScore from '../../hooks/useHighScore'
+import { localAccountStore } from '../../services/localAccount'
 import PlayerCard from './PlayerCard'
 import GuessControls from './GuessControls'
 import GameResult from './GameResult'
@@ -22,6 +23,7 @@ export default function GameSession({ club, mode, players, dataNotice, testData 
   const headingRef = useRef(null)
   const controlsRef = useRef(null)
   const previousPhase = useRef(state.phase)
+  const statisticsSession = useRef(null)
   const finished = ['over', 'complete', 'unavailable'].includes(state.phase)
   const revealed = state.phase === 'revealed'
   const first = state.deck[state.index - 1]
@@ -55,6 +57,10 @@ export default function GameSession({ club, mode, players, dataNotice, testData 
   const handleGuess = (direction) => {
     const action = { type: 'guess', direction, questionId: state.index }
     const next = gameReducer(state, action)
+    if (next !== state && !testData) {
+      statisticsSession.current ??= crypto.randomUUID()
+      localAccountStore.recordAnswer({ sessionId: statisticsSession.current, clubId: club.id, modeId: mode.id, questionId: state.index, correct: next.correct })
+    }
     if (next !== state && next.correct) record.saveScore(next.score)
     dispatch(action)
   }

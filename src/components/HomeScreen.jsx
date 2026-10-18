@@ -7,9 +7,10 @@ import useHighScore from '../hooks/useHighScore'
 export default function HomeScreen({ clubId, gameModes, onSelect, highScorePage, onCloseHighScore }) {
   const { highScore } = useHighScore(clubId, 'appearances', 0, false)
 
-  return <div className="app menu-app">
+  return <div className="app menu-app has-bottom-nav">
     <a className="skip-link" href={highScorePage ? '#personlig-rekord' : '#spiltilstande'}>Spring til indhold</a>
     <header className="menu-header">
+      {!highScorePage && <a className="menu-welcome-back" href="#velkommen" aria-label="Tilbage til velkomstsiden"><Icon name="arrow" /></a>}
       <span className="menu-brand-icon" aria-hidden="true"><img src={`${import.meta.env.BASE_URL}app-logo.png`} alt="" /></span>
       <h1><span>FCM</span> Higher or Lower</h1>
       {highScorePage
