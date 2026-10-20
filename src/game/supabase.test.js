@@ -63,6 +63,18 @@ test('Vite entry uses only named public env variables and database checks stay o
   assert.ok(!pkg.scripts.build.includes('supabase:check'))
 })
 
+test('GitHub Pages build injects public Supabase variables and keeps its Vite base path', () => {
+  const workflow = readFileSync(new URL('../../.github/workflows/deploy.yml', import.meta.url), 'utf8')
+  const viteConfig = readFileSync(new URL('../../vite.config.js', import.meta.url), 'utf8')
+  const gitignore = readFileSync(new URL('../../.gitignore', import.meta.url), 'utf8')
+  assert.match(workflow, /VITE_SUPABASE_URL:\s*\$\{\{\s*vars\.VITE_SUPABASE_URL\s*\}\}/)
+  assert.match(workflow, /VITE_SUPABASE_PUBLISHABLE_KEY:\s*\$\{\{\s*vars\.VITE_SUPABASE_PUBLISHABLE_KEY\s*\}\}/)
+  assert.match(workflow, /npm run build/)
+  assert.match(viteConfig, /base:\s*'\/higher-or-lower\/'/)
+  assert.match(gitignore, /^\.env$/m)
+  assert.match(gitignore, /^\.env\.\*$/m)
+})
+
 test('explicit account mode enables persistence and refresh while retaining manual PKCE callbacks', async () => {
   const {client}=createSupabaseSetup(env,{enableAuth:true})
   assert.equal(client.auth.persistSession,true)
