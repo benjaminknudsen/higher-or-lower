@@ -85,3 +85,7 @@ export function recordResult(store, round) {
 export function statistics(store) {
   return { rounds: store.results.length, best: Math.max(0,...store.results.map(r => r.score)), perfect: store.results.filter(r => r.status === 'perfect').length, correct: store.results.reduce((n,r) => n+r.correct,0) }
 }
+
+export function averageCorrectPercentage({ rounds, correct }) {
+  return rounds > 0 ? Math.round((correct / (rounds * 11)) * 100) : 0
+}

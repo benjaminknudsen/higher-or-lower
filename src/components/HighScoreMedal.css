@@ -1,0 +1,36 @@
+.prestige-medal { position:relative; isolation:isolate; width:clamp(240px,74vw,310px); max-width:100%; aspect-ratio:1; margin-inline:auto; flex-shrink:0; }
+.prestige-medal::before { content:''; position:absolute; inset:9%; z-index:-1; border-radius:50%; box-shadow:0 0 38px 9px var(--prestige-glow),0 0 80px var(--prestige-glow); opacity:var(--prestige-power); animation:prestige-breathe 7s ease-in-out infinite alternate; pointer-events:none; }
+.prestige-art { display:block; width:100%; height:100%; overflow:visible; filter:drop-shadow(0 10px 10px #0007); }
+.prestige-title { font-size:12px; font-weight:850; letter-spacing:2.3px; }
+.prestige-value { font-family:var(--display); font-weight:950; letter-spacing:-3px; font-variant-numeric:tabular-nums; transform-box:fill-box; transform-origin:center; animation:prestige-arrive .5s ease-out both; }
+.prestige-streak { fill:#d9d3e2; font-size:13px; font-weight:600; letter-spacing:.2px; }
+.prestige-rank { font-size:10px; font-weight:850; letter-spacing:2.2px; }
+.prestige-medal[data-tier="gold"] .prestige-art { filter:drop-shadow(0 10px 12px #0009) drop-shadow(0 0 9px #f2ca6818); }
+.prestige-compact { width:38px; }
+.prestige-compact::before { animation:none; box-shadow:0 0 12px var(--prestige-glow); }
+@keyframes prestige-breathe { from { opacity:var(--prestige-power); } to { opacity:.95; } }
+@keyframes prestige-arrive { from { opacity:.5; transform:translateY(3px) scale(.97); } to { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) { .prestige-medal::before,.prestige-value { animation:none; } }
+
+/* WOLF IMMORTAL: isolated to the sixth rank; the other five are unchanged. */
+.prestige-medal[data-tier="gold"]::before { inset:7%; box-shadow:0 0 42px 12px #d9a53c3d,0 0 95px #bc852b33; }
+.prestige-medal[data-tier="gold"] .prestige-art { filter:drop-shadow(0 12px 12px #000b) drop-shadow(0 0 10px #e5bd5d26); }
+.prestige-medal[data-tier="gold"] .wolf-rank { font-size:10px; letter-spacing:1.8px; font-weight:850; }
+.prestige-medal[data-tier="gold"] .wolf-tier { font-size:7px; letter-spacing:3px; font-weight:800; }
+.prestige-medal[data-tier="gold"] .wolf-engraving { filter:drop-shadow(0 2px 1px #000); }
+.prestige-medal[data-tier="gold"] .wolf-metal-reflection { transform-origin:180px 180px; animation:wolf-reflection 16s linear infinite; opacity:.45; pointer-events:none; }
+@keyframes wolf-reflection { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) { .prestige-medal[data-tier="gold"] .wolf-metal-reflection { animation:none; opacity:.22; } }
+
+/* A contained championship silhouette, exclusive to ULTIMATE. */
+.prestige-medal[data-tier="gold"] { width:clamp(260px,82vw,350px); aspect-ratio:420 / 500; }
+.prestige-medal[data-tier="gold"]::before { inset:14% 8% 10%; background:radial-gradient(ellipse,#9a2d2426,transparent 55%); box-shadow:0 0 32px 8px #d5a84c26; }
+.prestige-medal[data-tier="gold"] .prestige-art { overflow:hidden; filter:drop-shadow(0 8px 8px #0008); }
+.prestige-medal[data-tier="gold"] .immortal-title { font-size:11px; font-weight:850; letter-spacing:2px; }
+.prestige-medal[data-tier="gold"] .immortal-rank { font-size:15px; font-weight:950; letter-spacing:3px; }
+.prestige-medal[data-tier="gold"] .immortal-subtitle { font-size:8px; font-weight:750; letter-spacing:2px; }
+.prestige-medal[data-tier="gold"] .immortal-wolf { filter:drop-shadow(0 3px 2px #000); }
+.prestige-medal[data-tier="gold"] .immortal-reflection { transform-origin:210px 272px; animation:immortal-reflection 20s linear infinite; opacity:.4; pointer-events:none; }
+.prestige-medal[data-tier="gold"].prestige-compact { width:44px; }
+@keyframes immortal-reflection { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+@media(prefers-reduced-motion:reduce) { .prestige-medal[data-tier="gold"] .immortal-reflection { animation:none; opacity:.2; } }

@@ -4,7 +4,7 @@
   min-height: calc(502px + env(safe-area-inset-top, 0px) + max(12px, env(safe-area-inset-bottom, 0px)));
   display: grid; grid-template-rows: 52px minmax(0, 1fr);
   padding: env(safe-area-inset-top, 0px) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px));
-  color: #f6f3ff;
+  color: var(--tone-f6f3ff,#f6f3ff);
   background: var(--game-dark);
 }
 .menu-header { display: flex; align-items: center; gap: 10px; min-width: 0; width: 100%; max-width: 1040px; margin-inline: auto; padding-inline: 6px; }
@@ -21,7 +21,7 @@
   height: 32px;
   border: 1.5px solid transparent;
   border-radius: 50%;
-  background: linear-gradient(145deg, #111019, #191522) padding-box, var(--medal-edge) border-box;
+  background: linear-gradient(145deg, var(--tone-111019,#111019), var(--tone-191522,#191522)) padding-box, var(--medal-edge) border-box;
   color: var(--medal-color);
   box-shadow: 0 0 10px var(--medal-glow), inset 0 1px 0 #ffffff12;
 }
@@ -32,15 +32,15 @@
 .home-hero-copy { position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: center; gap: 13px; width: 100%; height: 100%; padding: 12px 0 18px 18px; }
 .home-hero h2 { font-size: clamp(29px, 7.8vw, 44px); line-height: .99; font-weight: 950; letter-spacing: -1.5px; text-shadow: 0 3px 16px #0008; }
 .home-hero h2 span { color: var(--game-lime); }
-.home-hero p { color: #c8bed6; font-size: clamp(11px, 3.2vw, 14px); font-weight: 500; line-height: 1.4; }
+.home-hero p { color: var(--tone-c8bed6,#c8bed6); font-size: clamp(11px, 3.2vw, 14px); font-weight: 500; line-height: 1.4; }
 .menu-grid { min-height: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 10px; }
 .menu-mode { position: relative; display: flex; align-items: flex-end; width: 100%; min-width: 0; min-height: 0; padding: 16px; border: 0; border-radius: 23px; overflow: hidden; text-align: left; transition: transform .15s, box-shadow .15s; }
 .menu-mode-appearances { background: var(--game-lime); color: var(--game-dark); }
 .menu-mode-goals { background: var(--game-purple); color: #fff; }
-.menu-mode-goals.menu-mode-locked { background: #493786; }
-.menu-mode-transfers { background: #26232e; color: #e3def1; }
-.menu-mode-season { background: #452a96; color: #f3edff; }
-.menu-mode-season.menu-mode-locked { background: #35256f; }
+.menu-mode-goals.menu-mode-locked { background: var(--tone-493786,#493786); }
+.menu-mode-transfers { background: var(--tone-26232e,#26232e); color: var(--tone-e3def1,#e3def1); }
+.menu-mode-season { background: var(--tone-452a96,#452a96); color: var(--tone-f3edff,#f3edff); }
+.menu-mode-season.menu-mode-locked { background: var(--tone-35256f,#35256f); }
 .menu-mode-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; width: 100%; min-width: 0; }
 .menu-mode-title { display: block; font-size: clamp(20px, 5.6vw, 28px); font-weight: 950; letter-spacing: -.7px; line-height: 1.05; text-wrap: balance; }
 .menu-mode-transfers .menu-mode-title { font-size: clamp(18px, 4.9vw, 24px); }
@@ -77,7 +77,7 @@
   .menu-mode-status { font-size: 12px; }
 }
 @media (hover: hover) and (pointer: fine) {
-  .menu-mode-playable:hover { transform: translateY(-2px); box-shadow: 0 4px 0 #93be31; }
+  .menu-mode-playable:hover { transform: translateY(-2px); box-shadow: 0 4px 0 var(--tone-93be31,#93be31); }
 }
 @media (prefers-reduced-motion: reduce) { .menu-mode { transition: none; } }
 .app { background: var(--game-dark); }
@@ -85,7 +85,7 @@
 .home-hero { isolation: isolate; }
 .home-hero::before {
   content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
-  background: radial-gradient(ellipse 44% 52% at 26% 44%, #6743e780 0%, transparent 100%);
+  background: radial-gradient(ellipse 44% 52% at 26% 44%, var(--tone-6743e780,#6743e780) 0%, transparent 100%);
 }
 .home-hero::after {
   content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
@@ -103,7 +103,7 @@
   overflow: hidden;
   border: 1.5px solid transparent;
   border-radius: 50%;
-  background: linear-gradient(145deg, #111019, #191522) padding-box, var(--medal-edge) border-box;
+  background: linear-gradient(145deg, var(--tone-111019,#111019), var(--tone-191522,#191522)) padding-box, var(--medal-edge) border-box;
   color: var(--medal-color);
   box-shadow: 0 0 18px var(--medal-glow), inset 0 1px 0 #ffffff12;
 }
@@ -128,9 +128,9 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.home-medal-streak { position: absolute; top: 72%; color: #eeeaf5; font-size: 15px; font-weight: 650; line-height: 1; white-space: nowrap; }
+.home-medal-streak { position: absolute; top: 72%; color: var(--tone-eeeaf5,#eeeaf5); font-size: 15px; font-weight: 650; line-height: 1; white-space: nowrap; }
 .high-score-page { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; width: 100%; min-width: 0; min-height: 0; padding: 12px; }
-.home-record-prompt { color: #ada1bf; font-size: 14px; font-weight: 600; line-height: 1.2; text-align: center; }
+.home-record-prompt { color: var(--tone-ada1bf,#ada1bf); font-size: 14px; font-weight: 600; line-height: 1.2; text-align: center; }
 @media (min-width: 700px) {
   .home-medal { width: clamp(280px, 36dvh, 360px); }
   .home-medal-trophy { width: 28px; height: 28px; }
@@ -140,8 +140,17 @@
 
 /* Five modes, including the active starting eleven quiz. */
 .menu-grid { grid-template-rows: repeat(3,minmax(100px,1fr)); }
-.menu-mode-lineup { grid-column:1 / -1; background:linear-gradient(115deg,#49318e,#6743e7); color:#fff; border:1px solid #aa86ff; }
-.menu-mode-lineup .menu-mode-status { color:#c3f54c; }
+.menu-mode-lineup { grid-column:1 / -1; background:linear-gradient(115deg,var(--tone-49318e,#49318e),var(--tone-6743e7,#6743e7)); color:#fff; border:1px solid var(--tone-aa86ff,#aa86ff); }
+.menu-mode-lineup .menu-mode-status { color:var(--tone-c3f54c,#c3f54c); }
 .menu-mode-lineup .menu-mode-title { padding-right:40px; }
 .app.menu-app { height:auto; min-height:var(--app-viewport-height); }
 .menu-main { grid-template-rows:minmax(220px,1fr) auto; padding-bottom:78px; }
+
+.menu-mode-subtitle { font-size:11px; line-height:1.3; color:var(--tone-e3d8ff,#e3d8ff); padding-right:18px; }
+
+/* Anchor the menu heading nearer the cards, preserving both grid rows. */
+.menu-main .home-hero-copy {
+  justify-content: flex-end;
+  padding-top: 16px;
+  padding-bottom: clamp(25px, 4dvh, 35px);
+}

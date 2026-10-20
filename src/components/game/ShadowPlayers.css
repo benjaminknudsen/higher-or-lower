@@ -1,10 +1,10 @@
 /* Use the photographic alpha contour as an atmospheric background shadow only. */
 .game-playing .player-card {
-  --player-field: #6743e7;
+  --player-field: var(--tone-6743e7,#6743e7);
   isolation: isolate;
   background-image: radial-gradient(ellipse at 86% 12%, #ffffff0d, transparent 65%);
 }
-.game-playing .player-card-challenger { --player-field: #c3f54c; }
+.game-playing .player-card-challenger { --player-field: var(--tone-c3f54c,#c3f54c); }
 .game-playing .player-avatar,
 .game-playing .player-card-challenger .player-avatar {
   width: 68%; height: 100%; right: 0; bottom: 0;
@@ -16,7 +16,7 @@
 .game-playing .player-illustration-shadow {
   width: 100%; height: 100%; object-fit: cover; object-position: center top;
   /* brightness(0) removes all skin, fabric and other photographic detail. */
-  filter: brightness(0) drop-shadow(0 0 9px #100c1c55);
+  filter: brightness(0) drop-shadow(0 0 9px var(--tone-100c1c55,#100c1c55));
   -webkit-mask-image: linear-gradient(to bottom, #000b 0%, #000 20%, #000c 60%, #0004 85%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000b 0%, #000 20%, #000c 60%, #0004 85%, transparent 100%);
 }

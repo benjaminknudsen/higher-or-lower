@@ -26,3 +26,9 @@ test('invalid high-score values use the initial gray tier', () => {
     assert.equal(getHighScoreMedalTier(score).id, 'gray')
   }
 })
+
+test('all six prestige labels retain the original exact thresholds', () => {
+  for (const [score, label] of [[0,'BEGINNER'],[9,'BEGINNER'],[10,'TALENT'],[24,'TALENT'],[25,'SKARPSKYTTE'],[34,'SKARPSKYTTE'],[35,'ELITE'],[49,'ELITE'],[50,'LEGENDE'],[99,'LEGENDE'],[100,'ULTIMATE'],[999,'ULTIMATE']]) {
+    assert.equal(getHighScoreMedalTier(score).label,label)
+  }
+})

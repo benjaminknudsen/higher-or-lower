@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { clubs, gameModes as modeDefinitions } from './data/game'
 import HomeScreen from './components/HomeScreen'
+import InstallPage from './components/install/InstallPage'
 import WelcomeScreen from './components/WelcomeScreen'
 import BottomNavigation from './components/BottomNavigation'
 import ProfilePage from './components/community/ProfilePage'
@@ -14,6 +15,9 @@ import { getVerifiedPlayers } from './data/quality'
 import './App.css'
 import './Home.css'
 import './Community.css'
+
+// Vite removes both the route and its import from production builds.
+const MedalsPage = import.meta.env.DEV ? lazy(() => import('./dev/MedalsPage')) : null
 
 function App() {
   const club = clubs.fcm
@@ -44,6 +48,8 @@ function App() {
     setSession((value) => value + 1)
     window.location.assign(`#spil/${modeId}`)
   }
+  if (hash === '#installer') return <InstallPage />
+  if (import.meta.env.DEV && hash === '#medals') return <Suspense fallback={<div className="app">Indlæser medaljer…</div>}><MedalsPage /></Suspense>
   if (activeMode) return <div className="app gameplay-app" style={{ '--club-accent': club.accent }}>
     {activeMode.id === 'lineup' ? <LineupGame /> : <GameScreen key={`${activeMode.id}-${session}`} club={club} mode={activeMode} dataset={playerDataset} onRestart={() => setSession((value) => value + 1)} />}
   </div>

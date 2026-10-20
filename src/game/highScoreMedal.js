@@ -1,11 +1,12 @@
 export const HIGH_SCORE_MEDAL_TIERS = Object.freeze([
-  { id: 'gray', minScore: 0, color: '#a8b0be', glow: '#a8b0be24', edge: '#a8b0be' },
-  { id: 'green', minScore: 10, color: '#73db91', glow: '#73db9130', edge: '#73db91' },
-  { id: 'yellow', minScore: 25, color: '#f0cd62', glow: '#f0cd6230', edge: '#f0cd62' },
-  { id: 'red', minScore: 35, color: '#ff7183', glow: '#ff718330', edge: '#ff7183' },
-  { id: 'cyan', minScore: 50, color: '#57dcf1', glow: '#57dcf130', edge: '#57dcf1' },
+  { id: 'gray', label: 'BEGINNER', minScore: 0, color: '#a8b0be', glow: '#a8b0be24', edge: '#a8b0be' },
+  { id: 'green', label: 'TALENT', minScore: 10, color: '#73db91', glow: '#73db9130', edge: '#73db91' },
+  { id: 'yellow', label: 'SKARPSKYTTE', minScore: 25, color: '#f0cd62', glow: '#f0cd6230', edge: '#f0cd62' },
+  { id: 'red', label: 'ELITE', minScore: 35, color: '#ff7183', glow: '#ff718330', edge: '#ff7183' },
+  { id: 'cyan', label: 'LEGENDE', minScore: 50, color: '#57dcf1', glow: '#57dcf130', edge: '#57dcf1' },
   {
     id: 'gold',
+    label: 'ULTIMATE',
     minScore: 100,
     color: '#f2ca68',
     glow: '#f2ca6840',

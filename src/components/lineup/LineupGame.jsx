@@ -1,8 +1,9 @@
+import ThemeToggle from '../ThemeToggle'
 import { useEffect, useRef, useState } from 'react'
 import matches from '../../data/lineupMatches.json'
-import { LINEUP_KEY, recordResult, createRound, selectMatch, tick, guess, buyHint, scoreRound, remaining, maskName, letterCount } from '../../game/lineup'
+import { recordResult, createRound, selectMatch, tick, guess, buyHint, scoreRound, remaining, maskName, letterCount } from '../../game/lineup'
 import Icon from '../Icon'
-import { loadLineupStore } from '../../services/lineupStorage'
+import { loadLineupStore, saveLineupStore, clearSavedLineupRound } from '../../services/lineupStorage'
 import './Lineup.css'
 
 const clock = seconds => `${String(Math.floor(seconds / 60)).padStart(2,'0')}:${String(seconds % 60).padStart(2,'0')}`
@@ -37,7 +38,7 @@ export default function LineupGame() {
   const playing = round?.status === 'playing'
   function commit(next) {
     current.current = next
-    try { window.localStorage.setItem(LINEUP_KEY, JSON.stringify(next)); setPersistent(true) } catch { setPersistent(false) }
+    setPersistent(saveLineupStore(next))
     setStore(next)
   }
   useEffect(() => {
@@ -49,11 +50,33 @@ export default function LineupGame() {
         if (next.round !== r || next.results.length !== old.results.length) commit(next)
       }
     }
+    clearSavedLineupRound()
+    function discard() {
+      const old = current.current
+      if (old.round) commit({ ...old, round: null })
+      setSelected(null); setInput(''); setFeedback(null); setNow(Date.now())
+    }
+    function visibility() {
+      if (document.visibilityState === 'hidden') discard()
+      else refresh()
+    }
+    function navigation() {
+      if (window.location.hash !== '#spil/lineup') discard()
+    }
     refresh()
     const interval = setInterval(refresh, 250)
     window.addEventListener('pageshow', refresh)
-    document.addEventListener('visibilitychange', refresh)
-    return () => { clearInterval(interval); window.removeEventListener('pageshow',refresh); document.removeEventListener('visibilitychange',refresh) }
+    window.addEventListener('pagehide', discard)
+    window.addEventListener('hashchange', navigation)
+    document.addEventListener('visibilitychange', visibility)
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('pageshow', refresh)
+      window.removeEventListener('pagehide', discard)
+      window.removeEventListener('hashchange', navigation)
+      document.removeEventListener('visibilitychange', visibility)
+      current.current = { ...current.current, round: null }
+    }
   }, [])
   useEffect(() => {
     if (selected && playing) hintRef.current?.showModal()
@@ -68,6 +91,7 @@ export default function LineupGame() {
   function submit(event) {
     event.preventDefault()
     const old = current.current
+    if (!old.round) return
     const answer = guess(old.round, input)
     commit(recordResult(old,answer.round))
     if (answer.feedback) { setFeedback({ text: answer.feedback, kind: answer.kind }); setInput('') }
@@ -77,10 +101,9 @@ export default function LineupGame() {
   const player = round?.match.players.find(p => p.id === selected)
   const seconds = round ? remaining(round,now) : 180
   return <main className={`lineup-shell ${playing ? 'is-playing' : ''} ${round?.status === 'perfect' ? 'is-perfect' : ''}`}>
-    <header className="lineup-top"><a href="#forside" aria-label="Tilbage til spilmenu"><Icon name="arrow" /></a><span>FCM <b>STARTOPSTILLINGEN</b></span><Icon name="pitch" /></header>
-    {!persistent && <p className="lineup-warning" role="alert">Lokal lagring er blokeret. Runden kan kun huskes, mens denne side er åben.</p>}
+    <header className="lineup-top"><a href="#forside" aria-label="Tilbage til spilmenu"><Icon name="arrow" /></a><span>FCM <b>STARTOPSTILLINGEN</b></span><ThemeToggle /></header>
+    {!persistent && <p className="lineup-warning" role="alert">Lokal lagring er blokeret. Rundens resultat kan ikke gemmes.</p>}
     {!round ? <section className="lineup-intro">
-      {store.archivedRounds?.length > 0 && <p className="lineup-warning">Kampudvalget er opdateret. Din tidligere runde er arkiveret lokalt; statistik og rekorder er bevaret.</p>}
       <div className="lineup-intro-icon"><Icon name="pitch" /><span>11</span></div><p className="lineup-eyebrow">KAN DU HUSKE DE 11?</p>
       <h1>GÆT<br /><em>STARTOPSTILLINGEN</em></h1><p>Kan du huske, hvem der startede inde for FC Midtjylland?</p>
       <div className="lineup-rules"><div><strong>3 minutter</strong><span>Find alle 11 spillere, inden tiden løber ud.</span></div><div><strong>3 fejl</strong><span>Spillet slutter efter tre forkerte gæt.</span></div><div><strong>10 point pr. spiller</strong><span>Optjen point for hvert korrekt navn.</span></div></div>
@@ -97,9 +120,9 @@ export default function LineupGame() {
         <button className="lineup-primary" onClick={start}>NY TILFÆLDIG KAMP <Icon name="arrow" /></button><a className="lineup-secondary" href="#forside">TILBAGE TIL SPILMENU</a>
         <details><summary>Kilder til denne kamp</summary>{round.match.sources.map((source) => <a key={source} href={source} target="_blank" rel="noreferrer">{source.includes('skysports.com') ? 'Sky Sports · Kampens trøjenumre' : source.includes('fcm.dk') ? 'FCM · Kampdokumentation' : 'Kampoversigt · Formation og opstilling'}</a>)}<small>Positionerne er skematisk placeret inden for startformationen.</small></details>
       </section>}
-      <dialog ref={hintRef} className="lineup-hint" onCancel={closeHint} onClose={closeHint} onClick={e => { if (e.target === e.currentTarget) closeHint() }}>
-        {player && <><button className="lineup-close" onClick={closeHint} aria-label="Luk hint">×</button><p className="lineup-eyebrow">ET LILLE SKUB</p><h2>{maskName(player.name)}</h2><p>{letterCount(player.name)} bogstaver · {player.position}</p>
-          {round.hints.includes(player.id) ? <strong className="lineup-number">Trøjenummer: {player.shirtNumber}</strong> : <><p>Afslør kampens trøjenummer. Koster <b>5 point</b>.</p><button className="lineup-primary" disabled={!player.shirtNumber || !player.numberSource || scoreRound(round)<5} onClick={() => { const old = current.current; commit(recordResult(old,buyHint(old.round,player.id))) }}>VIS HINT · −5 POINT</button><small>{!player.shirtNumber ? 'Trøjenummeret er ikke verificeret.' : scoreRound(round)<5 ? 'Gæt en spiller først, så du har råd til et hint.' : 'Hintet kan købes én gang.'}</small></>}
+      <dialog ref={hintRef} className="lineup-hint" aria-labelledby="lineup-hint-title" onCancel={closeHint} onClose={closeHint} onClick={e => { if (e.target === e.currentTarget) closeHint() }}>
+        {player && <><button className="lineup-close" onClick={closeHint} aria-label="Luk hint">×</button><h2 id="lineup-hint-title">VIS HINT</h2>
+          {round.hints.includes(player.id) ? <div className="lineup-number" role="status"><span>TRØJENUMMER</span><strong>{player.shirtNumber}</strong></div> : <><button className="lineup-primary" disabled={!player.shirtNumber || !player.numberSource || scoreRound(round)<5} onClick={() => { const old = current.current; commit(recordResult(old,buyHint(old.round,player.id))) }}>VIS TRØJENUMMER <span>−5 POINT</span></button>{(!player.shirtNumber || !player.numberSource || scoreRound(round)<5) && <small>{!player.shirtNumber || !player.numberSource ? 'Intet verificeret trøjenummer.' : 'Kræver 5 point.'}</small>}</>}
         </>}
       </dialog>
     </>}

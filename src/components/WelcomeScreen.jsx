@@ -1,3 +1,4 @@
+import ThemeToggle from './ThemeToggle'
 import useHighScore from '../hooks/useHighScore'
 import useLocalAccount from '../hooks/useLocalAccount'
 import Icon from './Icon'
@@ -32,7 +33,7 @@ export default function WelcomeScreen({ clubId }) {
     <StadiumBackdrop />
     <header className="welcome-brand">
       <img src={`${import.meta.env.BASE_URL}app-logo.png`} alt="" />
-      <span><strong>FCM</strong><span>Games</span></span>
+      <span><strong>FCM</strong><span>Games</span></span><ThemeToggle />
     </header>
     <main className="welcome-main" id="indhold">
       <div className="welcome-copy">
