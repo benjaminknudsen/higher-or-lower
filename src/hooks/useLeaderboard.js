@@ -1,16 +1,42 @@
 import { useEffect, useState } from 'react'
-import { leaderboardRepository } from '../services/leaderboard'
+import { onlinePlatform } from '../services/onlinePlatformRuntime.js'
 
-export default function useLeaderboard(modeId, profileName, highScore, totalCorrect) {
-  const [result, setResult] = useState({ source: 'demo', entries: [], loading: true, failed: false })
+const PAGE_SIZE = 25
+
+export default function useLeaderboard(modeId, userId) {
+  const key=`${modeId}:${userId??''}`
+  const [result, setResult] = useState({ key:'',entries: [], ownEntries: [], total: 0, loading: true, loadingMore: false, failed: false, error: '' })
   useEffect(() => {
     let current = true
-    leaderboardRepository.list({ modeId, profileName, highScore, totalCorrect }).then(data => {
-      if (current) setResult({ ...data, loading: false, failed: false })
-    }).catch(() => {
-      if (current) setResult({ source: 'demo', entries: [], loading: false, failed: true })
+    onlinePlatform.listLeaderboard(modeId, { limit: PAGE_SIZE, offset: 0 }).then(data => {
+      if (current) setResult({
+        key,
+        ...data,
+        entries: userId ? data.entries.map(entry => ({ ...entry, isSelf: entry.playerId === userId })) : data.entries,
+        ownEntries: userId ? data.ownEntries : [],
+        loading: false, loadingMore: false, failed: false, error: '',
+      })
+    }).catch(error => {
+      if (current) setResult({ key,entries: [], ownEntries: [], total: 0, loading: false, loadingMore: false, failed: true, error: error.message })
     })
     return () => { current = false }
-  }, [modeId, profileName, highScore, totalCorrect])
-  return result
+  }, [modeId, userId, key])
+  async function loadMore() {
+    if (result.key!==key||result.loading || result.loadingMore || result.failed || result.entries.length >= result.total) return
+    setResult(previous => ({ ...previous, loadingMore: true }))
+    try {
+      const data = await onlinePlatform.listLeaderboard(modeId, { limit: PAGE_SIZE, offset: result.entries.length })
+      setResult(previous => ({
+        ...previous,
+        entries: [...previous.entries, ...data.entries.map(entry => ({ ...entry, isSelf: entry.playerId === userId }))],
+        ownEntries: userId ? data.ownEntries : [],
+        total: data.total,
+        loadingMore: false,
+      }))
+    } catch (error) {
+      setResult(previous => ({ ...previous, loadingMore: false, error: error.message }))
+    }
+  }
+  if(result.key!==key)return {entries:[],ownEntries:[],total:0,loading:true,loadingMore:false,failed:false,error:'',loadMore}
+  return { ...result, loadMore }
 }

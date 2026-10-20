@@ -42,7 +42,7 @@
 .welcome-play:focus-visible { outline: 3px solid #fff; outline-offset: 7px; }
 @media (hover: hover) and (pointer: fine) { .welcome-play:hover { box-shadow: 0 0 0 1px var(--tone-c3f54c7a,#c3f54c7a), 0 0 60px var(--tone-b7ef3940,#b7ef3940), inset 0 3px 0 var(--tone-e5ffa67a,#e5ffa67a), 0 14px 32px #0005; } }
 .welcome-statistics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; width: 100%; max-width: 410px; margin-inline: auto; padding-top: 17px; border-top: 1px solid var(--tone-bca2ff14,#bca2ff14); }
-.welcome-statistics > div { display: flex; align-items: center; flex-direction: column; gap: 5px; min-width: 0; }
+.welcome-statistics > div { grid-column:2; display: flex; align-items: center; flex-direction: column; gap: 5px; min-width: 0; }
 .welcome-statistics svg { width: 17px; height: 17px; color: var(--tone-a28bbf,#a28bbf); }
 .welcome-statistics strong { font-size: 24px; line-height: 1.1; letter-spacing: -.6px; font-weight: 900; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .welcome-statistics > div:first-child strong { color: var(--game-lime); }

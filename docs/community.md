@@ -1,54 +1,65 @@
-# Profil, statistik og demo-leaderboard
+# Profil, statistik og online leaderboard
 
 ## Sider og navigation
 
-Appens standardstart er nu velkomstskærmen; PLAY fører til den eksisterende spilmenu på `#forside`. Se [welcome.md](welcome.md). Bundnavigationen er skjult på velkomsten.
+- `#profil`: profilnavn, avatar, `HighScoreMedal`, statistik og rekorder pr. spiltype.
+- `#leaderboard`: fælles Supabase-rangliste med spilfiltre, podium, paginering og egen placering.
+- `#forside`: eksisterende forside. Navigation, safe areas og gameplayflader er bevaret.
 
-- `#profil`: `ProfilePage` med redigerbart navn, standardavatar, eksisterende `HighScoreMedal`, statistik og rekorder pr. spiltype.
-- `#leaderboard`: `LeaderboardPage` med fire filtre, podium, rangliste og egen placering. Kun Flest kampe er aktiv.
-- `#forside`: eksisterende forside. `#rekord` og den eksisterende selvstændige rekordvisning bevares; den markeres som et underområde af Profil i navigationen.
-- `BottomNavigation` er fast, tager højde for safe areas og vises aldrig i gameplay eller Game Over. Hash-navigation kræver hverken router-dependency, server-rewrites eller sidegenindlæsning.
+Profil- og leaderboardvisninger bruger eksisterende tema-variabler i Neon og FCM.
+Leaderboardet viser kun registrerede spillere med online-resultater; ingen
+eksempelprofiler eller lokal gæst indsprøjtes i produktionsranglisten.
 
-Forsiden reserverer plads til navigationen inden for sin viewport. Meget små skærme må scrolle lodret for at holde indhold tilgængeligt. Profil og leaderboard scroller naturligt, med bundpadding der holder det sidste indhold over navigationen. Baggrunden matcher den eksisterende `--game-dark`; spilkortenes styles og svarknapper er ikke ændret.
+## Gæste- og kontodata
 
-## Lokal datalagring
+Gæster beholder lokale profilnavne, rekorder/statistik og lineup-resultater. De kan
+læse det offentlige leaderboard, men resultater fra gæstespil indsendes aldrig.
+Indloggede brugere får kontostatistik fra Supabase, og kontospil tæller ikke ind i
+gæstens lokale statistikker. Auth-indlæsning skjuler gæstedata, til identiteten er
+kendt; logout og kontoskift skifter til den rette profil.
 
-`src/services/localAccount.js` er den eneste nye adgang til localStorage. `useLocalAccount` stiller data til rådighed for UI og lytter til ændringer, både i samme vindue og fra andre faner.
+Gamle lokale gæsterekorder importeres ikke. Offline-køen indeholder kun nye,
+afsluttede kontospil og er adskilt efter Auth-ID. Resultat-ID gør RPC-indsendelse
+idempotent; en synkroniseringsfejl vises og kan forsøges igen.
 
-Profilnøglen er `fcm-higher-or-lower:profile:v1`, med modellen `{version: 1, name}`. Standardnavnet er FCM-fan. Navne trimmes, normaliseres og begrænses til 24 tegn. De vises som almindelig React-tekst.
+## Online model
 
-Hvert faktisk spil får en UUID ved første accepterede svar. Statistik gemmes under `fcm-higher-or-lower:game-stats:v1:<sessionId>` med `{version, clubId, modeId, lastQuestion, answers, correct}`. Separate nøgler holder to åbne spil adskilt. Samme eller et ældre spørgsmål kan ikke tælles igen. Der gemmes ingen spillerkort, spillerstatistikker eller demo-spil i denne statistik.
+`src/services/onlinePlatform.js` afgrænser læsning af kontostatistik og pagineret
+leaderboard-RPC. `src/services/onlineGameResults.js` køer og indsender afsluttede
+spil. `src/services/cloudProfilePhoto.js` håndterer Storage-fotos. React-hooks
+vælger ejerbundne online- eller gæstedata, og Supabase RLS/RPC håndhæver rettigheder
+uden browser-writeadgang til statistik eller medaljer.
 
-- **Spillede runder**: antal spil med mindst ét afgivet svar. Det tæller også et spil, som man forlader før Game Over, fordi svarene faktisk er afgivet. En genstart uden et svar tæller ikke.
-- **Korrekte svar**: summen af faktisk korrekte svar fra disse spil.
-- **Træfsikkerhed**: korrekte svar divideret med alle afgivne svar, afrundet til hele procent. 0 svar giver 0 %.
-- Statistikken inkluderer kun fremtidige spil. Eksisterende highscore omregnes aldrig til gættet historik.
+`game_stats` holder aggregater pr. Auth-ID/spiltype. `game_results` er private
+idempotente kvitteringer; `player_achievements` indeholder offentlig
+`Flest kampe`-medaljeprogression. `submit_game_result` validerer scoregrænser,
+bruger-ID og dubletter, og opdaterer statistik/medaljer atomisk. `get_game_leaderboard`
+returnerer offentlig username, avatar path, score og rang med stabil tie-break og
+serverpagination.
 
-`GameSession` tilføjer kun en registrering efter motoren accepterer et svar. Regler, timing, animationer og scoreberegning er bevaret. Lige kamptal følger fortsat motorens eksisterende korrekt-logik. Gentagne tryk er idempotente i statistiklaget, også hvis de kommer før React har opdateret knapperne.
+Leaderboardet sorterer efter bedste enkeltresultat for spiltypen. Lige scores deler
+placering (1, 1, 3); visningsrækkefølgen for lige score er stabil via username og
+Auth-ID. Profilen viser bedste score og de eksisterende medaljegrænser/grafikker.
 
-Den eksisterende `useHighScore`/`highScore.js` genbruges uændret, med de samme lagringsnøgler og medaljefarver. Ufuldstændige eller ødelagte nye statistikposter ignoreres. Ved blokeret/fuld localStorage fungerer profil/statistik i hukommelsen, og profilen forklarer begrænsningen. Ingen eksisterende nøgler ryddes eller migreres.
+Supabase-opsætning, migrationrækkefølge og manuelle aktiveringstrin står i
+[online-platform.md](online-platform.md). Migrations er ikke kørt automatisk.
 
-## Demo og kommende Supabase
+## Sikkerheds- og statistiknoter
 
-Fiktive eksempelprofiler og eksempelrekorder ligger udelukkende i `src/data/leaderboardDemo.js`. De har intet med de 150 verificerede FCM-spilleres data at gøre. Siden viser tydeligt, at det er en demo, og at kun den lokale brugers navn og rekord er fra denne enhed. Ingen data sendes online.
+RLS tillader public læsning af aggregater og medaljer, ejers egen resultathistorik,
+og ingen direkte browserwrites til resultat-/statistik-/medaljetabeller. Public
+profilfelter indeholder ikke e-mail. Storage-fotoer er offentligt læsbare, men
+write/update/delete begrænses til brugerens Auth-ID-mappe.
 
-`src/services/leaderboard.js` eksporterer en asynkron repository-grænse:
+Resultaterne er **klientrapporterede, ikke verificerede**. En bruger kan manipulere
+browserklienten eller selv kalde RPC med lovlige, men fabrikerede værdier. Score-
+grænser, idempotens og rate guard begrænser simple fejl/abuse, men beviser ikke at et
+spil blev gennemført. Se sikkerhedsbegrænsningerne i `online-platform.md`.
 
-```js
-list({ modeId, profileName, highScore })
-// => { source: 'demo', entries: [{id, name, score, isSelf, rank}] }
-```
+## Kontroller
 
-Ranglisten sorteres efter score faldende og derefter stabilt ID stigende. Samme score giver delt placering, fx 1, 1, 3. Den lokale spiller tilføjes én gang som `local:self`. Der vises ingen rekorder for låste spiltilstande.
-
-En senere Supabase-adapter kan erstatte `leaderboardRepository.list` og levere samme visningsmodel med en anden `source`. Demo-mærkningen styres allerede af datakilden. Backend skal på det tidspunkt identificere den autentificerede bruger og levere serverberegnede placeringer; en global rangliste skal ikke baseres på et lokalt klientsorteret udsnit. Profil-/statistiklaget kan udskiftes bag `useLocalAccount`, mens siden fortsat modtager samme profil-/statistikmodel. Ingen Supabase-pakke, login eller database er oprettet nu.
-
-## Validering
-
-- 81 tests, lint og produktionsbuild inklusive PWA-kontrol består.
-- Nye tests dækker tomme/eksisterende data, normalisering, bevaret highscore, vedvarende statistik, dobbelte svar, to spilinstanser, ugyldige poster og lagerfejl. Ranglistetests dækker sortering, delte placeringer, egen placering og demokilde.
-- WebKit: 320×568, 375×667, 390×844, 430×932 og 1440×900 med simuleret standalone og 47/34 px safe areas. Navigation, formular, persistens, gamle rekorder, nye rekorder, Game Over/genstart og manglende bundnavigation under gameplay er afprøvet. Ingen vandret scrolling; forsiden passer uden scrolling ved 390×844. Sidste indhold på de nye sider kan scrolles fri af navigationen.
-- Chromium/PWA: profil, statistik og demo-rangliste virker også efter offline-genindlæsning. Eksisterende offline-gameplay samt worker-opdatering på forsiden virker stadig. Data og rekord bevares.
-- Spillerfil, spilmotor, highscore-lagring, medaljefarver, PWA-konfiguration, package dependencies og deployment-workflow er uændrede. Nye assets følger automatisk med i det eksisterende precache/build.
-
-Fysisk iPhone-installation kan ikke afprøves her; efter deployment bør profilnavn, en spilrunde og navigation afprøves på telefonen. Der er ikke pushet eller deployet fra denne opgave.
+Tests dækker guest/cloud dataadskillelse, konto-ID-bundne forespørgsler,
+resultatkø/idempotens/offlinegenforsøg, Storage upload/udskift/fjern, leaderboard-
+mapping, paginationparametre og ties. Browserens faktiske IndexedDB/Storage og
+staging-RLS/RPC-integration skal stadig testes efter manuel migration; dette arbejde
+har hverken ændret Supabase-projektet eller deployet appen.

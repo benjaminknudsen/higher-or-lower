@@ -32,3 +32,10 @@
 .profile-editor-dialog button:disabled { opacity:.5; }
 @media(hover:hover) and (pointer:fine) { .profile-edit-trigger:hover,.profile-editor-action:hover { border-color:var(--color-primary); } }
 @media(max-width:350px) { .premium-profile-card { padding:12px 14px 18px; }.premium-profile-top>span { letter-spacing:.7px; font-size:8px; }.premium-profile-identity { gap:12px; }.profile-edit-trigger { padding:8px; font-size:10px; } }
+.profile-photo-direct { display:inline-flex; width:80px; height:80px; flex:0 0 80px; }
+.profile-photo-direct-button { position:relative; width:100%; height:100%; padding:0; border:0; border-radius:50%; background:transparent; cursor:pointer; }
+.profile-photo-direct-button>.fan-avatar { width:100%; height:100%; border:2px solid color-mix(in srgb,var(--color-primary) 38%,var(--color-border)); }
+.profile-photo-camera { position:absolute; bottom:0; right:0; display:grid; place-items:center; width:25px; height:25px; border-radius:50%; background:var(--color-secondary); color:var(--color-text); border:2px solid var(--color-surface); pointer-events:none; }
+.profile-photo-camera svg { width:13px; height:13px; }
+.profile-photo-direct-button:focus-visible { outline:2px solid var(--color-primary); outline-offset:4px; }
+.profile-photo-direct-button:disabled { cursor:wait; opacity:.65; }

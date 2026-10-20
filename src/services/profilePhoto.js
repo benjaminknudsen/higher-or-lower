@@ -1,9 +1,12 @@
 const DATABASE = 'fcm-games-profile-photo'
 const STORE = 'photos'
-const KEY = 'self'
+// Legacy 'self' has ambiguous ownership and is intentionally left untouched.
+// New guest/account images use separate keys in the same existing object store.
 
-// A single Blob record; this adapter can later be replaced by remote storage.
-export function createProfilePhotoRepository(indexedDB) {
+// One Blob per explicit owner; no shared-account fallback or automatic migration.
+export function createProfilePhotoRepository(indexedDB, { owner = 'guest' } = {}) {
+  if(owner!=='guest' && !(typeof owner==='string'&&owner.startsWith('user:')&&owner.length>5))throw new Error('Ugyldig billedejer.')
+  const key=owner
   async function run(mode, operation) {
     if (!indexedDB) throw new Error('Billedlagring er ikke tilgængelig i denne browser.')
     const db = await new Promise((resolve, reject) => {
@@ -26,8 +29,8 @@ export function createProfilePhotoRepository(indexedDB) {
     } finally { db.close() }
   }
   return {
-    load: () => run('readonly', store => store.get(KEY)),
-    save: blob => run('readwrite', store => store.put(blob, KEY)),
-    remove: () => run('readwrite', store => store.delete(KEY)),
+    load: () => run('readonly', store => store.get(key)),
+    save: blob => run('readwrite', store => store.put(blob, key)),
+    remove: () => run('readwrite', store => store.delete(key)),
   }
 }

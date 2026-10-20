@@ -44,15 +44,15 @@ Udvid kun arrayet i `src/data/lineupMatches.json`. Kopiér en eksisterende post 
 
 Kør `npm run lineup:check`, `npm test`, `npm run lint` og `npm run build`. Build afviser ugyldige poster; spillets udvælgelse filtrerer dem også fra. Validering kontrollerer struktur og felter, men erstatter ikke historisk kildekontrol.
 
-## Lokal lagring og fremtidig rangliste
+## Gæstelagring og kontosynkronisering
 
-`localStorage['fcm.lineup.v1']` indeholder `{ version: 1, played: [], round: null, results: [] }`.
+For gæster indeholder `localStorage['fcm.lineup.v1']` `{ version: 1, played: [], round: null, results: [] }`. Indloggede brugere starter med kontoafgrænset spilstate i hukommelsen; deres resultater læses fra Supabase og lokale gæsteresultater importeres ikke.
 
 - `active` i kampdatabasen styrer udvælgelsen uafhængigt af `verified`. Sæt blot flere verificerede kampe til `active: true` for at udvide puljen. Ældre poster uden `active` behandles som aktive for bagudkompatibilitet. Én aktiv kamp kan genvælges ubegrænset; ingen aktive kampe giver `null` uden loops.
 - `archivedRounds`: ældre arkiverede snapshots bevares som historiske felter, men gendannes og vises ikke.
 - `played`: valgte kamp-ID'er i den aktuelle cyklus. Nye kampe indgår automatisk. Cyklussen starter forfra, når alle er valgt, og undgår også samme kamp umiddelbart ved cyklusskift, hvis muligt.
 - `round`: er altid `null` i localStorage. Den aktuelle kamp, deadline, gæt, hints, fejl og slutstatus findes kun i komponentens hukommelse. Genåbning viser altid introen. Ved appopstart ryddes tidligere gemte `round`-felter, uden at resultater eller øvrige data berøres.
-- `results`: separate resultater med `modeId: "lineup"`, `matchId`, score, antal korrekte, fejl, hints, start/slut og varighed. Hvert runde-ID registreres højst én gang. Statistik afledes herfra. Ingen data sendes til en server eller vises som globale placeringer.
+- `results`: separate gæsteresultater med `modeId: "lineup"`, `matchId`, score, antal korrekte, fejl, hints, start/slut og varighed. Hvert runde-ID registreres højst én gang. Statistik afledes herfra. Gæsteresultater sendes ikke til en server. Kontoens afsluttede resultater sendes separat til den ejerkontrollerede Supabase-RPC.
 
 Timeren beregnes fra `deadline`, mens runden er åben. Indsendelser, hintkøb og interval kontrollerer udløb. Navigation væk fra `#spil/lineup`, `visibilitychange` til skjult, `pagehide` og unmount kasserer den aktuelle runde; den tæller ikke som gennemført. Interval og listeners fjernes ved unmount. Genindlæsning eller proceslukning kan ikke gendanne en runde, da snapshots aldrig gemmes. Kun faktisk afsluttede runder registreres idempotent i `results`. Hints kræver mindst 5 optjente point. Alle 11 korrekte tæller som en perfekt opstilling, også med købte hints.
 
@@ -66,9 +66,9 @@ Manuel kontrol på fysisk iPhone anbefales: 390 × 844 og 320 px bredde, standal
 
 ## Startopstillingsrangliste: samlede korrekte gæt
 
-Ranglistens eneste måltal er `statistics(store).correct`: summen af `results[].correct` fra afsluttede runder. Rundens `guessed` indeholder kun brugerens egne gæt; resultatvisningens automatiske afsløring og købte hints lægger ikke navne til. `recordResult` registrerer et runde-ID højst én gang. Nye runder på samme kamp har nye ID'er og tæller også. Ingen historik eller lagringsnøgler migreres/nulstilles; summen gendannes fra eksisterende localStorage-resultater.
+Profilens gæstestatistik bruger stadig `statistics(store).correct`: summen af `results[].correct` fra afsluttede runder. Rundens `guessed` indeholder kun brugerens egne gæt; automatisk afsløring og hints lægger ikke navne til. `recordResult` registrerer et runde-ID højst én gang.
 
-Leaderboard-adapteren modtager `totalCorrect` og returnerer `metric: 'totalCorrect'`. `rankLineupLeaderboard` sorterer efter dette felt og deler placering ved lige totaler, uanset point eller rekord i en enkelt runde. Det generiske visningsfelt `score` indeholder her det samlede antal, og enheden er altid “spillere gættet”. Adapteren viser den lokale profil; der tilføjes ingen nye opdigtede modstandere. Hall of Fame og listen under top tre bruger samme rangering, når flere profiler bliver tilgængelige. Higher or Lower-adapteren og dens eksisterende data bevarer rangering efter rigtige i træk.
+Kontostatistik synkroniseres som afsluttede resultater med score/point, antal korrekte spillere, varighed og perfekt-status. Offlinefejl køes pr. konto og kan genforsøges. Kontoens lineup-leaderboard rangerer efter bedste enkeltresultat i point; lige point deler placering. Statistikken over samlede korrekte spillere vises separat på profilen. Data kræver migrationen beskrevet i `online-platform.md`; værdierne er klientrapporterede, ikke verificerede.
 
 
 ## Historiske tilføjelser · 20. oktober 2026

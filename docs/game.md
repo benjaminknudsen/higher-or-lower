@@ -28,7 +28,7 @@ Animationer af tal, score, nye kort, jubel og fejl er korte og bruger opacity/tr
 
 Stimen er antallet af rigtige svar i træk i det aktuelle spil. Da første forkerte svar afslutter spillet, svarer den til score.
 
-Rekordnøgle: `fcm-higher-or-lower:highscore:v1:<clubId>:<modeId>`. En rekord skrives ved det rigtige svar, så den er gemt, selv om brugeren forlader spillet før slutskærmen. Lavere scorer overskriver ikke højere rekorder. Data fra andre faner læses før skrivning, og storage-events synkroniserer rekordvisningen. Rekorden er personlig for browseren; der er ingen server eller fælles rangliste.
+Gæsters rekordnøgle: `fcm-higher-or-lower:highscore:v1:<clubId>:<modeId>`. Gæsterekord skrives ved det rigtige svar, så den er gemt, selv om gæsten forlader spillet før slutskærmen. Lavere scorer overskriver ikke højere rekorder. Indloggede brugere læser rekorden fra Supabase og kontospil synkroniseres ved afslutning gennem idempotent RPC; kontospil ændrer ikke gæstenøglen. Fælles leaderboardet bruger kun registrerede kontoresultater. Kontostatistik og medaljer kræver den upåførte migration beskrevet i `online-platform.md`.
 
 Fejlbehæftede lagrede værdier ignoreres. Blokeret/fuld localStorage får ikke spillet til at fejle; rekorden kan stadig vises for denne tur, og resultatet forklarer, hvis den ikke kunne gemmes.
 

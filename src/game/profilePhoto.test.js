@@ -13,7 +13,7 @@ function databaseDouble() {
    const transaction={}
    transaction.objectStore=()=>{
     const operation=(kind,key,value)=>{
-     assert.equal(key,'self')
+     assert.ok(key==='guest'||key.startsWith('user:'))
      if(kind!=='get')assert.equal(mode,'readwrite')
      const req={}
      queueMicrotask(()=>{
@@ -50,8 +50,8 @@ test('unavailable or full image storage rejects without deleting the previous ph
  const db=databaseDouble(),repo=createProfilePhotoRepository(db.factory),photo=new Blob(['old'])
  await repo.save(photo);db.fail()
  await assert.rejects(repo.save(new Blob(['new'])),/Quota/)
- assert.equal(db.records.get('self'),photo)
- await assert.rejects(repo.remove(),/Quota/);assert.equal(db.records.get('self'),photo)
+ assert.equal(db.records.get('guest'),photo)
+ await assert.rejects(repo.remove(),/Quota/);assert.equal(db.records.get('guest'),photo)
  assert.equal(db.closes,3)
 })
 test('avatar resizing caps both dimensions at 512 and preserves proportions without enlarging',()=>{
@@ -84,4 +84,19 @@ test('JPEG fallback and unsupported HEIC produce no leaked object URLs',async()=
  const bad=imageEnvironment({decode:false})
  await assert.rejects(optimizeProfilePhoto({size:100,type:'image/heic'},bad.env),/HEIC/)
  assert.deepEqual(bad.revoked,['blob:test'])
+})
+
+test('IndexedDB guest and account records survive login/logout and replacement/deletion stay isolated',async()=>{
+ const db=databaseDouble(),guest=createProfilePhotoRepository(db.factory)
+ const a=createProfilePhotoRepository(db.factory,{owner:'user:account-a'}),b=createProfilePhotoRepository(db.factory,{owner:'user:account-b'})
+ const old=new Blob(['ambiguous old shared photo']),g=new Blob(['guest']),pa=new Blob(['a']),pb=new Blob(['b'])
+ db.records.set('self',old)
+ assert.equal(await guest.load(),null);assert.equal(await a.load(),null)
+ await guest.save(g);await a.save(pa);await b.save(pb)
+ // Login A -> logout -> login B: each identity reads its own persisted record.
+ assert.equal(await a.load(),pa);assert.equal(await guest.load(),g);assert.equal(await b.load(),pb)
+ const nextA=new Blob(['new a']);await a.save(nextA);assert.equal(await b.load(),pb);assert.equal(await guest.load(),g)
+ await a.remove();assert.equal(await a.load(),null);assert.equal(await b.load(),pb);assert.equal(await guest.load(),g)
+ assert.equal(db.records.get('self'),old)
+ assert.equal(await createProfilePhotoRepository(db.factory,{owner:'user:account-b'}).load(),pb)
 })

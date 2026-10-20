@@ -1,6 +1,5 @@
 import ThemeToggle from './ThemeToggle'
 import useHighScore from '../hooks/useHighScore'
-import useLocalAccount from '../hooks/useLocalAccount'
 import Icon from './Icon'
 import './WelcomeScreen.css'
 
@@ -23,11 +22,8 @@ function StadiumBackdrop() {
 
 export default function WelcomeScreen({ clubId }) {
   const { highScore } = useHighScore(clubId, 'appearances', 0, false)
-  const { statistics } = useLocalAccount(clubId)
   const stats = [
     { icon: 'trophy', value: highScore, label: 'Personlig rekord' },
-    { icon: 'ball', value: statistics.gamesPlayed, label: 'Spillede runder' },
-    { icon: 'target', value: `${statistics.accuracy}%`, label: 'Træfsikkerhed' },
   ]
   return <div className="app welcome-screen">
     <StadiumBackdrop />

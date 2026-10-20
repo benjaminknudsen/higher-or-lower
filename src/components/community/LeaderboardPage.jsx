@@ -1,7 +1,5 @@
-import useLineupTotal from '../../hooks/useLineupTotal'
+import useAuthAccount from '../../hooks/useAuthAccount.js'
 import { useState } from 'react'
-import useLocalAccount from '../../hooks/useLocalAccount'
-import useHighScore from '../../hooks/useHighScore'
 import useLeaderboard from '../../hooks/useLeaderboard'
 import Avatar from './Avatar'
 import CommunityHeader from './CommunityHeader'
@@ -9,50 +7,51 @@ import Icon from '../Icon'
 
 function LeaderboardEntry({ entry, podium = false, unit = 'i træk' }) {
   return <li className={`${podium ? 'podium-entry' : 'leaderboard-row'} ${entry.isSelf ? 'is-self' : ''}`}>
-    <span className="leaderboard-rank" aria-label={`Placering ${entry.rank}`}>{podium && entry.rank === 1 ? <Icon name="trophy" /> : entry.rank}</span>
-    <Avatar self={entry.isSelf} />
-    <span className="leaderboard-name">{entry.name}{entry.isSelf && <small>Dig</small>}</span>
+    <span className="leaderboard-rank" aria-label={`Placering ${entry.rank}`}>#{entry.rank}</span>
+    <Avatar self={entry.isSelf} avatarPath={entry.avatarPath} />
+    <span className="leaderboard-name"><span>{entry.name}{entry.isSelf && <small>Dig</small>}</span></span>
     <strong className="leaderboard-score">{entry.score}<small> {unit}</small></strong>
   </li>
 }
 
-export default function LeaderboardPage({ clubId, gameModes }) {
+export default function LeaderboardPage({ gameModes }) {
   const [modeId, setModeId] = useState('appearances')
   return <main className="community-content leaderboard-page" id="indhold">
     <CommunityHeader title="Leaderboard" subtitle="Se de bedste spillere, og hvor du ligger på ranglisten." />
+    <p className="account-note">Fælles leaderboard for registrerede spillere. Gæster kan se placeringerne, men deres resultater vises ikke online. Resultater er klientrapporterede og kan ikke verificeres fuldt ud i denne version.</p>
     <div className="leaderboard-filters" role="group" aria-label="Spiltype på ranglisten">
       {gameModes.map(mode => <button key={mode.id} type="button" disabled={!mode.available} aria-pressed={mode.id === modeId} onClick={() => setModeId(mode.id)}>
         <Icon name={mode.available ? mode.icon : 'lock'} /><span>{mode.title}{!mode.available && <small>Kommer snart</small>}</span>
       </button>)}
     </div>
-    {modeId === 'lineup' ? <LineupRanking clubId={clubId} /> : <Ranking key={modeId} clubId={clubId} modeId={modeId} />}
+    <Ranking key={modeId} modeId={modeId} />
   </main>
 }
 
-function Ranking({ clubId, modeId }) {
-  const { profile } = useLocalAccount(clubId)
-  const { highScore } = useHighScore(clubId, modeId, 0, false)
-  const { entries, loading, failed } = useLeaderboard(modeId, profile.name, highScore)
-  return <RankingContent entries={entries} loading={loading} failed={failed} />
+function Ranking({ modeId }) {
+  const account=useAuthAccount()
+  const userId=account.status==='signed-in'?account.userId:null
+  const result=useLeaderboard(modeId,userId)
+  return <RankingContent entries={result.entries} ownEntries={result.ownEntries} total={result.total} loading={result.loading}
+    loadingMore={result.loadingMore} failed={result.failed} error={result.error} loadMore={result.loadMore}
+    lineup={modeId==='lineup'} signedIn={Boolean(userId)} />
 }
 
-function LineupRanking({ clubId }) {
-  const { profile } = useLocalAccount(clubId)
-  const totalCorrect = useLineupTotal()
-  const result = useLeaderboard('lineup', profile.name, undefined, totalCorrect)
-  return <RankingContent {...result} lineup />
-}
-
-function RankingContent({ entries, loading, failed, lineup = false }) {
-  const unit = lineup ? 'spillere gættet' : 'i træk'
-  const self = entries.find(entry => entry.isSelf)
+function RankingContent({ entries, ownEntries, total, loading, loadingMore, failed, error, loadMore, lineup = false, signedIn }) {
+  const unit = lineup ? 'point' : 'i træk'
   return <>
-    {loading ? <p role="status">Henter ranglisten…</p> : failed ? <p role="alert">Ranglisten kunne ikke vises. Prøv at åbne siden igen.</p> : entries.length === 0 ? <p>Ingen resultater endnu.</p> : <>
+    {loading ? <p role="status">Henter ranglisten…</p> : failed ? <p role="alert">Ranglisten kunne ikke vises. {error}</p> : entries.length === 0 ? <p>Ingen online-resultater endnu.</p> : <>
       <section aria-labelledby="podium-title"><h2 className="community-section-title" id="podium-title">Hall of Fame</h2>
         <ol className="leaderboard-podium">{entries.slice(0, 3).map(entry => <LeaderboardEntry key={entry.id} entry={entry} podium unit={unit} />)}</ol>
       </section>
-      {self && <div className="your-ranking" aria-label={`Din placering: ${self.rank}. ${lineup ? 'Samlet' : 'Rekord'}: ${self.score}`}><span>Din placering</span><strong>#{self.rank}</strong><span>{self.score} {lineup ? 'spillere gættet' : 'rigtige i træk'}</span></div>}
-      {lineup && entries.length > 3 && <section aria-label="Rangliste"><ol className="leaderboard-list" start={4}>{entries.slice(3).map(entry => <LeaderboardEntry key={entry.id} entry={entry} unit={unit} />)}</ol></section>}
+      {ownEntries.length > 0 && <section className="your-ranking" aria-label="Dine placeringer">
+        <h2>Din placering</h2>
+        <ol>{ownEntries.map(entry => <li key={entry.id}><strong>#{entry.rank}</strong><span>{entry.score} {unit}</span></li>)}</ol>
+      </section>}
+      {!signedIn && <p className="account-note">Log ind for at få en personlig placering. Gæster kan ikke indsende resultater.</p>}
+      {entries.length > 3 && <section aria-label="Rangliste"><ol className="leaderboard-list" start={4}>{entries.slice(3).map(entry => <LeaderboardEntry key={entry.id} entry={entry} unit={unit} />)}</ol></section>}
+      {entries.length < total && <button type="button" className="account-secondary" disabled={loadingMore} onClick={loadMore}>{loadingMore?'Henter…':'Vis flere forsøg'}</button>}
+      {error&&!failed&&<p role="alert">{error} Resultaterne ovenfor vises stadig.</p>}
     </>}
   </>
 }
