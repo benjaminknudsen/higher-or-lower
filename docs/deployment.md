@@ -8,6 +8,17 @@ Workflowet bruger Node 24, `npm ci`, tests, lint og build. Kun `dist` uploades s
 
 I Settings → Pages skal Source være **GitHub Actions**. Repositoryets Actions skal være aktiveret og tillade de officielle `actions/*`-actions. Eventuelle miljøregler for `github-pages` skal tillade deployment fra `main`.
 
+Supabase-konfigurationen injiceres i buildet fra repositoryets Actions Variables:
+
+- `VITE_SUPABASE_URL`: projektets HTTPS-URL, fx `https://<project-ref>.supabase.co`.
+- `VITE_SUPABASE_PUBLISHABLE_KEY`: projektets `sb_publishable_...`-nøgle.
+
+Opret dem under Settings → Secrets and variables → Actions → Variables. Publishable
+key og URL er beregnet til browseren og bliver indlejret i den offentlige build; brug
+aldrig en `service_role`- eller `sb_secret_...`-nøgle her. Workflowet stopper før
+build, hvis en af variablerne mangler. Lokalt kommer de samme værdier fra `.env`,
+som fortsat er gitignored.
+
 Vite bruger `base: '/higher-or-lower/'`. JavaScript-genererede billedstier bruger `import.meta.env.BASE_URL`; Vite omskriver selv CSS- og HTML-assets. Hash-navigationen kræver ikke server-rewrites.
 
 ## Få rettelsen online
