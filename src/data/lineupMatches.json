@@ -1,0 +1,467 @@
+[
+  {
+    "id": "fcm-celtic-2021-07-20",
+    "verified": true,
+    "date": "2021-07-20",
+    "home": "Celtic FC",
+    "away": "FC Midtjylland",
+    "score": [
+      1,
+      1
+    ],
+    "resultNote": "",
+    "competition": "Champions League · 2. kvalifikationsrunde",
+    "formation": "4-3-3",
+    "sources": [
+      "https://www.fcm.dk/kampe/celtic-fc-fc-midtjylland-20-07-2021/",
+      "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+    ],
+    "verifiedAt": "2026-10-20",
+    "positionNote": "Skematiske positioner inden for den dokumenterede startformation.",
+    "players": [
+      {
+        "id": "lossl",
+        "name": "Jonas Lössl",
+        "aliases": [
+          "Lössl",
+          "Lossl"
+        ],
+        "row": 0,
+        "slot": 0,
+        "position": "GK",
+        "shirtNumber": 1,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "paulinho",
+        "name": "Paulinho",
+        "aliases": [],
+        "row": 1,
+        "slot": 0,
+        "position": "DEF",
+        "shirtNumber": 29,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "hoegh",
+        "name": "Daniel Høegh",
+        "aliases": [
+          "Høegh",
+          "Hoegh"
+        ],
+        "row": 1,
+        "slot": 1,
+        "position": "DEF",
+        "shirtNumber": 5,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "sviatchenko",
+        "name": "Erik Sviatchenko",
+        "aliases": [
+          "Sviatchenko"
+        ],
+        "row": 1,
+        "slot": 2,
+        "position": "DEF",
+        "shirtNumber": 28,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "dalsgaard",
+        "name": "Henrik Dalsgaard",
+        "aliases": [
+          "Dalsgaard"
+        ],
+        "row": 1,
+        "slot": 3,
+        "position": "DEF",
+        "shirtNumber": 14,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "anderson",
+        "name": "Mikael Anderson",
+        "aliases": [
+          "Anderson"
+        ],
+        "row": 2,
+        "slot": 0,
+        "position": "MID",
+        "shirtNumber": 34,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "onyedika",
+        "name": "Raphael Onyedika",
+        "aliases": [
+          "Onyedika"
+        ],
+        "row": 2,
+        "slot": 1,
+        "position": "MID",
+        "shirtNumber": 37,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "evander",
+        "name": "Evander",
+        "aliases": [],
+        "row": 2,
+        "slot": 2,
+        "position": "MID",
+        "shirtNumber": 10,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "sisto",
+        "name": "Pione Sisto",
+        "aliases": [
+          "Sisto"
+        ],
+        "row": 3,
+        "slot": 0,
+        "position": "FWD",
+        "shirtNumber": 7,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "brumado",
+        "name": "Junior Brumado",
+        "aliases": [
+          "Brumado",
+          "Júnior Brumado"
+        ],
+        "row": 3,
+        "slot": 1,
+        "position": "FWD",
+        "shirtNumber": 74,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      },
+      {
+        "id": "dreyer",
+        "name": "Anders Dreyer",
+        "aliases": [
+          "Dreyer"
+        ],
+        "row": 3,
+        "slot": 2,
+        "position": "FWD",
+        "shirtNumber": 36,
+        "numberSource": "https://www.skysports.com/football/celtic-vs-fc-midtjylland/teams/446724"
+      }
+    ],
+    "active": false
+  },
+  {
+    "id": "fcm-celtic-2021-07-28",
+    "verified": true,
+    "date": "2021-07-28",
+    "home": "FC Midtjylland",
+    "away": "Celtic FC",
+    "score": [
+      2,
+      1
+    ],
+    "resultNote": "Efter forlænget spilletid",
+    "competition": "Champions League · 2. kvalifikationsrunde",
+    "formation": "3-4-3",
+    "sources": [
+      "https://www.fcm.dk/kampe/fc-midtjylland-celtic-fc-28-07-2021/",
+      "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+    ],
+    "verifiedAt": "2026-10-20",
+    "positionNote": "Skematiske positioner inden for den dokumenterede startformation.",
+    "players": [
+      {
+        "id": "lossl",
+        "name": "Jonas Lössl",
+        "aliases": [
+          "Lössl",
+          "Lossl"
+        ],
+        "row": 0,
+        "slot": 0,
+        "position": "GK",
+        "shirtNumber": 1,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "juninho",
+        "name": "Juninho",
+        "aliases": [],
+        "row": 1,
+        "slot": 0,
+        "position": "DEF",
+        "shirtNumber": 73,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "sviatchenko",
+        "name": "Erik Sviatchenko",
+        "aliases": [
+          "Sviatchenko"
+        ],
+        "row": 1,
+        "slot": 1,
+        "position": "DEF",
+        "shirtNumber": 28,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "dalsgaard",
+        "name": "Henrik Dalsgaard",
+        "aliases": [
+          "Dalsgaard"
+        ],
+        "row": 1,
+        "slot": 2,
+        "position": "DEF",
+        "shirtNumber": 14,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "paulinho",
+        "name": "Paulinho",
+        "aliases": [],
+        "row": 2,
+        "slot": 0,
+        "position": "MID",
+        "shirtNumber": 29,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "evander",
+        "name": "Evander",
+        "aliases": [],
+        "row": 2,
+        "slot": 1,
+        "position": "MID",
+        "shirtNumber": 10,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "charles",
+        "name": "Charles",
+        "aliases": [],
+        "row": 2,
+        "slot": 2,
+        "position": "MID",
+        "shirtNumber": 35,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "andersson",
+        "name": "Joel Andersson",
+        "aliases": [
+          "Andersson"
+        ],
+        "row": 2,
+        "slot": 3,
+        "position": "MID",
+        "shirtNumber": 6,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "sisto",
+        "name": "Pione Sisto",
+        "aliases": [
+          "Sisto"
+        ],
+        "row": 3,
+        "slot": 0,
+        "position": "FWD",
+        "shirtNumber": 7,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "brumado",
+        "name": "Junior Brumado",
+        "aliases": [
+          "Brumado",
+          "Júnior Brumado"
+        ],
+        "row": 3,
+        "slot": 1,
+        "position": "FWD",
+        "shirtNumber": 74,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      },
+      {
+        "id": "mabil",
+        "name": "Awer Mabil",
+        "aliases": [
+          "Mabil"
+        ],
+        "row": 3,
+        "slot": 2,
+        "position": "FWD",
+        "shirtNumber": 11,
+        "numberSource": "https://www.skysports.com/football/fc-midtjylland-vs-celtic/teams/446732"
+      }
+    ],
+    "active": false
+  },
+  {
+    "id": "viborg-fcm-2026-10-19",
+    "active": true,
+    "verified": true,
+    "date": "2026-10-19",
+    "home": "Viborg FF",
+    "away": "FC Midtjylland",
+    "score": [
+      1,
+      2
+    ],
+    "competition": "Superligaen",
+    "formation": "3-4-1-2",
+    "sources": [
+      "https://www.fcm.dk/kampe/viborg-ff-fc-midtjylland-19-10-2026/",
+      "https://www.fcm.dk/nyheder/start-11eren-til-mandagens-midtjyske-derby/",
+      "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/",
+      "https://ofstats.com/matches/view/viborg-ff-fc-midtjylland-2026-10-19"
+    ],
+    "verifiedAt": "2026-10-20",
+    "positionNote": "Skematiske positioner i 3-4-1-2 set med FCM angribende opad. Startere fra FCM, formation fra OFStats. Ingen screenshots var tilgængelige ved kontrollen.",
+    "players": [
+      {
+        "id": "bakker",
+        "name": "Nordin Bakker",
+        "aliases": [
+          "Bakker"
+        ],
+        "row": 0,
+        "slot": 0,
+        "position": "GK",
+        "shirtNumber": 25,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "bech",
+        "name": "Mads Bech Sørensen",
+        "aliases": [
+          "Mads Bech",
+          "Bech Sørensen"
+        ],
+        "row": 1,
+        "slot": 0,
+        "position": "DEF",
+        "shirtNumber": 22,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "maxso",
+        "name": "Andreas Maxsø",
+        "aliases": [
+          "Maxsø"
+        ],
+        "row": 1,
+        "slot": 1,
+        "position": "DEF",
+        "shirtNumber": 2,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "diao",
+        "name": "Ousmane Diao",
+        "aliases": [
+          "Diao"
+        ],
+        "row": 1,
+        "slot": 2,
+        "position": "DEF",
+        "shirtNumber": 4,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "watjen",
+        "name": "Kjell Wätjen",
+        "aliases": [
+          "Wätjen",
+          "Waetjen",
+          "Kjell Waetjen"
+        ],
+        "row": 2,
+        "slot": 0,
+        "position": "MID",
+        "shirtNumber": 29,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "bravo",
+        "name": "Pedro Bravo",
+        "aliases": [
+          "Bravo"
+        ],
+        "row": 2,
+        "slot": 1,
+        "position": "MID",
+        "shirtNumber": 19,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "billing",
+        "name": "Philip Billing",
+        "aliases": [
+          "Billing"
+        ],
+        "row": 2,
+        "slot": 2,
+        "position": "MID",
+        "shirtNumber": 8,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "nissen",
+        "name": "Rasmus Nissen Kristensen",
+        "aliases": [
+          "Nissen",
+          "Rasmus Nissen",
+          "Kristensen"
+        ],
+        "row": 2,
+        "slot": 3,
+        "position": "MID",
+        "shirtNumber": 5,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "castillo",
+        "name": "Denil Castillo",
+        "aliases": [
+          "Castillo"
+        ],
+        "row": 3,
+        "slot": 0,
+        "position": "AM",
+        "shirtNumber": 21,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "etim",
+        "name": "Friday Etim",
+        "aliases": [
+          "Etim",
+          "Friday Ubi Etim"
+        ],
+        "row": 4,
+        "slot": 0,
+        "position": "FWD",
+        "shirtNumber": 90,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      },
+      {
+        "id": "iheanacho",
+        "name": "Stanley Iheanacho",
+        "aliases": [
+          "Iheanacho"
+        ],
+        "row": 4,
+        "slot": 1,
+        "position": "FWD",
+        "shirtNumber": 18,
+        "numberSource": "https://www.fcm.dk/nyheder/truppen-mod-viborg-4/"
+      }
+    ]
+  }
+]

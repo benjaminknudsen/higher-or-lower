@@ -1,3 +1,7 @@
+# FCM Games
+
+FCM Games samler Higher or Lower og Gæt startopstillingen i én React/Vite-PWA. Repository-navn og GitHub Pages-adresse forbliver `higher-or-lower`.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.

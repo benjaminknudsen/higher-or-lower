@@ -1,3 +1,4 @@
+import LineupStatistics from '../lineup/LineupStatistics'
 import { useEffect, useRef, useState } from 'react'
 import useLocalAccount from '../../hooks/useLocalAccount'
 import useHighScore from '../../hooks/useHighScore'
@@ -55,9 +56,10 @@ export default function ProfilePage({ clubId, gameModes }) {
       </div>
       <p className="statistics-note">Tælles fra nu. En runde tæller, når du har svaret mindst én gang. Træfsikkerhed er korrekte svar ud af alle dine svar.</p>
     </section>
+    <LineupStatistics />
     <section aria-labelledby="mode-records-title">
       <h2 className="community-section-title" id="mode-records-title">Rekorder i flokken</h2>
-      <ul className="profile-mode-records">{gameModes.map(mode => <ModeRecord key={mode.id} mode={mode} clubId={clubId} />)}</ul>
+      <ul className="profile-mode-records">{gameModes.filter(mode => mode.id !== 'lineup').map(mode => <ModeRecord key={mode.id} mode={mode} clubId={clubId} />)}</ul>
     </section>
   </main>
 }

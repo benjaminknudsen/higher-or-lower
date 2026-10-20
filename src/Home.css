@@ -137,3 +137,11 @@
   .home-medal-streak { font-size: 17px; }
   .home-record-prompt { font-size: 16px; }
 }
+
+/* Five modes, including the active starting eleven quiz. */
+.menu-grid { grid-template-rows: repeat(3,minmax(100px,1fr)); }
+.menu-mode-lineup { grid-column:1 / -1; background:linear-gradient(115deg,#49318e,#6743e7); color:#fff; border:1px solid #aa86ff; }
+.menu-mode-lineup .menu-mode-status { color:#c3f54c; }
+.menu-mode-lineup .menu-mode-title { padding-right:40px; }
+.app.menu-app { height:auto; min-height:var(--app-viewport-height); }
+.menu-main { grid-template-rows:minmax(220px,1fr) auto; padding-bottom:78px; }
