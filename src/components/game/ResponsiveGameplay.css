@@ -51,6 +51,7 @@
 .round-negative .direct-answer-dock .was-chosen { background: #b52d49; color: #fff; }
 @media (hover: hover) and (pointer: fine) {
   .direct-answer-dock .guess-button:not(:disabled):hover { filter: brightness(1.1); }
+  .direct-answer-dock .guess-higher:not(:disabled):hover { color: #fff; --arrow-highlight: #fff; }
 }
 /* Sculpted arcade arrows, with speed marks and a small dimensional highlight. */
 .direct-answer-dock .guess-higher { --arrow-highlight: #ecffc6; --arrow-step: -3px; }

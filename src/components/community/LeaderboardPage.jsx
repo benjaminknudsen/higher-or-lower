@@ -1,3 +1,4 @@
+import LineupStatistics from '../lineup/LineupStatistics'
 import { useState } from 'react'
 import useLocalAccount from '../../hooks/useLocalAccount'
 import useHighScore from '../../hooks/useHighScore'
@@ -24,7 +25,7 @@ export default function LeaderboardPage({ clubId, gameModes }) {
         <Icon name={mode.available ? mode.icon : 'lock'} /><span>{mode.title}{!mode.available && <small>Kommer snart</small>}</span>
       </button>)}
     </div>
-    <Ranking key={modeId} clubId={clubId} modeId={modeId} />
+    {modeId === 'lineup' ? <LineupStatistics compact /> : <Ranking key={modeId} clubId={clubId} modeId={modeId} />}
   </main>
 }
 

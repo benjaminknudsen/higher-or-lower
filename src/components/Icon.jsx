@@ -1,5 +1,6 @@
 export default function Icon({ name, className = '' }) {
   const paths = {
+    pitch: <><rect x="4" y="2" width="16" height="20" rx="1" /><path d="M4 12h16M8 2v4h8V2M8 22v-4h8v4" /><circle cx="12" cy="12" r="3" /></>,
     target: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /><path d="m12 12 8-8m-4 0h4v4" /></>,
     home: <><path d="m3 10 9-7 9 7v10H3V10Z" /><path d="M9 20v-7h6v7" /></>,
     user: <><circle cx="12" cy="8" r="4" /><path d="M4 21v-2a8 8 0 0 1 16 0v2" /></>,

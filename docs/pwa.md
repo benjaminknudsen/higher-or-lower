@@ -1,4 +1,4 @@
-# PWA og iPhone
+# FCM Games · PWA og iPhone
 
 ## Tilføj appen
 
@@ -18,6 +18,8 @@ Der kræves ingen API-nøgle, backend eller App Store-udgivelse. Hvis der allere
 - Ikonerne i `public/icons/` er lokale, uigennemsigtige PNG-filer i 180, 192 og 512 px plus en maskable 512 px-variant. Alle er genereret fra ejerens `public/app-logo.png` med det lilla/lime ulvemotiv. Originalen er bevaret, og maskable-varianten har ekstra mørk margin, så motivet kan beskæres af platformen.
 - Appens HTML, JS, CSS, ikoner, grain og alle silhuetter precaches med revisioner. Spillerdata følger med JS-bundlen. Ingen API- eller tredjepartssider caches.
 - Hash-navigation forbliver inden for appens scope, så navigation mellem forside og spil ikke kræver en ny Safari-fane.
+
+Manifestets `name` og `short_name`, HTML-titlen, `application-name` og `apple-mobile-web-app-title` er alle **FCM Games**. Higher or Lower er fortsat navnet på spiltypen. Appens identitet (`id`, `scope`, `start_url`), ikoner, cache-ID og localStorage-nøgler er bevaret ved navneskiftet.
 
 ## Opdateringer
 

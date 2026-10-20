@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run data:check && vite build && npm run pwa:check",
+    "build": "npm run data:check && npm run lineup:check && vite build && npm run pwa:check",
     "lint": "oxlint",
     "preview": "vite preview",
     "pwa:check": "node scripts/check-pwa.mjs",
@@ -13,7 +13,8 @@
     "data:check": "node scripts/check-data.mjs",
     "data:ready": "node scripts/check-data.mjs --require-minimum",
     "dev:game": "vite --open /dev/game.html",
-    "data:playable": "node scripts/check-data.mjs --require-playable"
+    "data:playable": "node scripts/check-data.mjs --require-playable",
+    "lineup:check": "node scripts/check-lineups.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",

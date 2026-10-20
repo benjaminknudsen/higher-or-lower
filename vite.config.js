@@ -12,10 +12,10 @@ export default defineConfig({
     includeAssets: ['favicon.svg', 'app-logo.png', 'icons/*.png', 'images/**/*.webp', 'images/card-grain.svg'],
     manifest: {
       id: '/higher-or-lower/',
-      name: 'FCM Higher or Lower',
-      short_name: 'FCM H/L',
+      name: 'FCM Games',
+      short_name: 'FCM Games',
       lang: 'da',
-      description: 'Hvor godt kender du FCM? Test din viden om klubbens spillere.',
+      description: 'FCM Games: Spil Higher or Lower og Gæt startopstillingen, og test din viden om FC Midtjylland.',
       start_url: '/higher-or-lower/',
       scope: '/higher-or-lower/',
       display: 'standalone',

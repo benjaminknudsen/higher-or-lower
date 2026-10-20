@@ -32,12 +32,12 @@ export default function WelcomeScreen({ clubId }) {
     <StadiumBackdrop />
     <header className="welcome-brand">
       <img src={`${import.meta.env.BASE_URL}app-logo.png`} alt="" />
-      <span><strong>FCM</strong><span>Higher or Lower</span></span>
+      <span><strong>FCM</strong><span>Games</span></span>
     </header>
     <main className="welcome-main" id="indhold">
       <div className="welcome-copy">
         <h1 id="welcome-title" tabIndex={-1}>KENDER DU<br /><span>FCM GODT?</span></h1>
-        <p>Gæt højere eller lavere,<br />og se hvor langt du kan gå.</p>
+        <p>Test din FCM-viden,<br />og find dit næste spil.</p>
       </div>
       <div className="welcome-start">
         <a className="welcome-play" href="#forside" aria-label="PLAY – Åbn spilmenuen">
