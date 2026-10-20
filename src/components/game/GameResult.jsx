@@ -2,7 +2,7 @@ import Icon from '../Icon'
 import { resultMessage } from '../../game/feedback'
 import ShareResult from './ShareResult'
 
-export default function GameResult({ state, club, mode, record, testData, onRestart }) {
+export default function GameResult({ state, club, mode, record, resultSync, guestResultError, testData, onRestart }) {
   const completed = state.phase === 'complete'
   const unavailable = state.phase === 'unavailable'
   const message = resultMessage(state.score, completed)
@@ -16,7 +16,11 @@ export default function GameResult({ state, club, mode, record, testData, onRest
       <div className="final-score"><strong>{state.score}</strong><span>rigtige svar i træk</span></div>
       <div className="personal-best"><span>Din rekord · {mode.title}</span><strong>{record.highScore}</strong></div>
       <p className="result-record-message">{record.isNewRecord ? 'Ny personlig rekord. Godt spillet!' : `${state.deck.length - 1} mulige point. Der er altid en revanche.`}</p>
-      {!record.persisted && <p className="storage-note">Browseren kunne ikke gemme rekorden. Den gælder i denne tur.</p>}
+      {!record.persisted && <p className="storage-note">{record.error||'Browseren kunne ikke gemme rekorden. Den gælder i denne tur.'}</p>}
+      {resultSync?.message&&<p className={resultSync.status==='pending'?'storage-note':'result-record-message'} role={resultSync.status==='pending'?'alert':'status'}>
+        {resultSync.message}{resultSync.status==='pending'&&<button type="button" onClick={resultSync.retry}>Prøv at synkronisere igen</button>}
+      </p>}
+      {guestResultError&&<p className="storage-note" role="alert">{guestResultError}</p>}
     </>}
     <div className="result-actions">
       {!unavailable && <button className="primary-button" onClick={onRestart}>Prøv igen <Icon name="arrow" /></button>}

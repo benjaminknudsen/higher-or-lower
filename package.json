@@ -8,15 +8,18 @@
     "build": "npm run data:check && npm run lineup:check && vite build && npm run pwa:check",
     "lint": "oxlint",
     "preview": "vite preview",
+    "pwa": "npm run pwa:check",
     "pwa:check": "node scripts/check-pwa.mjs",
     "test": "node --test src/game/*.test.js src/data/*.test.js",
     "data:check": "node scripts/check-data.mjs",
     "data:ready": "node scripts/check-data.mjs --require-minimum",
     "dev:game": "vite --open /dev/game.html",
     "data:playable": "node scripts/check-data.mjs --require-playable",
-    "lineup:check": "node scripts/check-lineups.mjs"
+    "lineup:check": "node scripts/check-lineups.mjs",
+    "supabase:check": "node scripts/check-supabase.mjs"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },

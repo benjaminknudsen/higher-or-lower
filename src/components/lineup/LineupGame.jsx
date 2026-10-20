@@ -1,9 +1,13 @@
 import ThemeToggle from '../ThemeToggle'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import matches from '../../data/lineupMatches.json'
-import { recordResult, createRound, selectMatch, tick, guess, buyHint, scoreRound, remaining, maskName, letterCount } from '../../game/lineup'
+import { recordResult, createRound, selectMatch, tick, guess, buyHint, scoreRound, remaining, maskName, letterCount, emptyStore } from '../../game/lineup'
 import Icon from '../Icon'
 import { loadLineupStore, saveLineupStore, clearSavedLineupRound } from '../../services/lineupStorage'
+import useAuthAccount from '../../hooks/useAuthAccount.js'
+import { onlineGameResults } from '../../services/onlineGameResultsRuntime.js'
+import { profilePhotoOwner } from '../../services/profilePhotoStore.js'
+import { createLocalTopResults } from '../../services/localTopResults.js'
 import './Lineup.css'
 
 const clock = seconds => `${String(Math.floor(seconds / 60)).padStart(2,'0')}:${String(seconds % 60).padStart(2,'0')}`
@@ -26,21 +30,50 @@ function Pitch({ round, onSelect, result = false }) {
   </div>
 }
 export default function LineupGame() {
-  const [store, setStore] = useState(loadLineupStore)
+  const account=useAuthAccount()
+  const owner=profilePhotoOwner(account)
+  return <LineupSession key={owner??'loading'} owner={owner}/>
+}
+function LineupSession({owner}) {
+  const [store, setStore] = useState(()=>owner==='guest'?loadLineupStore():emptyStore())
   const current = useRef(store)
   const [now, setNow] = useState(Date.now)
   const [input, setInput] = useState('')
   const [feedback, setFeedback] = useState(null)
   const [selected, setSelected] = useState(null)
   const [persistent, setPersistent] = useState(true)
+  const [syncState,setSyncState]=useState({id:'',status:'idle',message:''})
   const inputRef = useRef(null), hintRef = useRef(null), focusOrigin = useRef(null)
   const round = store.round
   const playing = round?.status === 'playing'
-  function commit(next) {
+  const ownerId=owner?.startsWith('user:')?owner.slice(5):null
+  const syncResult=useCallback((result)=>{
+    if(!ownerId)return
+    setSyncState({id:result.id,status:'pending',message:'Synkroniserer resultat…'})
+    const payload={gameType:'lineup',resultId:result.id,score:result.score,answers:11,correct:result.correct,hints:result.hints,errors:result.errors,isPerfect:result.status==='perfect'&&result.correct===11,durationMs:result.durationMs}
+    void onlineGameResults.submit(ownerId,payload).then(response=>{
+      if(current.current.results.some(item=>item.id===result.id)){
+        setSyncState({id:result.id,status:response.ok?'synced':'pending',message:response.ok?'Resultatet er synkroniseret.':response.message})
+      }
+    }).catch(error=>setSyncState({id:result.id,status:'pending',message:error.message||'Resultatet kunne ikke gemmes til synkronisering.'}))
+  },[ownerId])
+  const commit=useCallback((next)=>{
+    const previous=current.current
     current.current = next
-    setPersistent(saveLineupStore(next))
+    setPersistent(owner==='guest'?saveLineupStore(next):true)
     setStore(next)
-  }
+    const completed=next.results.find(result=>!previous.results.some(old=>old.id===result.id))
+    if(completed)syncResult(completed)
+    if(completed&&owner==='guest'){
+      try {
+        createLocalTopResults(window.localStorage).record('lineup',{
+          id:completed.id,score:completed.score,createdAt:new Date(completed.endedAt).toISOString(),
+        })
+      } catch(error) {
+        setSyncState({id:completed.id,status:'pending',message:error.message||'Forsøget kunne ikke gemmes lokalt.'})
+      }
+    }
+  },[owner,syncResult])
   useEffect(() => {
     function refresh() {
       const time = Date.now(); setNow(time)
@@ -77,7 +110,7 @@ export default function LineupGame() {
       document.removeEventListener('visibilitychange', visibility)
       current.current = { ...current.current, round: null }
     }
-  }, [])
+  }, [commit])
   useEffect(() => {
     if (selected && playing) hintRef.current?.showModal()
     else hintRef.current?.close()
@@ -117,6 +150,7 @@ export default function LineupGame() {
       {playing ? <div className="lineup-input-area"><form onSubmit={submit}><label className="lineup-sr" htmlFor="lineup-name">Skriv navnet på en FCM-spiller...</label><input ref={inputRef} id="lineup-name" placeholder="Skriv navnet på en FCM-spiller..." value={input} onChange={e => setInput(e.target.value)} autoComplete="off" autoCorrect="off" spellCheck={false} autoCapitalize="words" enterKeyHint="send" maxLength={100} onFocus={e => e.currentTarget.scrollIntoView({ block: 'nearest' })} /><button type="submit" aria-label="Indsend gæt"><Icon name="arrow" /></button></form><p role="status" className={`lineup-feedback ${feedback?.kind || ''}`}>{feedback?.text || 'Skriv et navn · Tryk på en trøje for et hint'}</p></div> : <section className="lineup-results">
         <p><span className="guessed-key">● Selv gættet</span> <span>○ Afsløret efter runden</span></p>
         <ul>{round.match.players.map(p => <li key={p.id}><span className={round.guessed.includes(p.id) ? 'guessed-key' : ''}>{round.guessed.includes(p.id) ? '●' : '○'} {p.name}</span><small>{p.position}</small></li>)}</ul>
+        {syncState.id===round.id&&<p role={syncState.status==='pending'?'alert':'status'}>{syncState.message}{syncState.status==='pending'&&<button type="button" onClick={()=>{const result=current.current.results.find(item=>item.id===round.id);if(result)syncResult(result)}}>Prøv igen</button>}</p>}
         <button className="lineup-primary" onClick={start}>NY TILFÆLDIG KAMP <Icon name="arrow" /></button><a className="lineup-secondary" href="#forside">TILBAGE TIL SPILMENU</a>
         <details><summary>Kilder til denne kamp</summary>{round.match.sources.map((source) => <a key={source} href={source} target="_blank" rel="noreferrer">{source.includes('skysports.com') ? 'Sky Sports · Kampens trøjenumre' : source.includes('fcm.dk') ? 'FCM · Kampdokumentation' : 'Kampoversigt · Formation og opstilling'}</a>)}<small>Positionerne er skematisk placeret inden for startformationen.</small></details>
       </section>}

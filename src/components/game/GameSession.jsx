@@ -10,6 +10,11 @@ import PlayerCard from './PlayerCard'
 import GuessControls from './GuessControls'
 import GameResult from './GameResult'
 import AnswerFeedback from './AnswerFeedback'
+import useAuthAccount from '../../hooks/useAuthAccount.js'
+import useOnlineResultSync from '../../hooks/useOnlineResultSync.js'
+import { onlineGameResults } from '../../services/onlineGameResultsRuntime.js'
+import { reportOnlineResultError } from '../../services/onlineGameResults.js'
+import { createLocalTopResults } from '../../services/localTopResults.js'
 import './Game.css'
 import './ResponsiveGameplay.css'
 import './ShadowPlayers.css'
@@ -18,6 +23,7 @@ import './CorrectAnswer.css'
 // Production passes only getVerifiedPlayers output. Tests can mount isolated fixtures.
 export default function GameSession({ club, mode, players, dataNotice, testData = false, onRestart }) {
   const [state, dispatch] = useReducer(gameReducer, { players, statisticKey: mode.statisticKey }, createGame)
+  const account=useAuthAccount()
   const [silhouettes] = useState(() => assignSilhouettes(state.deck))
   const celebration = celebrationForScore(state.score)
   const milestone = milestoneForScore(state.score)
@@ -25,12 +31,56 @@ export default function GameSession({ club, mode, players, dataNotice, testData 
   const controlsRef = useRef(null)
   const previousPhase = useRef(state.phase)
   const statisticsSession = useRef(null)
+  const statisticsOwner = useRef(null)
+  const statisticsWasGuest = useRef(false)
+  const latestGame=useRef(null)
+  const [onlineResult,setOnlineResult]=useState(null)
+  const [guestResultError,setGuestResultError]=useState('')
   const finished = ['over', 'complete', 'unavailable'].includes(state.phase)
   const revealed = state.phase === 'revealed'
   const first = state.deck[state.index - 1]
   const second = state.deck[state.index]
   const tied = revealed && first.stats[mode.statisticKey] === second.stats[mode.statisticKey]
   const record = useHighScore(club.id, mode.id, state.score, state.phase !== 'unavailable')
+  const resultSync=useOnlineResultSync(onlineResult?.userId??null,onlineResult?.result??null)
+
+  useEffect(()=>{latestGame.current={state,modeId:mode.id,testData}},[state,mode.id,testData])
+  useEffect(()=>()=> {
+    const current=latestGame.current
+    const resultId=statisticsSession.current,userId=statisticsOwner.current
+    if(!current||current.testData||!resultId||current.state.phase==='unavailable')return
+    const game=current.state
+    const answers=game.phase==='asking'?game.index-1:game.index
+    if(answers<1)return
+    if(userId){
+      void onlineGameResults.submit(userId,{
+        gameType:current.modeId,resultId,score:game.score,answers,correct:game.score,hints:null,errors:null,isPerfect:false,durationMs:0,
+      }).catch(error=>reportOnlineResultError(userId,error.message||'Resultatet kunne ikke gemmes til synkronisering.'))
+    }else if(statisticsWasGuest.current){
+      try {
+        createLocalTopResults(window.localStorage).record(current.modeId,{id:resultId,score:game.score,createdAt:new Date().toISOString()})
+      } catch(error) {
+        if(typeof window!=='undefined')window.dispatchEvent(new CustomEvent('fcm-guest-top-results-error',{detail:{message:error.message}}))
+      }
+    }
+  },[])
+
+  useEffect(()=>{
+    if(!finished||testData||!statisticsSession.current||!['over','complete'].includes(state.phase))return
+    if(statisticsWasGuest.current){
+      void Promise.resolve().then(() => {
+        createLocalTopResults(window.localStorage).record(mode.id,{
+          id:statisticsSession.current,score:state.score,createdAt:new Date().toISOString(),
+        })
+      }).catch(error => {
+        setGuestResultError(error.message||'Forsøget kunne ikke gemmes lokalt.')
+      })
+    }
+    setOnlineResult(previous=>previous?.result?.resultId===statisticsSession.current?previous:{
+      userId:statisticsOwner.current,
+      result:{gameType:mode.id,resultId:statisticsSession.current,score:state.score,answers:state.index,correct:state.score,hints:null,errors:null,isPerfect:false,durationMs:0},
+    })
+  },[finished,testData,state.phase,state.score,state.index,mode.id])
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
@@ -59,8 +109,12 @@ export default function GameSession({ club, mode, players, dataNotice, testData 
     const action = { type: 'guess', direction, questionId: state.index }
     const next = gameReducer(state, action)
     if (next !== state && !testData) {
-      statisticsSession.current ??= crypto.randomUUID()
-      localAccountStore.recordAnswer({ sessionId: statisticsSession.current, clubId: club.id, modeId: mode.id, questionId: state.index, correct: next.correct })
+      if(!statisticsSession.current){
+        statisticsSession.current=crypto.randomUUID()
+        statisticsOwner.current=account.status==='signed-in'?account.userId:null
+        statisticsWasGuest.current=account.status==='guest'
+      }
+      if(account.status==='guest')localAccountStore.recordAnswer({ sessionId: statisticsSession.current, clubId: club.id, modeId: mode.id, questionId: state.index, correct: next.correct })
     }
     if (next !== state && next.correct) record.saveScore(next.score)
     dispatch(action)
@@ -76,7 +130,7 @@ export default function GameSession({ club, mode, players, dataNotice, testData 
     </header>
     <p className="game-sr-only">{dataNotice}</p>
     {finished ? <div className="game-heading">
-      <GameResult state={state} club={club} mode={mode} record={record} testData={testData} onRestart={onRestart} />
+      <GameResult state={state} club={club} mode={mode} record={record} resultSync={resultSync} guestResultError={guestResultError} testData={testData} onRestart={onRestart} />
     </div> : <>
       <p className="player-pick-prompt">Flere eller færre {mode.unit}?</p>
       <div className="player-comparison">

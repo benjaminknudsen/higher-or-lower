@@ -1,3 +1,7 @@
+import useAuthAccount from '../../hooks/useAuthAccount.js'
+import { authAccount, authService } from '../../services/authAccount.js'
+import { onlineGameResults } from '../../services/onlineGameResultsRuntime.js'
+import usePendingOnlineResults from '../../hooks/usePendingOnlineResults.js'
 import LineupStatistics from '../lineup/LineupStatistics'
 import { useEffect, useRef, useState } from 'react'
 import useLocalAccount from '../../hooks/useLocalAccount'
@@ -6,7 +10,7 @@ import HighScoreMedal from '../HighScoreMedal'
 import Icon from '../Icon'
 import ProfilePhotoPicker from './ProfilePhotoPicker'
 import CommunityHeader from './CommunityHeader'
-import Avatar from './Avatar'
+import TopThreeResults from './TopThreeResults'
 import './ProfileCard.css'
 
 function ModeRecord({ clubId, mode }) {
@@ -19,46 +23,81 @@ function ModeRecord({ clubId, mode }) {
 
 export default function ProfilePage({ clubId, gameModes }) {
   const { profile, saveProfile, persistent } = useLocalAccount(clubId)
-  const { highScore } = useHighScore(clubId, 'appearances', 0, false)
+  const account=useAuthAccount()
+  const signedIn=account.status==='signed-in'
+  const guest=account.status==='guest'
+  const authLoading=account.status==='loading'
+  const ownerKey=signedIn?`user:${account.userId}`:guest?'guest':'loading'
+  const pendingResults=usePendingOnlineResults(signedIn?account.userId:null)
+  const name=signedIn ? (account.profile?.username || (account.profileError?'Profil utilgængelig':'Henter profil…')) : authLoading?'Kontrollerer login…':profile.name
+  const [saving,setSaving]=useState(false)
+  const { highScore, loading:scoreLoading, error:scoreError } = useHighScore(clubId, 'appearances', 0, false)
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(profile.name)
+  const [draftOwner,setDraftOwner]=useState(ownerKey)
   const [message, setMessage] = useState('')
   const inputRef = useRef(null)
   const editRef = useRef(null)
   const dialogRef = useRef(null)
+  const previousOwner=useRef(ownerKey)
+  useEffect(()=>{
+    if(previousOwner.current===ownerKey)return
+    previousOwner.current=ownerKey
+    setEditing(false)
+    dialogRef.current?.close()
+    setDraft(name)
+    setDraftOwner(ownerKey)
+    setMessage('')
+  },[ownerKey,name])
   useEffect(() => {
     if (editing) { dialogRef.current?.showModal(); inputRef.current?.focus() }
     else dialogRef.current?.close()
   }, [editing])
   function closeEditor() { setEditing(false); dialogRef.current?.close(); requestAnimationFrame(() => editRef.current?.focus()) }
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault()
+    if(draftOwner!==ownerKey)return
     if (!draft.trim()) { setMessage('Skriv et navn først.'); return }
-    saveProfile(draft)
+    if(saving)return
+    setSaving(true)
+    if(signedIn){const result=await authAccount.changeUsername(draft);setSaving(false);if(!result.ok){setMessage(result.message);return}}
+    else {saveProfile(draft);setSaving(false)}
     setMessage('Navnet er opdateret.')
     closeEditor()
+  }
+  async function retryPendingResults() {
+    try {
+      const result=await onlineGameResults.flush(account.userId)
+      authAccount.setSyncNotice(!result.ok&&result.pending?result.message:'')
+    } catch(error) { authAccount.setSyncNotice(error.message||'Resultaterne kunne ikke synkroniseres.') }
   }
   return <main className="community-content profile-page" id="indhold">
     <CommunityHeader title="Din profil" subtitle="Din del af flokken." />
     <section className="premium-profile-card" aria-label="Spillerprofil">
-      <div className="premium-profile-top"><span>SPILLERPROFIL</span><button type="button" className="profile-edit-trigger" ref={editRef} onClick={() => { setDraft(profile.name); setMessage(''); setEditing(true) }}><Icon name="edit" />Rediger profil</button></div>
-      <div className="premium-profile-identity"><Avatar self /><div><h2>{profile.name}</h2><p>FCM Games-spiller</p></div></div>
+      <div className="premium-profile-top"><span>SPILLERPROFIL</span><button type="button" className="profile-edit-trigger" disabled={saving||authLoading} ref={editRef} onClick={() => { setDraft(name);setDraftOwner(ownerKey);setMessage('');setEditing(true) }}><Icon name="edit" />Rediger profil</button></div>
+      <div className="premium-profile-identity"><ProfilePhotoPicker variant="avatar" onFeedback={setMessage} /><div><h2>{name}</h2><p>{signedIn?'Logget ind · FCM Games-spiller':account.status==='loading'?'Kontrollerer login…':'Gæst · FCM Games-spiller'}</p></div></div>
+      <div className="account-actions">{signedIn ? <button className="account-secondary" disabled={saving} onClick={async()=>{setSaving(true);const result=await authService.signOut();setSaving(false);if(!result.ok)setMessage(result.message)}}>Log ud</button> : authLoading?<p role="status">Kontrollerer login…</p>:<><button className="account-primary" onClick={()=>authAccount.open('signup')}>Opret konto</button><button className="account-secondary" onClick={()=>authAccount.open('login')}>Log ind</button></>}</div>
+      {account.profileError&&<p className="account-note" role="status">{account.profileError} <button className="account-secondary" onClick={()=>authAccount.retryProfile()}>Prøv igen</button></p>}
     </section>
+    {signedIn&&(account.syncNotice||pendingResults!==0)&&<p className="account-note" role="alert">{pendingResults<0?'Den lokale kø med resultater kunne ikke læses.':account.syncNotice||`${pendingResults} resultat(er) afventer synkronisering.`} <button type="button" className="account-secondary" onClick={retryPendingResults}>Prøv igen</button></p>}
     <dialog ref={dialogRef} className="profile-editor-dialog" aria-labelledby="profile-editor-title" onCancel={closeEditor} onClose={closeEditor} onClick={event => { if (event.target === event.currentTarget) { const bounds = event.currentTarget.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeEditor() } }}>
       <header><h2 id="profile-editor-title">Rediger profil</h2><button type="button" className="profile-editor-close" aria-label="Luk rediger profil" onClick={closeEditor}>×</button></header>
       {editing && <ProfilePhotoPicker />}
+      <p className="account-note">{signedIn?'Profilbilledet synkroniseres med din konto via Supabase Storage.':authLoading?'Kontrollerer profilejerskab…':'Profilbilledet gemmes kun i denne browser på denne enhed.'}</p>
       <form className="profile-editor-name" onSubmit={submit}>
-        <label htmlFor="profile-name">Rediger navn</label>
-        <input id="profile-name" ref={inputRef} value={draft} maxLength={24} required autoComplete="nickname" onChange={event => setDraft(event.target.value)} />
+        <label htmlFor="profile-name">{signedIn?'Offentligt brugernavn':'Rediger navn'}</label>
+        <input id="profile-name" ref={inputRef} disabled={signedIn&&!account.profile||draftOwner!==ownerKey} value={draftOwner===ownerKey?draft:name} maxLength={24} required autoComplete="nickname" onChange={event => setDraft(event.target.value)} />
         <p className="profile-editor-message" role="status">{message}</p>
-        <div><button type="submit" className="profile-editor-save">Gem navn</button><button type="button" className="profile-editor-cancel" onClick={closeEditor}>Annuller</button></div>
+        <div><button type="submit" disabled={saving||(signedIn&&!account.profile)||draftOwner!==ownerKey} className="profile-editor-save">{saving?'Gemmer…':'Gem navn'}</button><button type="button" className="profile-editor-cancel" onClick={closeEditor}>Annuller</button></div>
       </form>
     </dialog>
     <p className="profile-save-status" role="status">{message}</p>
-    {!persistent && <p className="local-storage-note">Browseren tillader ikke lokal lagring. Profil og statistik huskes kun, mens appen er åben.</p>}
+    {guest&&!persistent && <p className="local-storage-note">Browseren tillader ikke lokal lagring. Profil og statistik huskes kun, mens appen er åben.</p>}
+    <p className="account-note">{signedIn?'Kontostatistik og medaljer synkroniseres mellem enheder. Resultater er klientrapporterede og ikke snydesikre.':guest? 'Lokale gæsteresultater på denne enhed. De overføres ikke automatisk til en konto.':'Kontrollerer login, før profilstatistik vises.'}</p>
     <section className="profile-record" aria-label="Din rekord i Flest kampe">
-      <HighScoreMedal score={highScore} /><p>Din rekord i Flest kampe</p>
+      {authLoading?<p role="status">Kontrollerer login…</p>:scoreLoading?<p role="status">Henter kontoens rekord…</p>:scoreError?<p role="alert">{scoreError}</p>:<HighScoreMedal score={highScore} />}<p>Din rekord i Flest kampe</p>
     </section>
+    <TopThreeResults userId={signedIn ? account.userId : null} isGuest={guest} identityLoading={authLoading} />
     <LineupStatistics />
     <section aria-labelledby="mode-records-title">
       <h2 className="community-section-title" id="mode-records-title">Rekorder i flokken</h2>
