@@ -10,8 +10,9 @@
 .account-form small,.account-note { color:var(--color-text-muted); font-size:12px; line-height:1.5; font-weight:450; }
 .account-primary { min-height:48px; padding:12px; border:0; border-radius:12px; background:var(--color-primary); color:var(--color-primary-text); font-weight:850; }
 .account-links { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-.account-links button,.account-guest,.account-secondary { min-height:44px; border:1px solid var(--color-border); border-radius:12px; background:var(--color-surface-raised); color:var(--color-text); padding:10px 12px; font:inherit; font-size:13px; }
-.account-guest { width:100%; margin-top:12px; background:transparent; }
+.account-links button,.account-secondary { min-height:44px; border:1px solid var(--color-border); border-radius:12px; background:var(--color-surface-raised); color:var(--color-text); padding:10px 12px; font:inherit; font-size:13px; }
+.account-links-login { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:100%; }
+.account-links-login button { min-width:0; }
 .account-dialog :is(button,input):focus-visible { outline:2px solid var(--color-primary); outline-offset:3px; }
 .account-dialog button:disabled { opacity:.55; }
 .account-error { color:var(--color-error,var(--color-text)); font-size:13px; line-height:1.5; }
@@ -22,3 +23,10 @@
 .account-password-input { display:flex; align-items:stretch; min-width:0; border:1px solid var(--color-border); border-radius:12px; background:var(--color-background); }
 .account-password-input input { flex:1; border:0; background:transparent; }
 .account-password-input button { flex-shrink:0; min-width:56px; min-height:48px; padding:8px 12px; border:0; border-radius:10px; background:transparent; color:var(--color-text); font:inherit; font-size:13px; font-weight:750; }
+
+.account-form .account-session-note { margin:0; color:var(--color-text-muted); font-size:12px; line-height:1.5; }
+
+.account-remember { min-width:0; }
+.account-form .account-remember label { display:flex; align-items:center; gap:10px; min-height:44px; cursor:pointer; font-size:13px; font-weight:650; }
+.account-form .account-remember input { flex:0 0 20px; width:20px; height:20px; min-height:20px; margin:0; padding:0; accent-color:var(--color-primary); }
+.account-remember .account-session-note { margin-top:4px; }

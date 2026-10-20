@@ -6,7 +6,7 @@ import LineupStatistics from '../lineup/LineupStatistics'
 import { useEffect, useRef, useState } from 'react'
 import useLocalAccount from '../../hooks/useLocalAccount'
 import useHighScore from '../../hooks/useHighScore'
-import HighScoreMedal from '../HighScoreMedal'
+import MedalSection from './MedalSection'
 import Icon from '../Icon'
 import ProfilePhotoPicker from './ProfilePhotoPicker'
 import CommunityHeader from './CommunityHeader'
@@ -93,15 +93,13 @@ export default function ProfilePage({ clubId, gameModes }) {
     </dialog>
     <p className="profile-save-status" role="status">{message}</p>
     {guest&&!persistent && <p className="local-storage-note">Browseren tillader ikke lokal lagring. Profil og statistik huskes kun, mens appen er åben.</p>}
-    <p className="account-note">{signedIn?'Kontostatistik og medaljer synkroniseres mellem enheder. Resultater er klientrapporterede og ikke snydesikre.':guest? 'Lokale gæsteresultater på denne enhed. De overføres ikke automatisk til en konto.':'Kontrollerer login, før profilstatistik vises.'}</p>
-    <section className="profile-record" aria-label="Din rekord i Flest kampe">
-      {authLoading?<p role="status">Kontrollerer login…</p>:scoreLoading?<p role="status">Henter kontoens rekord…</p>:scoreError?<p role="alert">{scoreError}</p>:<HighScoreMedal score={highScore} />}<p>Din rekord i Flest kampe</p>
-    </section>
+    <p className="account-note">{signedIn?'Kontostatistik og medaljer synkroniseres mellem enheder.':guest? 'Lokale gæsteresultater på denne enhed. De overføres ikke automatisk til en konto.':'Kontrollerer login, før profilstatistik vises.'}</p>
+    <MedalSection score={highScore} loading={authLoading||scoreLoading} loadingMessage={authLoading?'Kontrollerer login…':'Henter kontoens rekord…'} error={scoreError} />
     <TopThreeResults userId={signedIn ? account.userId : null} isGuest={guest} identityLoading={authLoading} />
     <LineupStatistics />
     <section aria-labelledby="mode-records-title">
-      <h2 className="community-section-title" id="mode-records-title">Rekorder i flokken</h2>
-      <ul className="profile-mode-records">{gameModes.filter(mode => mode.id !== 'lineup').map(mode => <ModeRecord key={mode.id} mode={mode} clubId={clubId} />)}</ul>
+      <h2 className="community-section-title" id="mode-records-title">Rekorder</h2>
+      <ul className="profile-mode-records">{gameModes.filter(mode => mode.available && mode.id !== 'lineup').map(mode => <ModeRecord key={mode.id} mode={mode} clubId={clubId} />)}</ul>
     </section>
   </main>
 }

@@ -1,3 +1,4 @@
+import { createAuthSessionStorage } from './authSessionStorage.js'
 import { createClient } from '@supabase/supabase-js'
 
 // Keep this module independent of Vite so configuration and connectivity can be
@@ -24,13 +25,15 @@ export function createSupabaseSetup(env, { enableAuth = false } = {}) {
   const config = readSupabaseConfig(env)
   if (!config.ok) return { client: null, ...config }
   try {
+    const storageKey = `sb-${new URL(config.url).hostname.split('.')[0]}-auth-token`
+    const authSessionStorage = enableAuth ? createAuthSessionStorage(storageKey) : null
     const client = createClient(config.url, config.publishableKey, {
-      // Auth stays dormant by default. Future UI can explicitly opt into Supabase
-      // session persistence/refresh; existing game storage is never migrated.
+      // Account mode persists and refreshes sessions; read-only setup stays inert.
+      // The login choice selects persistent or browser-session storage.
       // URL exchange stays explicit so hash routing is not interpreted as Auth.
-      auth: { persistSession: enableAuth, autoRefreshToken: enableAuth, detectSessionInUrl: false, flowType: 'pkce' },
+      auth: { persistSession: enableAuth, autoRefreshToken: enableAuth, detectSessionInUrl: false, flowType: 'pkce', ...(authSessionStorage ? { storageKey, storage: authSessionStorage.storage } : {}) },
     })
-    return { client, ok: true, status: 'configured', message: 'Supabase-klienten er konfigureret. Forbindelsen er endnu ikke kontrolleret.' }
+    return { client, authSessionStorage, ok: true, status: 'configured', message: 'Supabase-klienten er konfigureret. Forbindelsen er endnu ikke kontrolleret.' }
   } catch {
     return { client: null, ok: false, status: 'invalid-config', message: 'Supabase-klienten kunne ikke initialiseres.' }
   }

@@ -18,7 +18,7 @@ export default function TopThreeResults({ userId, isGuest, identityLoading }) {
   return <section className="top-three-results" aria-labelledby="top-three-results-title">
     <h2 className="community-section-title" id="top-three-results-title">Dine 3 bedste forsøg</h2>
     <div>
-      <AttemptList gameType="appearances" userId={userId} isGuest={isGuest} identityLoading={identityLoading} title="Flest kampe" />
+      <AttemptList gameType="appearances" userId={userId} isGuest={isGuest} identityLoading={identityLoading} title="Higher or Lower – Flest kampe" />
       <AttemptList gameType="lineup" userId={userId} isGuest={isGuest} identityLoading={identityLoading} title="Gæt startopstillingen" />
     </div>
   </section>

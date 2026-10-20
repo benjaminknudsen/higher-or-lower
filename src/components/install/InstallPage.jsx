@@ -4,7 +4,7 @@ import Icon from '../Icon'
 import ThemeToggle from '../ThemeToggle'
 import './InstallPage.css'
 const highlights = [
-  ['pitch','Flere spil','Gæt startopstillingen, Flest kampe og meget mere.'],
+  ['pitch','Flere spil','Gæt startopstillingen, Higher or Lower – Flest kampe og meget mere.'],
   ['trophy','Din statistik','Følg dine resultater og personlige rekorder.'],
   ['user','Udfordr vennerne','Se, hvem der kender FCM bedst.'],
 ]

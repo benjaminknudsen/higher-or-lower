@@ -1,5 +1,6 @@
 export function resultShareText({ clubName, modeTitle, score, highScore, testData = false }) {
-  return `Jeg fik ${score} rigtige i træk i ${clubName} Higher or Lower – ${modeTitle}! Min rekord er ${highScore}. Hvem slår den? ⚽${testData ? ' (Fiktive testdata)' : ''}`
+  const gameTitle = modeTitle.startsWith('Higher or Lower') ? modeTitle : `Higher or Lower – ${modeTitle}`
+  return `Jeg fik ${score} rigtige i træk i ${clubName} ${gameTitle}! Min rekord er ${highScore}. Hvem slår den? ⚽${testData ? ' (Fiktive testdata)' : ''}`
 }
 
 export async function shareOrCopy({ title, text }, platform = globalThis.navigator) {

@@ -154,3 +154,26 @@
   padding-top: 16px;
   padding-bottom: clamp(25px, 4dvh, 35px);
 }
+
+/* Keep the existing header row in flow while the document scrolls. */
+.menu-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 9;
+  background: var(--game-dark);
+}
+.menu-header::before {
+  content: '';
+  position: absolute;
+  inset: calc(-1 * env(safe-area-inset-top, 0px)) calc(-1 * max(12px, env(safe-area-inset-right, 0px))) 0 calc(-1 * max(12px, env(safe-area-inset-left, 0px)));
+  z-index: -1;
+  background: var(--game-dark);
+  pointer-events: none;
+}
+.menu-mode-type { font-size: 11px; font-weight: 800; line-height: 1.2; }
+#spiltilstande { scroll-margin-top: calc(52px + env(safe-area-inset-top, 0px)); }
+@media (min-width: 700px) {
+  .menu-header::before { left: -28px; right: -28px; }
+  .menu-mode-type { font-size: 12px; }
+  #spiltilstande { scroll-margin-top: calc(66px + env(safe-area-inset-top, 0px)); }
+}

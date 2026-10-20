@@ -355,3 +355,22 @@
 @media (prefers-reduced-motion: reduce) {
   .game-playing .player-card { transition: none; }
 }
+
+.share-result { text-align: center; }
+.share-result .share-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 10px 14px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-text-muted, var(--tone-c4bad7, #c4bad7));
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.share-result .share-button:focus-visible { outline: 2px solid var(--game-lime); outline-offset: 2px; }

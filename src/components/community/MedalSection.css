@@ -1,0 +1,31 @@
+.medal-section { margin: 24px 0 30px; min-width: 0; }
+.medal-section-header h2 { color: var(--color-text); font-size: 22px; font-weight: 900; letter-spacing: -.5px; line-height: 1.2; }
+.medal-section-game { margin-top: 6px; color: var(--color-accent-text,var(--game-lime)); font-size: 13px; font-weight: 750; line-height: 1.4; }
+.medal-section-description { margin-top: 10px; color: var(--color-text-muted); font-size: 12px; line-height: 1.6; }
+.medal-section > [role] { margin-top: 18px; font-size: 13px; }
+.medal-section .profile-record { margin: 18px 0; gap: 8px; }
+.medal-section .medal-current { display: grid; gap: 3px; text-align: center; }
+.medal-current span { color: var(--color-text-muted); font-size: 11px; }
+.medal-current strong { color: var(--color-text); font-size: 15px; font-weight: 850; letter-spacing: 1px; }
+.medal-next { padding: 16px; border: 1px solid var(--color-border); border-radius: 16px; background: var(--color-surface); }
+.medal-next-label { margin-bottom: 6px; color: var(--color-accent-text,var(--game-lime)); font-size: 11px; font-weight: 800; }
+.medal-next h3 { font-size: 13px; line-height: 1.5; color: var(--color-text); }
+.medal-next h3 span { color: var(--color-text-muted); font-weight: 500; }
+.medal-next > p:last-child { color: var(--color-text-muted); font-size: 12px; line-height: 1.5; }
+.medal-next progress { display: block; width: 100%; height: 7px; margin: 12px 0; overflow: hidden; border: 0; border-radius: 999px; background: var(--color-surface-raised); accent-color: var(--game-lime); }
+.medal-next progress::-webkit-progress-bar { border-radius: 999px; background: var(--color-surface-raised); }
+.medal-next progress::-webkit-progress-value { border-radius: 999px; background: var(--game-lime); }
+.medal-next progress::-moz-progress-bar { border-radius: 999px; background: var(--game-lime); }
+.medal-requirements-title { margin: 20px 0 10px; color: var(--color-text); font-size: 13px; font-weight: 800; }
+.medal-requirements { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.medal-requirement { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 0; padding: 13px; border: 1px solid var(--color-border); border-radius: 13px; background: var(--color-surface); }
+.medal-requirement-copy { display: grid; gap: 4px; min-width: 0; }
+.medal-requirement-copy strong { color: var(--color-text); font-size: 12px; font-weight: 850; letter-spacing: .3px; }
+.medal-requirement-copy > span { color: var(--color-text-muted); font-size: 11px; }
+.medal-requirement-status { flex-shrink: 0; max-width: 46%; color: var(--color-text-muted); font-size: 10px; line-height: 1.4; text-align: right; }
+.medal-requirement.is-earned .medal-requirement-status { color: var(--color-accent-text,var(--game-lime)); font-weight: 750; }
+.medal-requirement.is-locked { border-style: dashed; }
+.medal-requirement.is-current { border-color: var(--game-lime); background: color-mix(in srgb,var(--game-lime) 6%,var(--color-surface)); }
+@media (min-width: 700px) {
+  .medal-requirements { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}

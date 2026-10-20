@@ -17,15 +17,15 @@ export default function ShareResult({ club, mode, score, highScore, testData }) 
     busyRef.current = true
     setStatus('sharing')
     try {
-      const next = await shareOrCopy({ title: `${club.shortName} Higher or Lower`, text })
+      const next = await shareOrCopy({ title: `${club.shortName} ${mode.title}`, text })
       if (mountedRef.current) setStatus(next)
     } finally { busyRef.current = false }
   }
 
   const message = status === 'copied' ? 'Kopieret! Send den til en, der praler.' : status === 'shared' ? 'Resultatet er delt.' : status === 'manual' ? 'Markér teksten herunder, og kopiér den.' : ''
   return <div className="share-result">
-    <button className="game-secondary-button share-button" disabled={status === 'sharing'} onClick={handleShare}>
-      <span aria-hidden="true">↗</span>{status === 'sharing' ? 'Et øjeblik…' : 'Del dit resultat'}
+    <button className="share-button" disabled={status === 'sharing'} onClick={handleShare}>
+      {status === 'sharing' ? 'Et øjeblik…' : 'Del dit resultat'}
     </button>
     <p className="share-status" role="status" aria-live="polite">{message || '\u00a0'}</p>
     {status === 'manual' && <textarea className="share-text" aria-label="Resultattekst til kopiering" value={text} readOnly rows={4} onFocus={(event) => event.target.select()} />}
