@@ -40,3 +40,8 @@
 .lineup-hint .lineup-number { margin:0; }
 .lineup-number>span { display:block; font-size:11px; letter-spacing:2px; color:var(--tone-bdb5cb,#bdb5cb); }
 .lineup-number>strong { display:block; font-size:88px; font-weight:950; line-height:1.2; }
+
+/* The dialog receives initial focus; keyboard users can Tab to its controls. */
+.lineup-hint:focus { outline: none; }
+.lineup-close:focus:not(:focus-visible) { outline: none; }
+.lineup-close:focus-visible { outline: 2px solid var(--game-lime); outline-offset: -4px; border-radius: 8px; }

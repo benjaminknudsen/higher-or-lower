@@ -39,3 +39,12 @@ test('removal clears only the owner profile and reports Storage cleanup failures
   assert.deepEqual(f.state.owner,['id','user-a'])
   assert.match(result.warning,/ryddes op/)
 })
+
+
+test('JPEG fallback uploads with a matching content type and owner-specific jpg path',async()=>{
+ const f=fixture(),blob=new Blob(['jpeg'],{type:'image/jpeg'})
+ const saved=await saveCloudProfilePhoto(f.client,'user-a',blob)
+ assert.match(saved.path,/^user-a\/[0-9a-f-]{36}\.jpg$/i)
+ assert.equal(f.state.uploaded[0].options.contentType,'image/jpeg')
+ assert.deepEqual(f.state.owner,['id','user-a'])
+})

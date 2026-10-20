@@ -7,9 +7,9 @@ const env = {
 
 const setup = createSupabaseSetup(env, { enableAuth: true })
 export const supabase = setup.client
+export const authSessionStorage = setup.authSessionStorage
 export const supabaseStatus = { ok: setup.ok, status: setup.status, message: setup.message }
 export const checkSupabaseConnection = options => checkConnection(env, options)
 
-// Prepared account API, not yet imported or called by any app screen.
-// Auth persistence remains opt-in in createSupabaseSetup until the UI is ready.
+// The account UI shares this client, including the selected session storage and automatic refresh.
 export { createAuthService } from './authService.js'

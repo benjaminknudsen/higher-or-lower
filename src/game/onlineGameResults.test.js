@@ -96,3 +96,18 @@ test('previously queued results are normalized to the expanded RPC payload',asyn
   assert.equal(server.calls[1].p_errors,0)
   assert.equal(server.calls[1].p_is_perfect,true)
 })
+
+
+test('retry deduplicates identical payloads regardless of property order and rejects changed data',async()=>{
+ const storage=localStorageDouble(),fail={value:true},server=rpcServer({fail}),sync=createOnlineGameResults(server.client,storage)
+ await sync.submit(userA,result)
+ const reordered=Object.fromEntries(Object.entries(result).reverse())
+ await sync.submit(userA,reordered)
+ assert.equal(sync.pendingCount(userA),1)
+ const calls=server.calls.length
+ assert.equal((await sync.submit(userA,{...result,score:11,correct:11,answers:12})).ok,false)
+ assert.equal(server.calls.length,calls)
+ fail.value=false
+ assert.equal((await sync.submit(userA,reordered)).ok,true)
+ assert.equal(sync.pendingCount(userA),0);assert.equal(server.rows.size,1)
+})

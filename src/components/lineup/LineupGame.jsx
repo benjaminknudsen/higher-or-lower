@@ -140,7 +140,7 @@ function LineupSession({owner}) {
       <div className="lineup-intro-icon"><Icon name="pitch" /><span>11</span></div><p className="lineup-eyebrow">KAN DU HUSKE DE 11?</p>
       <h1>GÆT<br /><em>STARTOPSTILLINGEN</em></h1><p>Kan du huske, hvem der startede inde for FC Midtjylland?</p>
       <div className="lineup-rules"><div><strong>3 minutter</strong><span>Find alle 11 spillere, inden tiden løber ud.</span></div><div><strong>3 fejl</strong><span>Spillet slutter efter tre forkerte gæt.</span></div><div><strong>10 point pr. spiller</strong><span>Optjen point for hvert korrekt navn.</span></div></div>
-      <button className="lineup-primary" onClick={start}>START SPILLET <Icon name="arrow" /></button><small>Historiske kampe · Offline · Hints koster 5 point</small>
+      <button className="lineup-primary" onClick={start}>START SPILLET <Icon name="arrow" /></button><small>Historiske kampe · Hints koster 5 point</small>
     </section> : <>
       {!playing && <div className="lineup-result-heading"><p className="lineup-eyebrow">{round.status === 'perfect' ? 'ALLE 11 FUNDET' : round.status === 'time' ? 'TIDEN ER GÅET' : 'TRE FEJL'}</p><h2>{round.status === 'perfect' ? 'PERFEKT OPSTILLING!' : 'FÆRDIG!'}</h2></div>}
       <MatchHeader match={round.match} />
@@ -154,7 +154,7 @@ function LineupSession({owner}) {
         <button className="lineup-primary" onClick={start}>NY TILFÆLDIG KAMP <Icon name="arrow" /></button><a className="lineup-secondary" href="#forside">TILBAGE TIL SPILMENU</a>
         <details><summary>Kilder til denne kamp</summary>{round.match.sources.map((source) => <a key={source} href={source} target="_blank" rel="noreferrer">{source.includes('skysports.com') ? 'Sky Sports · Kampens trøjenumre' : source.includes('fcm.dk') ? 'FCM · Kampdokumentation' : 'Kampoversigt · Formation og opstilling'}</a>)}<small>Positionerne er skematisk placeret inden for startformationen.</small></details>
       </section>}
-      <dialog ref={hintRef} className="lineup-hint" aria-labelledby="lineup-hint-title" onCancel={closeHint} onClose={closeHint} onClick={e => { if (e.target === e.currentTarget) closeHint() }}>
+      <dialog ref={hintRef} className="lineup-hint" tabIndex={-1} aria-labelledby="lineup-hint-title" autoFocus onCancel={closeHint} onClose={closeHint} onClick={e => { if (e.target === e.currentTarget) closeHint() }}>
         {player && <><button className="lineup-close" onClick={closeHint} aria-label="Luk hint">×</button><h2 id="lineup-hint-title">VIS HINT</h2>
           {round.hints.includes(player.id) ? <div className="lineup-number" role="status"><span>TRØJENUMMER</span><strong>{player.shirtNumber}</strong></div> : <><button className="lineup-primary" disabled={!player.shirtNumber || !player.numberSource || scoreRound(round)<5} onClick={() => { const old = current.current; commit(recordResult(old,buyHint(old.round,player.id))) }}>VIS TRØJENUMMER <span>−5 POINT</span></button>{(!player.shirtNumber || !player.numberSource || scoreRound(round)<5) && <small>{!player.shirtNumber || !player.numberSource ? 'Intet verificeret trøjenummer.' : 'Kræver 5 point.'}</small>}</>}
         </>}

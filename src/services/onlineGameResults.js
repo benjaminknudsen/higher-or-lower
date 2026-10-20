@@ -78,7 +78,7 @@ export function createOnlineGameResults(client, storage) {
     for (let index = 0; index < queue.length; index++) {
       const result = queue[index]
       try {
-        const { error } = await client.rpc('submit_game_result', {
+        const { data, error } = await client.rpc('submit_game_result', {
           p_user_id: userId,
           p_game_type: result.gameType,
           p_result_id: result.resultId,
@@ -90,7 +90,7 @@ export function createOnlineGameResults(client, storage) {
           p_is_perfect: result.isPerfect,
           p_duration_ms: result.durationMs,
         })
-        if (error) return { ok: false, pending: queue.length, message: 'Resultatet afventer synkronisering. Kontrollér forbindelsen, og prøv igen.' }
+        if (error || data?.accepted !== true) return { ok: false, pending: queue.length, message: 'Resultatet afventer synkronisering. Kontrollér forbindelsen, og prøv igen.' }
       } catch {
         return { ok: false, pending: queue.length, message: 'Resultatet afventer synkronisering. Kontrollér forbindelsen, og prøv igen.' }
       }
@@ -105,10 +105,10 @@ export function createOnlineGameResults(client, storage) {
       try { return read(userId).length } catch { return -1 }
     },
     async submit(userId, result) {
-      if (!validResult(result)) return { ok: false, pending: 0, message: 'Resultatet matcher ikke spillets format.' }
+      if (!validResult(result)) return { ok: false, pending: 0, message: 'Resultatet kunne ikke gemmes på din konto. Prøv igen, eller start et nyt spil.' }
       const queue = read(userId)
       const previous=queue.find(item => item.gameType === result.gameType && item.resultId === result.resultId)
-      if(previous&&JSON.stringify(previous)!==JSON.stringify(result))return {ok:false,pending:queue.length,message:'Resultat-ID’et er allerede knyttet til andre data.'}
+      if(previous&&['gameType','resultId','score','answers','correct','hints','errors','isPerfect','durationMs'].some(field=>previous[field]!==result[field]))return {ok:false,pending:queue.length,message:'Resultat-ID’et er allerede knyttet til andre data.'}
       if (!previous) {
         queue.push(result)
         write(userId, queue)

@@ -7,9 +7,9 @@ const emailValue = value => typeof value === 'string' ? value.trim() : ''
 const validEmail = value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
 const hasPassword = value => typeof value === 'string' && value.length > 0
 
-// Inert until explicitly called by the future account UI. Receives the existing
+// Inert until explicitly called by the account UI. Receives the existing
 // Supabase client, never creates a parallel client or touches local game data.
-export function createAuthService(client, { redirectTo } = {}) {
+export function createAuthService(client, { redirectTo, sessionStorage } = {}) {
   function validRedirect() {
     try {
       const url = new URL(redirectTo)
@@ -41,11 +41,18 @@ export function createAuthService(client, { redirectTo } = {}) {
           if(!error&&data?.length)return failure('Brugernavnet er optaget. Vælg et andet.')
         } catch { /* Auth will report a safe failure if the network remains down. */ }
       }
-      return call(auth => auth.signUp({ email: address, password, options: { data: { username: name }, emailRedirectTo: redirectTo } }), 'Kontoen kunne ikke oprettes.', signupError)
+      return call(auth => { sessionStorage?.prepare(); return auth.signUp({ email: address, password, options: { data: { username: name }, emailRedirectTo: redirectTo } }) }, 'Kontoen kunne ikke oprettes.', signupError)
     },
-    signIn({ email, password }) {
+    async signIn({ email, password, remember = true }) {
       const address = emailValue(email)
       if (!validEmail(address) || typeof password !== 'string' || !password) return Promise.resolve(failure('Angiv e-mail og adgangskode.'))
+      if (sessionStorage) {
+        // Revoke the old local session first; never migrate its tokens to a new login.
+        const logout = await call(auth => auth.signOut({ scope: 'local' }), 'Det tidligere login kunne ikke afsluttes. Prøv igen.')
+        if (!logout.ok) return logout
+        try { sessionStorage.select(remember === true) }
+        catch { return failure('Browseren kunne ikke ændre loginlagringen. Log ud, og prøv igen.') }
+      }
       return call(auth => auth.signInWithPassword({ email: address, password }), 'Login mislykkedes. Kontrollér oplysningerne og e-mailbekræftelsen.')
     },
     signOut({ allDevices = false } = {}) {
@@ -55,11 +62,11 @@ export function createAuthService(client, { redirectTo } = {}) {
       const address = emailValue(email)
       if (!validEmail(address)) return Promise.resolve(failure('Angiv en gyldig e-mail.'))
       if (!validRedirect()) return Promise.resolve(failure('Auth-callbackens adresse er ikke konfigureret.'))
-      return call(auth => auth.resetPasswordForEmail(address, { redirectTo }), 'Anmodningen kunne ikke behandles. Vent lidt, og prøv igen.')
+      return call(auth => { sessionStorage?.prepare(); return auth.resetPasswordForEmail(address, { redirectTo }) }, 'Anmodningen kunne ikke behandles. Vent lidt, og prøv igen.')
     },
     exchangeCode(code) {
       if (typeof code !== 'string' || !code || code.length > 4096) return Promise.resolve(failure('Linket er ugyldigt. Bed om et nyt link.'))
-      return call(auth => auth.exchangeCodeForSession(code), 'Linket er udløbet, allerede brugt eller åbnet i en anden browser. Bed om et nyt link.')
+      return call(auth => { sessionStorage?.prepare(); return auth.exchangeCodeForSession(code) }, 'Linket er udløbet, allerede brugt eller åbnet i en anden browser. Bed om et nyt link.')
     },
     updatePassword(password) {
       if (!hasPassword(password)) return Promise.resolve(failure('Skriv en ny adgangskode.'))
@@ -68,7 +75,15 @@ export function createAuthService(client, { redirectTo } = {}) {
     getSession() { return call(auth => auth.getSession(), 'Sessionen kunne ikke indlæses.') },
     subscribe(listener) {
       if (!client?.auth) return () => {}
-      const { data } = client.auth.onAuthStateChange(listener)
+      const { data } = client.auth.onAuthStateChange((event, session) => {
+        // Supabase broadcasts Auth events between tabs, including session-only
+        // logins. Accept an identity only when this tab can read its credentials.
+        if (session && sessionStorage && !sessionStorage.ownsSession(session)) return
+        if (event === 'SIGNED_OUT' && sessionStorage) {
+          try { sessionStorage.clearTab() } catch { /* Supabase still reports logout. */ }
+        }
+        listener(event, session)
+      })
       return () => data.subscription.unsubscribe()
     },
   }

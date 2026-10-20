@@ -1,5 +1,6 @@
+import { MAX_UPLOAD_PHOTO_BYTES } from './optimizeProfilePhoto.js'
+
 export const PROFILE_PHOTO_BUCKET = 'fcm-avatars'
-const MAX_PHOTO_BYTES = 2 * 1024 * 1024
 
 function photoExtension(blob) {
   if (blob?.type === 'image/webp') return 'webp'
@@ -14,7 +15,7 @@ export function profilePhotoPublicUrl(client, path) {
 }
 
 export async function saveCloudProfilePhoto(client, userId, blob, previousPath = null) {
-  if (!client || !userId || !(blob instanceof Blob) || blob.size <= 0 || blob.size > MAX_PHOTO_BYTES) {
+  if (!client || !userId || !(blob instanceof Blob) || blob.size <= 0 || blob.size > MAX_UPLOAD_PHOTO_BYTES) {
     throw new Error('Billedet er ugyldigt eller større end 2 MB.')
   }
   const extension = photoExtension(blob)

@@ -3,16 +3,18 @@ import { canonicalUsername } from '../../lib/accountPolicy.js'
 import useAuthAccount from '../../hooks/useAuthAccount.js'
 import { authAccount, authService } from '../../services/authAccount.js'
 import { onlineGameResults } from '../../services/onlineGameResultsRuntime.js'
+import GuestWelcome from './GuestWelcome'
 import './Auth.css'
 
 export default function AuthRoot({children}) {
   const processed=useRef(false)
+  const [callbackReady,setCallbackReady]=useState(false)
   useEffect(()=>{
     const stop=authAccount.start()
-    if(!processed.current){processed.current=true;void authAccount.callback(window.location,window.history).then(handled=>{if(handled&&!window.location.hash)window.location.hash='#profil'})}
+    if(!processed.current){processed.current=true;void authAccount.callback(window.location,window.history).then(handled=>{if(handled&&!window.location.hash)window.location.hash='#profil';setCallbackReady(true)})}
     return stop
   },[])
-  return <>{children}<PendingResultFlush/><AuthDialog /></>
+  return <>{children}<PendingResultFlush/><GuestWelcome ready={callbackReady}/><AuthDialog /></>
 }
 function PendingResultFlush(){
   const account=useAuthAccount()
@@ -46,6 +48,7 @@ function AuthDialog(){
 }
 function AuthForm({mode,account}){
   const [busy,setBusy]=useState(false), [feedback,setFeedback]=useState(''), [error,setError]=useState('')
+  const [remember,setRemember]=useState(true)
   const [usernameError,setUsernameError]=useState('')
   const locked=useRef(false), alive=useRef(true)
   useEffect(()=>{alive.current=true;return()=>{alive.current=false}},[])
@@ -56,7 +59,7 @@ function AuthForm({mode,account}){
     const data=Object.fromEntries(new FormData(event.currentTarget))
     if(mode==='password'&&data.password!==data.repeat){setError('Adgangskoderne er ikke ens.');locked.current=false;setBusy(false);return}
     let result
-    if(mode==='login')result=await authService.signIn(data)
+    if(mode==='login')result=await authService.signIn({...data,remember})
     if(mode==='signup')result=await authService.signUp(data)
     if(mode==='reset')result=await authService.requestPasswordReset(data.email)
     if(mode==='password')result=await authService.updatePassword(data.password)
@@ -74,14 +77,17 @@ function AuthForm({mode,account}){
       {mode==='signup'&&<label>Brugernavn<input name="username" required minLength={3} maxLength={24} pattern="[A-Za-z0-9_]{3,24}" aria-describedby="account-username-help" aria-invalid={!!usernameError} onChange={e=>{e.target.setCustomValidity('');if(usernameError)setUsernameError('')}} onBlur={e=>{setUsernameError(e.target.value&&!canonicalUsername(e.target.value)?'Brug 3–24 bogstaver (a–z), tal eller underscore.':'')}} onInvalid={e=>{const message='Brug 3–24 bogstaver (a–z), tal eller underscore.';e.target.setCustomValidity(message);setUsernameError(message)}} autoComplete="username" autoCapitalize="none" spellCheck={false}/><small id="account-username-help">Vælg dit brugernavn – det bliver vist på leaderboardet.</small>{usernameError&&<small className="account-error" role="alert">{usernameError}</small>}</label>}
       {mode!=='password'&&<label>E-mail<input name="email" type="email" required autoComplete="email" autoCapitalize="none" inputMode="email"/><small>Din e-mail vises ikke offentligt.</small></label>}
       {mode!=='reset'&&<PasswordField label="Adgangskode" name="password" autoComplete={mode==='login'?'current-password':'new-password'} />}
+      {mode==='login'&&<div className="account-remember">
+        <label><input name="remember" type="checkbox" checked={remember} disabled={busy} onChange={event=>setRemember(event.target.checked)} aria-describedby="account-session-help" />Forbliv logget ind</label>
+        <p id="account-session-help" className="account-session-note">{remember ? 'Husk login på denne enhed, også når du åbner browseren eller appen igen.' : 'Login gemmes kun i denne browsersession. Nogle browsere og apps kan gendanne sessionen efter lukning. Brug Log ud for at afslutte login sikkert.'}</p>
+      </div>}
       {mode==='password'&&<PasswordField label="Gentag adgangskode" name="repeat" autoComplete="new-password" />}
       {(error||account.error)&&<p role="alert" className="account-error">{error||account.error}</p>}
       {(feedback||account.notice)&&<p role="status">{feedback||account.notice}</p>}
       <button type="submit" className="account-primary" disabled={busy}>{busy?'Vent…':titles[mode]}</button>
     </form>
-    {mode==='login'&&<div className="account-links"><button onClick={()=>authAccount.open('reset')}>Glemt adgangskode?</button><button onClick={()=>authAccount.open('signup')}>Opret konto</button></div>}
+    {mode==='login'&&<div className="account-links account-links-login"><button onClick={()=>authAccount.open('reset')}>Glemt adgangskode?</button><button onClick={()=>authAccount.open('signup')}>Opret konto</button></div>}
     {(mode==='signup'||mode==='reset')&&<div className="account-links"><button onClick={()=>authAccount.open('login')}>Tilbage til login</button></div>}
-    <button type="button" className="account-guest" onClick={()=>authAccount.close()}>Fortsæt uden at ændre konto</button>
   </>
 }
 

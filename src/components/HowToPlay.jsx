@@ -1,5 +1,5 @@
 const steps = [
-  ['Vælg en udfordring', 'Find den statistik, du vil prøve kræfter med. Flest kampe er den første spiltype.'],
+  ['Vælg en udfordring', 'Find den statistik, du vil prøve kræfter med. Higher or Lower – Flest kampe er den første spiltype.'],
   ['Sammenlign spillerne', 'Har den næste spiller et højere eller lavere tal? Vælg HIGHER eller LOWER.'],
   ['Byg din stime', 'Hvert rigtigt svar giver ét point. Et forkert svar afslutter spillet, og du kan prøve igen.'],
 ]

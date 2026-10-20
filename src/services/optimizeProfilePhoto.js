@@ -1,3 +1,4 @@
+export const MAX_UPLOAD_PHOTO_BYTES = 2 * 1024 * 1024
 export const MAX_PHOTO_BYTES = 25 * 1024 * 1024
 export function avatarDimensions(width, height) {
   if (!Number.isFinite(width) || !Number.isFinite(height) || width < 1 || height < 1 || width * height > 80_000_000) throw new Error('Billedet er for stort. Vælg et mindre billede.')
@@ -13,6 +14,7 @@ export async function optimizeProfilePhoto(file, env = globalThis) {
   validatePhotoFile(file)
   const source = env.URL.createObjectURL(file)
   try {
+    // HTMLImageElement applies EXIF orientation before canvas rendering in supported browsers.
     const image = new env.Image()
     await new Promise((resolve, reject) => {
       image.onload = resolve
@@ -25,9 +27,20 @@ export async function optimizeProfilePhoto(file, env = globalThis) {
     const context = canvas.getContext('2d')
     if (!context) throw new Error('Billedet kunne ikke behandles. Prøv igen.')
     context.drawImage(image, 0, 0, size.width, size.height)
-    const encode = type => new Promise(resolve => canvas.toBlob(resolve, type, .85))
-    const blob = await encode('image/webp') || await encode('image/jpeg')
-    if (!blob || blob.size === 0) throw new Error('Billedet kunne ikke komprimeres. Prøv et andet billede.')
-    return blob
+    for (const type of ['image/webp', 'image/jpeg']) {
+      if (type === 'image/jpeg') {
+        // Give transparent PNGs a white background when JPEG is the available encoder.
+        context.fillStyle = '#fff'
+        context.fillRect(0, 0, size.width, size.height)
+        context.drawImage(image, 0, 0, size.width, size.height)
+      }
+      for (const quality of [.85, .7, .5]) {
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, type, quality))
+        // Safari may return PNG rather than null for an unsupported WebP encoder.
+        if (!blob || blob.type !== type || blob.size === 0) break
+        if (blob.size <= MAX_UPLOAD_PHOTO_BYTES) return blob
+      }
+    }
+    throw new Error('Billedet kunne ikke komprimeres til upload. Prøv et andet billede.')
   } finally { env.URL.revokeObjectURL(source) }
 }

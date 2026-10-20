@@ -120,7 +120,7 @@ export default function GameSession({ club, mode, players, dataNotice, testData 
     dispatch(action)
   }
 
-  return <main className={`game-shell ${finished ? 'game-finished' : 'game-playing'} ${revealed ? state.correct ? 'round-positive' : 'round-negative' : ''}`} data-celebration={celebration.level} id="indhold" ref={headingRef} tabIndex={-1} aria-label={`${mode.title} · Higher or Lower`}>
+  return <main className={`game-shell ${finished ? 'game-finished' : 'game-playing'} ${revealed ? state.correct ? 'round-positive' : 'round-negative' : ''}`} data-celebration={celebration.level} id="indhold" ref={headingRef} tabIndex={-1} aria-label={mode.title}>
     <h1 className="game-sr-only">{mode.title}</h1>
     <header className="game-header">
       <a className="game-back" href="#spiltilstande" aria-label="Tilbage til forsiden"><span aria-hidden="true">←</span></a>

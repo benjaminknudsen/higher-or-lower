@@ -18,10 +18,11 @@ export default function LeaderboardPage({ gameModes }) {
   const [modeId, setModeId] = useState('appearances')
   return <main className="community-content leaderboard-page" id="indhold">
     <CommunityHeader title="Leaderboard" subtitle="Se de bedste spillere, og hvor du ligger på ranglisten." />
-    <p className="account-note">Fælles leaderboard for registrerede spillere. Gæster kan se placeringerne, men deres resultater vises ikke online. Resultater er klientrapporterede og kan ikke verificeres fuldt ud i denne version.</p>
+    <p className="account-note">Leaderboardet viser hver spillers 3 bedste forsøg, rangeret efter score. Du kan derfor have op til tre individuelle placeringer på ranglisten.</p>
+    <p className="account-note">Fælles leaderboard for registrerede spillere. Gæster kan se placeringerne, men deres resultater vises ikke online.</p>
     <div className="leaderboard-filters" role="group" aria-label="Spiltype på ranglisten">
-      {gameModes.map(mode => <button key={mode.id} type="button" disabled={!mode.available} aria-pressed={mode.id === modeId} onClick={() => setModeId(mode.id)}>
-        <Icon name={mode.available ? mode.icon : 'lock'} /><span>{mode.title}{!mode.available && <small>Kommer snart</small>}</span>
+      {gameModes.filter(mode => mode.available).map(mode => <button key={mode.id} type="button" aria-pressed={mode.id === modeId} onClick={() => setModeId(mode.id)}>
+        <Icon name={mode.icon} /><span>{mode.title}</span>
       </button>)}
     </div>
     <Ranking key={modeId} modeId={modeId} />

@@ -114,3 +114,38 @@ test('signup returns an immediate session when email confirmation is disabled',a
  const result=await f.service.signUp({username:'new_user',email:'private@example.com',password:'valid-password'})
  assert.equal(result.ok,true);assert.equal(result.data.session,session)
 })
+
+
+test('login applies the actual remember choice only after safely signing out the previous session',async()=>{
+ for(const remember of [true,false]) {
+  const f=fixture(),order=[]
+  f.auth.signOut=async options=>{order.push(['logout',options.scope]);return {error:null}}
+  f.auth.signInWithPassword=async()=>{order.push(['login']);return {data:{session:{user:{id:'new'}}},error:null}}
+  const service=createAuthService({auth:f.auth},{sessionStorage:{select:choice=>order.push(['select',choice])}})
+  assert.equal((await service.signIn({email:'new@example.com',password:'password',remember})).ok,true)
+  assert.deepEqual(order,[['logout','local'],['select',remember],['login']])
+ }
+})
+test('failed logout or storage changes abort login without reusing old credentials',async()=>{
+ for(const failLogout of [true,false]) {
+  const f=fixture(),choices=[]
+  f.auth.signOut=async()=>({error:failLogout?new Error('offline'):null})
+  const service=createAuthService({auth:f.auth},{sessionStorage:{select:value=>{choices.push(value);throw Error('storage denied')}}})
+  assert.equal((await service.signIn({email:'new@example.com',password:'password',remember:false})).ok,false)
+  assert.equal(f.calls.length,0)
+  assert.deepEqual(choices,failLogout?[]:[false])
+ }
+})
+test('Auth broadcasts cannot sign a tab into a session whose credentials it does not own',()=>{
+ const f=fixture(),seen=[];let callback,cleared=0
+ f.auth.onAuthStateChange=listener=>{callback=listener;return {data:{subscription:{unsubscribe(){}}}}}
+ const owned={user:{id:'a'},access_token:'a'}
+ const service=createAuthService({auth:f.auth},{sessionStorage:{ownsSession:value=>value===owned,clearTab:()=>cleared++}})
+ service.subscribe((event,value)=>seen.push([event,value]))
+ callback('SIGNED_IN',{user:{id:'other'},access_token:'other'})
+ callback('SIGNED_IN',owned)
+ callback('TOKEN_REFRESHED',owned)
+ callback('SIGNED_OUT',null)
+ assert.deepEqual(seen,[['SIGNED_IN',owned],['TOKEN_REFRESHED',owned],['SIGNED_OUT',null]])
+ assert.equal(cleared,1)
+})
