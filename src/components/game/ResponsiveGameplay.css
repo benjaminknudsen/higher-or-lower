@@ -39,7 +39,7 @@
   padding: 8px; border: 0; border-radius: 16px;
   transition: transform .12s, opacity .12s, background-color .12s;
 }
-.direct-answer-dock .guess-higher { background: var(--game-lime); color: #18182d; }
+.direct-answer-dock .guess-higher { background: var(--game-lime); color: var(--tone-18182d,#18182d); }
 .direct-answer-dock .guess-lower { background: var(--game-purple); color: #fff; }
 .direct-answer-dock .zone-label { font-size: clamp(18px, 4.8vw, 25px); gap: 8px; }
 .direct-answer-dock .guess-arrow { background: none; color: inherit; width: auto; height: auto; }
@@ -54,8 +54,8 @@
   .direct-answer-dock .guess-higher:not(:disabled):hover { color: #fff; --arrow-highlight: #fff; }
 }
 /* Sculpted arcade arrows, with speed marks and a small dimensional highlight. */
-.direct-answer-dock .guess-higher { --arrow-highlight: #ecffc6; --arrow-step: -3px; }
-.direct-answer-dock .guess-lower { --arrow-highlight: #b99bff; --arrow-step: 3px; }
+.direct-answer-dock .guess-higher { --arrow-highlight: var(--tone-ecffc6,#ecffc6); --arrow-step: -3px; }
+.direct-answer-dock .guess-lower { --arrow-highlight: var(--tone-b99bff,#b99bff); --arrow-step: 3px; }
 .direct-answer-dock .guess-arrow { display: grid; place-items: center; width: 35px; height: 35px; flex-shrink: 0; }
 .game-answer-arrow { width: 35px; height: 35px; overflow: visible; }
 .game-answer-arrow.arrow-down { transform: rotate(180deg); }

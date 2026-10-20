@@ -1,5 +1,9 @@
 export default function Icon({ name, className = '' }) {
   const paths = {
+    share: <><path d="M12 16V3m-4 4 4-4 4 4M7 10H4v11h16V10h-3" /></>,
+    install: <><rect x="6" y="2" width="12" height="20" rx="3" /><path d="M12 6v9m-3-3 3 3 3-3m-4 7h2" /></>,
+    camera: <><path d="M8 5l2-2h4l2 2h4a2 2 0 0 1 2 2v12H2V7a2 2 0 0 1 2-2h4Z" /><circle cx="12" cy="12" r="4" /></>,
+    beer: <><path d="M5 8h11v12H5V8Zm11 2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3M8 11v6m5-6v6" /><path d="M5 8a3 3 0 0 1 0-6 3 3 0 0 1 5-1 3 3 0 0 1 5 2 3 3 0 0 1 1 5" /></>,
     pitch: <><rect x="4" y="2" width="16" height="20" rx="1" /><path d="M4 12h16M8 2v4h8V2M8 22v-4h8v4" /><circle cx="12" cy="12" r="3" /></>,
     target: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="4" /><path d="m12 12 8-8m-4 0h4v4" /></>,
     home: <><path d="m3 10 9-7 9 7v10H3V10Z" /><path d="M9 20v-7h6v7" /></>,

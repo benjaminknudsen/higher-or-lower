@@ -16,10 +16,22 @@ export function rankLeaderboard(entries) {
   })
 }
 
+// Online-ready lineup model uses an explicit cumulative metric, never round points.
+export function rankLineupLeaderboard(entries) {
+  return rankLeaderboard(entries.map(entry => ({ ...entry, score: entry.totalCorrect })))
+}
+
 // Async repository boundary: a future Supabase adapter returns the same model.
 // At that point the server must supply ranks and authenticate the current user.
 export const leaderboardRepository = {
-  async list({ modeId, profileName, highScore }) {
+  async list({ modeId, profileName, highScore, totalCorrect = 0 }) {
+    if (modeId === 'lineup') return {
+      source: 'local',
+      metric: 'totalCorrect',
+      entries: rankLineupLeaderboard([
+        { id: 'local:self', name: profileName, totalCorrect, isSelf: true },
+      ]),
+    }
     if (modeId !== 'appearances') return { source: 'demo', entries: [] }
     return {
       source: 'demo',

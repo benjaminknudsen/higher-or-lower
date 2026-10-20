@@ -1,0 +1,483 @@
+[
+  {
+    "id": "fcm-man-utd-2016-02-18",
+    "active": false,
+    "verified": false,
+    "date": "2016-02-18",
+    "home": "FC Midtjylland",
+    "away": "Manchester United",
+    "score": [
+      2,
+      1
+    ],
+    "resultNote": "",
+    "competition": "Europa League · Sekstendedelsfinale",
+    "formation": null,
+    "sources": [
+      "https://www.skysports.com/football/fc-midtjylland-vs-manchester-united/teams/352791"
+    ],
+    "verificationNote": "Startere, dato og resultat kontrolleret. Historiske kilder angiver forskellige formationer (4-2-3-1, 4-4-1-1 og 4-1-4-1); præcise positioner er uafklarede.",
+    "players": [
+      {
+        "id": "mikkel-andersen",
+        "name": "Mikkel Andersen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": "GK",
+        "shirtNumber": null
+      },
+      {
+        "id": "andre-romer",
+        "name": "André Rømer",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "nikolay-bodurov",
+        "name": "Nikolay Bodurov",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "kian-hansen",
+        "name": "Kian Hansen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "filip-novak",
+        "name": "Filip Novák",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "tim-sparv",
+        "name": "Tim Sparv",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "vaclav-kadlec",
+        "name": "Václav Kadlec",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "kristoffer-olsson",
+        "name": "Kristoffer Olsson",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "rilwan-hassan",
+        "name": "Rilwan Hassan",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "pione-sisto",
+        "name": "Pione Sisto",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "martin-pusic",
+        "name": "Martin Pusic",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      }
+    ]
+  },
+  {
+    "id": "fcm-horsens-2018-05-21",
+    "active": false,
+    "verified": false,
+    "date": "2018-05-21",
+    "home": "FC Midtjylland",
+    "away": "AC Horsens",
+    "score": [
+      1,
+      0
+    ],
+    "resultNote": "",
+    "competition": "Superligaen · Mesterskabsspil",
+    "formation": null,
+    "sources": [
+      "https://www.danskfodbold.com/kamp.php?ID=60864"
+    ],
+    "verificationNote": "Startere, dato og resultat kontrolleret. Kampkilden dokumenterer ikke formation og pladser; andre oversigter er indbyrdes modstridende.",
+    "players": [
+      {
+        "id": "jesper-hansen",
+        "name": "Jesper Hansen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": "GK",
+        "shirtNumber": null
+      },
+      {
+        "id": "zsolt-korcsmar",
+        "name": "Zsolt Korcsmár",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "bubacarr-sanneh",
+        "name": "Bubacarr Sanneh",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "erik-sviatchenko",
+        "name": "Erik Sviatchenko",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "mads-dohr-thychosen",
+        "name": "Mads Døhr Thychosen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "tim-sparv",
+        "name": "Tim Sparv",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "jakob-poulsen",
+        "name": "Jakob Poulsen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "marc-dal-hende",
+        "name": "Marc Dal Hende",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "mikkel-duelund",
+        "name": "Mikkel Duelund",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "paul-onuachu",
+        "name": "Paul Onuachu",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "gustav-wikheim",
+        "name": "Gustav Wikheim",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      }
+    ]
+  },
+  {
+    "id": "man-city-fcm-2008-08-14",
+    "active": false,
+    "verified": false,
+    "date": "2008-08-14",
+    "home": "Manchester City",
+    "away": "FC Midtjylland",
+    "score": [
+      0,
+      1
+    ],
+    "resultNote": "",
+    "competition": "UEFA Cup · Kvalifikation",
+    "formation": null,
+    "sources": [
+      "https://www.skysports.com/football/man-city-vs-midtjylland/teams/1770",
+      "https://www.mancity.com/news/first-team/match-report/2008/august/city-v-fc-midtjylland-14-aug-2008"
+    ],
+    "verificationNote": "Startere, dato og resultat kontrolleret. Ingen sikkert dokumenteret startformation og fuld positionsfordeling fundet.",
+    "players": [
+      {
+        "id": "lasse-heinze",
+        "name": "Lasse Heinze",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": "GK",
+        "shirtNumber": null
+      },
+      {
+        "id": "kolja-afriyie",
+        "name": "Kolja Afriyie",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "danny-califf",
+        "name": "Danny Califf",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "winston-reid",
+        "name": "Winston Reid",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "christopher-poulsen",
+        "name": "Christopher Poulsen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "jonas-borring",
+        "name": "Jonas Borring",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "george-florescu",
+        "name": "George Florescu",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "mikkel-thygesen",
+        "name": "Mikkel Thygesen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "danny-olsen",
+        "name": "Danny Olsen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "adigun-salami",
+        "name": "Adigun Salami",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "jude-nworuh",
+        "name": "Jude Nworuh",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      }
+    ]
+  },
+  {
+    "id": "brondby-fcm-2019-05-17",
+    "active": false,
+    "verified": false,
+    "date": "2019-05-17",
+    "home": "Brøndby IF",
+    "away": "FC Midtjylland",
+    "score": [
+      1,
+      1
+    ],
+    "resultNote": "1–1 efter forlænget spilletid · FCM vandt straffesparkskonkurrencen 4–3",
+    "competition": "DBU Pokalen · Finale",
+    "formation": null,
+    "sources": [
+      "https://www.brondbystats.dk/Match/Details/3261"
+    ],
+    "verificationNote": "Startere, dato og resultat kontrolleret. Præcis startformation og pladser kunne ikke verificeres. Neutral finale; kilden viser FCM først og totalresultat inklusive straffespark.",
+    "players": [
+      {
+        "id": "jesper-hansen",
+        "name": "Jesper Hansen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": "GK",
+        "shirtNumber": null
+      },
+      {
+        "id": "kian-hansen",
+        "name": "Kian Hansen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "tim-sparv",
+        "name": "Tim Sparv",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "marc-dal-hende",
+        "name": "Marc Dal Hende",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "jakob-poulsen",
+        "name": "Jakob Poulsen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "evander",
+        "name": "Evander",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "alexander-scholz",
+        "name": "Alexander Scholz",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "mads-dohr-thychosen",
+        "name": "Mads Døhr Thychosen",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "erik-sviatchenko",
+        "name": "Erik Sviatchenko",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "paul-onuachu",
+        "name": "Paul Onuachu",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      },
+      {
+        "id": "gustav-wikheim",
+        "name": "Gustav Wikheim",
+        "aliases": [],
+        "row": null,
+        "slot": null,
+        "position": null,
+        "shirtNumber": null
+      }
+    ]
+  }
+]

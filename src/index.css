@@ -1,19 +1,19 @@
 :root {
-  --app-background: #161625;
+  --app-background: var(--tone-161625,#161625);
   --app-viewport-height: 100vh;
-  --game-dark: #121116;
-  --game-purple: #6743e7;
-  --game-lime: #c3f54c;
-  --ink: #23334b;
+  --game-dark: var(--tone-121116,#121116);
+  --game-purple: var(--tone-6743e7,#6743e7);
+  --game-lime: var(--tone-c3f54c,#c3f54c);
+  --ink: var(--tone-23334b,#23334b);
   --paper: #ffffff;
-  --blue: #245cdb;
-  --blue-soft: #f0f5fc;
+  --blue: var(--tone-245cdb,#245cdb);
+  --blue-soft: var(--tone-f0f5fc,#f0f5fc);
   --green: #c6f2d8;
   --green-ink: #17633d;
   --danger: #b62840;
   --danger-soft: #fff0f2;
   --yellow: #ffe16b;
-  --muted: #556277;
+  --muted: var(--tone-556277,#556277);
   --display: 'Avenir Next', 'Segoe UI', Arial, sans-serif;
   --hand: 'Avenir Next', 'Segoe UI', Arial, sans-serif;
   font-family: 'Avenir Next', 'Segoe UI', Arial, sans-serif;

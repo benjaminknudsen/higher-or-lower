@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
-import { validMatch, selectMatch, createRound, maskName, letterCount, guess, buyHint, tick, remaining, scoreRound, recordResult, emptyStore, readStore, statistics, LINEUP_KEY, validRound, isActiveMatch, retireInactiveRound } from './lineup.js'
+import { validMatch, selectMatch, createRound, maskName, letterCount, guess, buyHint, tick, remaining, scoreRound, recordResult, emptyStore, readStore, statistics, LINEUP_KEY, validRound, isActiveMatch, retireInactiveRound, averageCorrectPercentage } from './lineup.js'
 const matches = JSON.parse(readFileSync(new URL('../data/lineupMatches.json',import.meta.url)))
 const start = () => createRound(matches[0],10000,'test-round')
 test('real dataset has complete verified lineups and unique positions', () => {
@@ -75,11 +75,12 @@ test('invalid JSON field types are rejected without crashing selection', () => {
  const duplicate=structuredClone(matches[0]);duplicate.players[1].id=duplicate.players[0].id;assert.equal(validMatch(duplicate),false)
  const missingNumber=structuredClone(matches[0]);missingNumber.players[1].shirtNumber=null;delete missingNumber.players[1].numberSource;assert.ok(validMatch(missingNumber))
 })
-test('Viborg is the only active match and repeats safely with stale Celtic history', () => {
- const active = matches.filter(isActiveMatch)
+test('a single active match repeats safely with stale Celtic history', () => {
+ const pool = matches.map(m=>({...m,active:m.id==='viborg-fcm-2026-10-19'}))
+ const active = pool.filter(isActiveMatch)
  assert.equal(active.length,1);assert.equal(active[0].id,'viborg-fcm-2026-10-19')
  let played=matches.filter(m=>!m.active).map(m=>m.id)
- for(let i=0;i<30;i++) { const pick=selectMatch(matches,played,()=>i%2 ? .99 : 0);assert.equal(pick.match.id,active[0].id);played=pick.played }
+ for(let i=0;i<30;i++) { const pick=selectMatch(pool,played,()=>i%2 ? .99 : 0);assert.equal(pick.match.id,active[0].id);played=pick.played }
  assert.equal(selectMatch(matches.map(m=>({...m,active:false}))),null)
 })
 test('verified Viborg lineup has five formation chains and correct starters and numbers', () => {
@@ -106,7 +107,7 @@ test('retired saved Celtic rounds are archived without losing results or statist
  const restored=readStore({getItem:()=>JSON.stringify(migrated)})
  assert.deepEqual(restored.archivedRounds,migrated.archivedRounds)
  const next=createRound(selectMatch(matches,restored.played).match,210000,'next')
- assert.ok(validRound(next));assert.equal(next.match.id,'viborg-fcm-2026-10-19')
+ assert.ok(validRound(next));assert.ok(isActiveMatch(next.match))
  const inProgress={...emptyStore(),round:start()}
  assert.equal(retireInactiveRound(inProgress,matches).archivedRounds[0].status,'playing')
 })
@@ -160,5 +161,124 @@ test('different words of an already guessed player cannot award extra points', (
   const answer=guess(r,name,12000+i*1000)
   assert.equal(answer.round,r);assert.equal(scoreRound(answer.round),10);assert.equal(answer.round.errors,0);assert.match(answer.feedback,/allerede/)
   r=answer.round
+ }
+})
+test('completed rounds accumulate 7 + 9 + 11 guesses on the same match, never hints or revealed players', () => {
+ const match=matches.find(m=>m.active)
+ let store=emptyStore()
+ for(const [index,count] of [7,9,11].entries()) {
+  let r=createRound(match,10000,`cumulative-${index}`)
+  for(let i=0;i<count;i++) r=guess(r,match.players[i].name,11000+i*1000).round
+  if(count<11)r=buyHint(r,match.players[count].id,25000)
+  // Active rounds do not yet contribute, even if they contain correct guesses.
+  assert.equal(recordResult(store,r).results.length,store.results.length+(count===11?1:0))
+  if(index===0)r=tick(r,r.deadline)
+  if(index===1)for(let i=0;i<3;i++)r=guess(r,'wrong',30000+i*1000).round
+  store=recordResult(store,r);store=recordResult(store,r)
+  assert.equal(store.results.length,index+1)
+ }
+ assert.deepEqual(store.results.map(r=>r.status),['time','errors','perfect'])
+ assert.equal(statistics(store).correct,27)
+ const restored=readStore({getItem:()=>JSON.stringify(store)})
+ assert.equal(statistics(restored).correct,27);assert.equal(restored.results.length,3)
+ assert.equal(new Set(restored.results.map(r=>r.matchId)).size,1)
+})
+
+test('average correct percentage rounds to whole percent and handles zero rounds', () => {
+ assert.equal(averageCorrectPercentage({rounds:0,correct:0}),0)
+ assert.equal(averageCorrectPercentage({rounds:8,correct:13}),15)
+ assert.equal(averageCorrectPercentage({rounds:1,correct:0}),0)
+ assert.equal(averageCorrectPercentage({rounds:1,correct:11}),100)
+ assert.equal(averageCorrectPercentage({rounds:1,correct:1}),9)
+ assert.equal(averageCorrectPercentage({rounds:2,correct:11}),50)
+})
+test('profile percentage uses only completed personal guesses and preserves best score', () => {
+ const store=emptyStore()
+ let r=guess(start(),'Lössl',11000).round
+ r=buyHint(r,'sisto',12000)
+ assert.equal(averageCorrectPercentage(statistics(recordResult(store,r))),0)
+ const finished=recordResult(store,tick(r,r.deadline))
+ const before=JSON.stringify(finished)
+ assert.equal(averageCorrectPercentage(statistics(finished)),9)
+ assert.equal(statistics(finished).best,5)
+ assert.equal(JSON.stringify(finished),before)
+ const reloaded=readStore({getItem:()=>JSON.stringify(finished)})
+ assert.equal(averageCorrectPercentage(statistics(reloaded)),9)
+ let next=createRound(r.match,200000,'average-second')
+ for(const [i,p] of next.match.players.entries())next=guess(next,p.name,201000+i*1000).round
+ const updated=recordResult(reloaded,next)
+ assert.equal(averageCorrectPercentage(statistics(updated)),55)
+ assert.equal(statistics(updated).best,110)
+})
+
+const pending = JSON.parse(readFileSync(new URL('../data/lineupMatches.pending.json',import.meta.url)))
+const historical = matches.filter(m => !['fcm-celtic-2021-07-20','fcm-celtic-2021-07-28','viborg-fcm-2026-10-19'].includes(m.id))
+test('all ten requested historical matches are accounted for without duplicates', () => {
+ const all=[...historical,...pending]
+ assert.equal(all.length,10)
+ assert.equal(new Set(all.map(m=>m.id)).size,10)
+ assert.equal(new Set(all.map(m=>`${m.date}:${m.home}:${m.away}`)).size,10)
+ for(const m of all) {
+  assert.equal(m.players.length,11,m.id)
+  assert.equal(new Set(m.players.map(p=>p.name)).size,11,m.id)
+ }
+ assert.equal(historical.length,6)
+ assert.ok(historical.every(isActiveMatch))
+ assert.equal(pending.length,4)
+ for(const m of pending) {
+  assert.equal(m.active,false);assert.equal(m.verified,false)
+  assert.equal(m.formation,null);assert.ok(m.verificationNote)
+  assert.equal(validMatch(m),false)
+  assert.ok(m.players.every(p=>p.row===null && p.slot===null && p.shirtNumber===null))
+ }
+})
+test('new playable fixtures retain verified dates, scores and formation chains', () => {
+ const expected=[
+  ['fcm-lazio-2022-09-15','2022-09-15',[5,1],'4-3-3'],
+  ['fcm-slavia-2020-09-30','2020-09-30',[4,1],'4-3-3'],
+  ['liverpool-fcm-2020-10-27','2020-10-27',[2,0],'4-2-3-1'],
+  ['fcm-liverpool-2020-12-09','2020-12-09',[1,1],'4-2-3-1'],
+  ['southampton-fcm-2015-08-20','2015-08-20',[1,1],'4-1-4-1'],
+  ['fcm-southampton-2015-08-27','2015-08-27',[1,0],'4-1-4-1'],
+  ['fcm-man-utd-2016-02-18','2016-02-18',[2,1],null],
+  ['fcm-horsens-2018-05-21','2018-05-21',[1,0],null],
+  ['man-city-fcm-2008-08-14','2008-08-14',[0,1],null],
+  ['brondby-fcm-2019-05-17','2019-05-17',[1,1],null],
+ ]
+ for(const [id,date,score,formation] of expected) {
+  const m=[...historical,...pending].find(m=>m.id===id)
+  assert.equal(m.date,date);assert.deepEqual(m.score,score);assert.equal(m.formation,formation)
+  if(formation===null) continue
+  assert.deepEqual([1,...formation.split('-').map(Number)],Array.from({length:formation.split('-').length+1},(_,row)=>m.players.filter(p=>p.row===row).length))
+ }
+})
+test('every new starter accepts its full name, finishes perfectly and keeps hints separate', () => {
+ for(const m of historical) {
+  let r=createRound(m,10000,m.id)
+  assert.deepEqual(r.guessed,[]);assert.deepEqual(r.hints,[]);assert.equal(remaining(r,10000),180)
+  for(const [i,p] of m.players.entries()) r=guess(r,`  ${p.name.toUpperCase()}  `,11000+i*1000).round
+  assert.equal(r.status,'perfect',m.id);assert.equal(scoreRound(r),110,m.id)
+  assert.equal(statistics(recordResult(emptyStore(),r)).correct,11)
+  for(const p of m.players) {
+   let hintRound=guess(createRound(m,10000,'hint'),m.players.find(other=>other.id!==p.id).name,11000).round
+   hintRound=buyHint(hintRound,p.id,12000)
+   assert.equal(hintRound.hints.length,p.shirtNumber===null?0:1)
+   assert.equal(hintRound.guessed.length,1)
+   assert.equal(scoreRound(hintRound),p.shirtNumber===null?10:5)
+   assert.equal(buyHint(hintRound,p.id,13000),hintRound)
+  }
+ }
+})
+test('expanded active pool exhausts before repeats and excludes unresolved and retired matches', () => {
+ const pool=[...matches,...pending], active=pool.filter(isActiveMatch)
+ let history=['obsolete-id','fcm-celtic-2021-07-20'],last
+ for(let cycle=0;cycle<3;cycle++) {
+  const seen=new Set()
+  for(let i=0;i<active.length;i++) {
+   const pick=selectMatch(pool,history,()=>.37)
+   assert.ok(isActiveMatch(pick.match));assert.ok(!seen.has(pick.match.id));assert.notEqual(pick.match.id,last)
+   seen.add(pick.match.id);last=pick.match.id;history=pick.played
+  }
+  assert.equal(seen.size,active.length)
  }
 })

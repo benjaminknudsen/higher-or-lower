@@ -4,8 +4,10 @@ import useLocalAccount from '../../hooks/useLocalAccount'
 import useHighScore from '../../hooks/useHighScore'
 import HighScoreMedal from '../HighScoreMedal'
 import Icon from '../Icon'
-import Avatar from './Avatar'
+import ProfilePhotoPicker from './ProfilePhotoPicker'
 import CommunityHeader from './CommunityHeader'
+import Avatar from './Avatar'
+import './ProfileCard.css'
 
 function ModeRecord({ clubId, mode }) {
   const { highScore } = useHighScore(clubId, mode.id, 0, false)
@@ -16,15 +18,19 @@ function ModeRecord({ clubId, mode }) {
 }
 
 export default function ProfilePage({ clubId, gameModes }) {
-  const { profile, statistics, saveProfile, persistent } = useLocalAccount(clubId)
+  const { profile, saveProfile, persistent } = useLocalAccount(clubId)
   const { highScore } = useHighScore(clubId, 'appearances', 0, false)
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(profile.name)
   const [message, setMessage] = useState('')
   const inputRef = useRef(null)
   const editRef = useRef(null)
-  useEffect(() => { if (editing) inputRef.current?.focus() }, [editing])
-  function closeEditor() { setEditing(false); requestAnimationFrame(() => editRef.current?.focus()) }
+  const dialogRef = useRef(null)
+  useEffect(() => {
+    if (editing) { dialogRef.current?.showModal(); inputRef.current?.focus() }
+    else dialogRef.current?.close()
+  }, [editing])
+  function closeEditor() { setEditing(false); dialogRef.current?.close(); requestAnimationFrame(() => editRef.current?.focus()) }
   function submit(event) {
     event.preventDefault()
     if (!draft.trim()) { setMessage('Skriv et navn først.'); return }
@@ -34,27 +40,24 @@ export default function ProfilePage({ clubId, gameModes }) {
   }
   return <main className="community-content profile-page" id="indhold">
     <CommunityHeader title="Din profil" subtitle="Din del af flokken." />
-    <section className="profile-identity" aria-label="Profilnavn">
-      <Avatar self />
-      {editing ? <form className="profile-name-form" onSubmit={submit}>
-        <label htmlFor="profile-name">Dit navn</label>
-        <input id="profile-name" ref={inputRef} value={draft} maxLength={24} required autoComplete="nickname" onChange={e => setDraft(e.target.value)} onKeyDown={e => { if (e.key === 'Escape') closeEditor() }} />
-        <div><button type="submit">Gem navn</button><button type="button" onClick={closeEditor}>Annuller</button></div>
-      </form> : <div className="profile-name"><h2>{profile.name}</h2><button type="button" ref={editRef} onClick={() => { setDraft(profile.name); setMessage(''); setEditing(true) }}><Icon name="edit" />Rediger navn</button></div>}
+    <section className="premium-profile-card" aria-label="Spillerprofil">
+      <div className="premium-profile-top"><span>SPILLERPROFIL</span><button type="button" className="profile-edit-trigger" ref={editRef} onClick={() => { setDraft(profile.name); setMessage(''); setEditing(true) }}><Icon name="edit" />Rediger profil</button></div>
+      <div className="premium-profile-identity"><Avatar self /><div><h2>{profile.name}</h2><p>FCM Games-spiller</p></div></div>
     </section>
+    <dialog ref={dialogRef} className="profile-editor-dialog" aria-labelledby="profile-editor-title" onCancel={closeEditor} onClose={closeEditor} onClick={event => { if (event.target === event.currentTarget) { const bounds = event.currentTarget.getBoundingClientRect(); if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeEditor() } }}>
+      <header><h2 id="profile-editor-title">Rediger profil</h2><button type="button" className="profile-editor-close" aria-label="Luk rediger profil" onClick={closeEditor}>×</button></header>
+      {editing && <ProfilePhotoPicker />}
+      <form className="profile-editor-name" onSubmit={submit}>
+        <label htmlFor="profile-name">Rediger navn</label>
+        <input id="profile-name" ref={inputRef} value={draft} maxLength={24} required autoComplete="nickname" onChange={event => setDraft(event.target.value)} />
+        <p className="profile-editor-message" role="status">{message}</p>
+        <div><button type="submit" className="profile-editor-save">Gem navn</button><button type="button" className="profile-editor-cancel" onClick={closeEditor}>Annuller</button></div>
+      </form>
+    </dialog>
     <p className="profile-save-status" role="status">{message}</p>
     {!persistent && <p className="local-storage-note">Browseren tillader ikke lokal lagring. Profil og statistik huskes kun, mens appen er åben.</p>}
     <section className="profile-record" aria-label="Din rekord i Flest kampe">
       <HighScoreMedal score={highScore} /><p>Din rekord i Flest kampe</p>
-    </section>
-    <section aria-labelledby="profile-statistics-title">
-      <h2 className="community-section-title" id="profile-statistics-title">Din formkurve</h2>
-      <div className="profile-statistics">
-        <div><strong>{statistics.gamesPlayed}</strong><span>Spillede runder</span></div>
-        <div><strong>{statistics.correct}</strong><span>Korrekte svar</span></div>
-        <div><strong>{statistics.accuracy}<small>%</small></strong><span>Træfsikkerhed</span></div>
-      </div>
-      <p className="statistics-note">Tælles fra nu. En runde tæller, når du har svaret mindst én gang. Træfsikkerhed er korrekte svar ud af alle dine svar.</p>
     </section>
     <LineupStatistics />
     <section aria-labelledby="mode-records-title">

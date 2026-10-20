@@ -1,3 +1,4 @@
+import ThemeToggle from '../ThemeToggle'
 import { useEffect, useReducer, useRef, useState } from 'react'
 import { createGame, gameReducer } from '../../game/engine'
 import { scheduleNextRound } from '../../game/roundTiming'
@@ -71,7 +72,7 @@ export default function GameSession({ club, mode, players, dataNotice, testData 
       <a className="game-back" href="#spiltilstande" aria-label="Tilbage til forsiden"><span aria-hidden="true">←</span></a>
       <div className="score-display" aria-label={`Score: ${state.score} rigtige i træk`}><span>Score</span><strong className={revealed && state.correct ? 'score-pop' : ''} key={state.score}>{state.score}</strong></div>
       <div className="header-best" aria-label={`Personlig rekord: ${record.highScore}`}><span aria-hidden="true">★</span> Rekord <strong>{record.highScore}</strong></div>
-      {testData && <span className="game-test-badge">Testdata</span>}
+      {testData && <span className="game-test-badge">Testdata</span>}<ThemeToggle />
     </header>
     <p className="game-sr-only">{dataNotice}</p>
     {finished ? <div className="game-heading">

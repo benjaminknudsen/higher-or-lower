@@ -8,6 +8,8 @@
     <meta name="theme-color" content="#161625" />
     <!-- Paint before JS and the external stylesheet load, including iOS launch. -->
     <style>html,body,#root{background:var(--app-background,#121116)}html{min-height:100%}body{margin:0}</style>
+    <style>html[data-theme="fcm"]{--app-background:#0D0D10;--game-dark:#0D0D10;background:#0D0D10}</style>
+    <script>try{var fcmTheme=localStorage.getItem('fcm-games:theme:v1')==='fcm'?'fcm':'neon';document.documentElement.dataset.theme=fcmTheme;if(fcmTheme==='fcm')document.querySelector('meta[name="theme-color"]').setAttribute('content','#0D0D10')}catch{document.documentElement.dataset.theme='neon'}</script>
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

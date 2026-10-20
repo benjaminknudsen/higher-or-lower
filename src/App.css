@@ -1,10 +1,10 @@
 /* A calm, mobile-first football quiz. */
 .app { min-height: var(--app-viewport-height); padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); background: var(--app-background); }
 .shell { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: max(22px, env(safe-area-inset-left, 0px)) max(22px, env(safe-area-inset-right, 0px)); }
-.site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding-block: 16px; border-bottom: 1px solid #e5eaf1; }
+.site-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 16px; padding-block: 16px; border-bottom: 1px solid var(--tone-e5eaf1,#e5eaf1); }
 .brand { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; font-size: 24px; font-weight: 800; letter-spacing: -.8px; }
 .brand-symbol { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; background: var(--blue); color: white; }
-.brand-light { margin-inline: 5px; color: #9ca9ba; font-weight: 400; }
+.brand-light { margin-inline: 5px; color: var(--tone-9ca9ba,#9ca9ba); font-weight: 400; }
 .brand-small { font-size: 10px; letter-spacing: .5px; }
 .site-header nav { display: flex; justify-content: space-between; width: 100%; gap: 16px; }
 .site-header nav a { display: flex; align-items: center; min-height: 48px; font-size: 13px; font-weight: 600; }
@@ -24,11 +24,11 @@
 .preview-heading { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 11px; color: var(--muted); }
 .preview-heading svg { width: 18px; height: 18px; }
 .preview-matchup { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
-.preview-player { min-width: 0; padding: 18px 10px; border: 1px solid #e1e7ef; border-radius: 16px; background: white; text-align: center; }
+.preview-player { min-width: 0; padding: 18px 10px; border: 1px solid var(--tone-e1e7ef,#e1e7ef); border-radius: 16px; background: white; text-align: center; }
 .preview-challenger { background: #e1eee9; border-color: #d6e6de; }
 .preview-shirt { display: grid; place-items: center; height: 110px; }
 .preview-shirt .football-shirt { width: 80px; height: 92px; }
-.preview-challenger .football-shirt { color: #fff; --shirt-detail: #23334b; }
+.preview-challenger .football-shirt { color: #fff; --shirt-detail: var(--tone-23334b,#23334b); }
 .preview-player > span { display: block; margin-top: 12px; font-size: 10px; color: var(--muted); }
 .preview-player > strong { display: flex; justify-content: center; gap: 8px; margin-top: 6px; font-size: 17px; font-weight: 750; }
 .preview-player strong > span { color: var(--blue); }
@@ -39,27 +39,27 @@
 .section-heading h2 { margin-top: 8px; font-size: 28px; font-weight: 750; letter-spacing: -1px; line-height: 1.2; }
 .section-aside { color: var(--muted); font-size: 13px; }
 .mode-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
-.mode-card { display: flex; flex-direction: column; min-width: 0; padding: 22px; border: 1px solid #dfe6ef; border-radius: 18px; background: white; text-align: left; transition: border-color .15s, background .15s; }
+.mode-card { display: flex; flex-direction: column; min-width: 0; padding: 22px; border: 1px solid var(--tone-dfe6ef,#dfe6ef); border-radius: 18px; background: white; text-align: left; transition: border-color .15s, background .15s; }
 .mode-card.is-featured { background: var(--blue-soft); }
 .mode-card.is-selected { border-color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); }
 .card-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 24px; }
-.mode-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #edf2fa; color: var(--blue); }
+.mode-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--tone-edf2fa,#edf2fa); color: var(--blue); }
 .mode-transfers .mode-icon { background: #fff4d2; color: #795a12; }
 .mode-season .mode-icon { background: #e4f3e9; color: var(--green-ink); }
-.soon-badge { padding: 5px 9px; border-radius: 6px; background: #f0f3f7; color: var(--muted); font-size: 10px; font-weight: 600; white-space: nowrap; }
-.playable-badge { background: #dfe9fc; color: #204aa3; }
+.soon-badge { padding: 5px 9px; border-radius: 6px; background: var(--tone-f0f3f7,#f0f3f7); color: var(--muted); font-size: 10px; font-weight: 600; white-space: nowrap; }
+.playable-badge { background: var(--tone-dfe9fc,#dfe9fc); color: var(--tone-204aa3,#204aa3); }
 .mode-card h3 { margin-bottom: 10px; font-size: 23px; line-height: 1.25; font-weight: 750; letter-spacing: -.7px; }
 .mode-card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
 .card-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 24px; font-size: 11px; color: var(--muted); }
-.selection-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #edf2fa; color: var(--blue); }
+.selection-mark { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--tone-edf2fa,#edf2fa); color: var(--blue); }
 .selection-mark svg { width: 16px; height: 16px; }
-.start-panel { display: flex; flex-direction: column; gap: 18px; margin-top: 22px; padding: 22px; border-radius: 16px; background: #f7f9fc; }
+.start-panel { display: flex; flex-direction: column; gap: 18px; margin-top: 22px; padding: 22px; border-radius: 16px; background: var(--tone-f7f9fc,#f7f9fc); }
 .selected-caption { font-size: 11px; color: var(--muted); }
 .start-panel strong { display: block; margin-block: 3px 5px; font-size: 17px; }
 .start-panel p { color: var(--muted); font-size: 12px; line-height: 1.6; }
 .start-button { flex-wrap: wrap; gap: 6px 10px; }
 .start-button span { font-size: 11px; font-weight: 400; }
-.start-button:disabled { background: #e5eaf1; color: #56657a; }
+.start-button:disabled { background: var(--tone-e5eaf1,#e5eaf1); color: var(--tone-56657a,#56657a); }
 .how-section { margin-top: 48px; padding: 28px 22px; border-radius: 20px; background: var(--blue-soft); }
 .how-section h2 { font-size: 26px; }
 .steps { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; margin: 28px 0 0; padding: 0; list-style: none; }
@@ -68,10 +68,10 @@
 .step-number { display: grid; place-items: center; width: 30px; height: 30px; flex-shrink: 0; border-radius: 50%; background: white; color: var(--blue); font-size: 13px; font-weight: 700; }
 .steps h3 { margin-bottom: 6px; font-size: 15px; line-height: 1.4; }
 .steps p { color: var(--muted); font-size: 13px; line-height: 1.75; }
-.rules-footnote { margin-top: 28px; padding-top: 18px; border-top: 1px solid #d9e3f1; color: var(--muted); font-size: 12px; }
+.rules-footnote { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--tone-d9e3f1,#d9e3f1); color: var(--muted); font-size: 12px; }
 .closing-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 12px; margin-block: 36px; font-size: 12px; color: var(--muted); text-align: center; }
 .closing-line svg { width: 18px; height: 18px; color: var(--blue); }
-.site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-block: 24px; border-top: 1px solid #e5eaf1; font-size: 11px; color: var(--muted); }
+.site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; padding-block: 24px; border-top: 1px solid var(--tone-e5eaf1,#e5eaf1); font-size: 11px; color: var(--muted); }
 .site-footer > span:first-child { font-size: 20px; font-weight: 700; color: var(--ink); }
 .site-footer strong { font-size: 9px; margin-left: 6px; }
 .site-footer p { order: 3; flex-basis: 100%; }
@@ -79,7 +79,7 @@
 .skip-link { position: fixed; top: 10px; left: 10px; z-index: 10; padding: 12px; min-height: 48px; background: white; border: 2px solid var(--blue); border-radius: 8px; transform: translateY(-250%); }
 .skip-link:focus { transform: translateY(0); }
 @media (hover: hover) and (pointer: fine) {
-  .primary-button:hover, .start-button:not(:disabled):hover { background: #1d4ebf; }
+  .primary-button:hover, .start-button:not(:disabled):hover { background: var(--tone-1d4ebf,#1d4ebf); }
   .mode-card:hover { border-color: var(--blue); background: var(--blue-soft); }
   .site-header nav a:hover { color: var(--blue); }
 }
