@@ -1,0 +1,10 @@
+<!-- Original, lightweight decorative mask for the FCM Games profile cover. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="none" fill="none" stroke="white" stroke-linecap="round">
+  <path d="M270-60C430 70 470 18 580 110S680 210 880 115" stroke-width="3"/>
+  <path d="M330-60C470 60 505 4 620 94S730 165 880 96" stroke-width="1" opacity=".45"/>
+  <path d="M480-70C570 100 430 120 510 210S720 205 880 330" stroke-width="2.5"/>
+  <path d="M520-70C610 90 465 126 548 205S748 200 880 290" stroke-width="1" opacity=".4"/>
+  <path d="M-70 315C140 200 180 340 355 290S650 235 880 440" stroke-width="2" opacity=".65"/>
+  <path d="M-70 328C145 215 180 355 360 304S650 250 880 455" stroke-width=".7" opacity=".3"/>
+  <path d="m580 360 155-65 142 57M735 295v-33l-60-22-74 31v30" stroke-width=".8" opacity=".12"/>
+</svg>

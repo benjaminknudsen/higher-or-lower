@@ -1,5 +1,17 @@
 export const GAME_TYPES = Object.freeze(['appearances', 'goals', 'lineup'])
 export const ONLINE_STAT_COLUMNS = 'game_type,games_played,best_score,total_answers,total_correct,perfect_games,updated_at'
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+function publicAttemptsForGame(attempts, gameType) {
+  if (!Array.isArray(attempts?.[gameType])) throw new Error('Spillerprofilen indeholder ugyldige forsøgsdata.')
+  return attempts[gameType].slice(0, 3).map((attempt, index) => {
+    const createdAt = new Date(attempt.created_at)
+    if (!Number.isSafeInteger(attempt.score) || attempt.score < 0 || !Number.isFinite(createdAt.getTime())) {
+      throw new Error('Spillerprofilen indeholder ugyldige forsøgsdata.')
+    }
+    return { id: `${gameType}:${index}`, score: attempt.score, createdAt: createdAt.toISOString() }
+  })
+}
 
 export function createOnlinePlatform(client) {
   return {
@@ -10,6 +22,40 @@ export function createOnlinePlatform(client) {
         .eq('user_id', userId).eq('game_type', gameType).maybeSingle()
       if (error) throw new Error('Online-statistikken kunne ikke hentes.')
       return data ?? { game_type: gameType, games_played: 0, best_score: 0, total_answers: 0, total_correct: 0, perfect_games: 0 }
+    },
+    async getPublicProfile(userId) {
+      if (!client) throw new Error('Online profiler er ikke konfigureret.')
+      if (typeof userId !== 'string' || !UUID_PATTERN.test(userId)) throw new Error('Profilens link er ugyldigt.')
+      const { data, error } = await client.rpc('get_public_player_profile', { p_user_id: userId })
+      if (error?.code === 'PGRST202') throw new Error('Offentlige profiler kræver Supabase-migration 006.')
+      if (error) throw new Error('Spillerens offentlige profil kunne ikke hentes.')
+      if (data === null) return null
+      if (data?.public_profile_version !== 1 || typeof data.profile?.id !== 'string'
+        || data.profile.id.toLowerCase() !== userId.toLowerCase()
+        || typeof data.profile.username !== 'string' || !Array.isArray(data.stats)
+        || !data.attempts || typeof data.attempts !== 'object') {
+        throw new Error('Spillerprofilen indeholder ugyldige data.')
+      }
+      const stats = Object.fromEntries(data.stats.map(row => {
+        if (!GAME_TYPES.includes(row.game_type)
+          || !['games_played', 'best_score', 'total_answers', 'total_correct', 'perfect_games'].every(key => Number.isSafeInteger(row[key]) && row[key] >= 0)) {
+          throw new Error('Spillerprofilen indeholder ugyldige statistikdata.')
+        }
+        return [row.game_type, row]
+      }))
+      for (const gameType of ['appearances', 'lineup']) {
+        stats[gameType] ??= {
+          game_type: gameType, games_played: 0, best_score: 0, total_answers: 0, total_correct: 0, perfect_games: 0,
+        }
+      }
+      return {
+        profile: { id: data.profile.id, username: data.profile.username, avatar_path: data.profile.avatar_path ?? null },
+        stats,
+        attempts: {
+          appearances: publicAttemptsForGame(data.attempts, 'appearances'),
+          lineup: publicAttemptsForGame(data.attempts, 'lineup'),
+        },
+      }
     },
     async listLeaderboard(gameType, { limit = 25, offset = 0 } = {}) {
       if (!client) throw new Error('Online leaderboard er ikke konfigureret.')

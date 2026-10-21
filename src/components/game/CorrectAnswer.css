@@ -1,19 +1,20 @@
-/* Score tiers intensify feedback without extending round timers. */
+/* Success tiers add light and detail while keeping movement small and smooth. */
 .game-shell {
-  --impact-x: 2px; --impact-y: 1px; --impact-tilt: .1deg; --impact-duration: .4s; --impact-scale: 1;
-  --success-ring-scale: 1; --particle-travel: .8; --light-peak: .65; --score-peak: 1.25;
+  --success-ease: cubic-bezier(.22, 1, .36, 1);
+  --impact-duration: .6s; --impact-scale: .997;
+  --success-ring-scale: .65; --particle-travel: .4; --light-peak: .5; --score-peak: 1.05;
 }
 .game-shell[data-celebration="2"] {
-  --impact-x: 5px; --impact-y: 2px; --impact-tilt: .2deg; --impact-duration: .48s; --impact-scale: .99;
-  --success-ring-scale: 1.3; --particle-travel: 1; --light-peak: .8; --score-peak: 1.35;
+  --impact-duration: .64s; --impact-scale: .996;
+  --success-ring-scale: .75; --particle-travel: .45; --light-peak: .55; --score-peak: 1.06;
 }
 .game-shell[data-celebration="3"] {
-  --impact-x: 11px; --impact-y: 4px; --impact-tilt: .4deg; --impact-duration: .64s; --impact-scale: .96;
-  --success-ring-scale: 1.6; --particle-travel: 1.15; --light-peak: .9; --score-peak: 1.45;
+  --impact-duration: .68s; --impact-scale: .995;
+  --success-ring-scale: .85; --particle-travel: .5; --light-peak: .6; --score-peak: 1.07;
 }
 .game-shell[data-celebration="4"] {
-  --impact-x: 16px; --impact-y: 5px; --impact-tilt: .6deg; --impact-duration: .74s; --impact-scale: .93;
-  --success-ring-scale: 1.9; --particle-travel: 1.3; --light-peak: 1; --score-peak: 1.6;
+  --impact-duration: .72s; --impact-scale: .994;
+  --success-ring-scale: .95; --particle-travel: .55; --light-peak: .65; --score-peak: 1.08;
 }
 /* A quick success moment, entirely inside the card and outside the layout flow. */
 .round-success-effect { position: absolute; inset: 0; z-index: 5; pointer-events: none; border-radius: inherit; }
@@ -21,25 +22,38 @@
   content: ''; position: absolute; inset: 0; border-radius: inherit;
   background: radial-gradient(ellipse at 82% 50%, #4bff9660, transparent 72%);
   box-shadow: inset 0 0 0 3px #208a51, inset 0 0 40px #37d57b55;
-  animation: correct-light-pulse .7s ease-out both;
+  animation: correct-light-pulse .8s cubic-bezier(.45,0,.25,1) both;
 }
 .round-success-burst { position: absolute; top: 45%; right: 16px; width: clamp(58px, 20%, 88px); display: flex; flex-direction: column; align-items: center; gap: 8px; transform: translateY(-40%); }
 .round-success-check {
+  position: relative;
   display: grid; place-items: center; width: 100%; aspect-ratio: 1;
   border: 2px solid #d8ffbd; border-radius: 50%; background: #153d27; color: #c3ff8d;
   font-size: clamp(32px, 7vw, 48px); line-height: 1; font-weight: 900;
   box-shadow: 0 6px 22px #102e2355;
-  animation: correct-stamp .45s cubic-bezier(.2,.8,.3,1.15) both;
+  animation: correct-stamp .55s var(--success-ease) both;
 }
-.round-success-points { display: block; padding: 2px 12px; border-radius: 20px; color: #fff; background: #153d27; font-size: 24px; line-height: 1.2; font-weight: 950; animation: correct-points .65s ease-out both; }
-.game-shell.round-positive .score-pop { animation: correct-score-pop .55s ease-out both; }
-.round-positive .player-card-challenger .statistic-number-reveal { animation: correct-number-reveal .4s ease-out both; }
+.round-success-points { display: block; padding: 2px 12px; border-radius: 20px; color: #fff; background: #153d27; font-size: 24px; line-height: 1.2; font-weight: 950; animation: correct-points .6s var(--success-ease) both; }
+.game-shell.round-positive .score-pop { animation: correct-score-pop .65s cubic-bezier(.45,0,.25,1) both; }
+.round-positive .player-card-challenger .statistic-number-reveal { animation: correct-number-reveal .5s var(--success-ease) both; }
 .round-positive .direct-answer-dock .was-chosen { box-shadow: inset 0 0 0 3px #e2ffc5; }
-@keyframes correct-light-pulse { 0% { opacity: 0; } 28% { opacity: var(--light-peak); } 100% { opacity: .35; } }
-@keyframes correct-stamp { 0% { opacity: 0; transform: scale(.5) rotate(-14deg); } 65% { opacity: 1; transform: scale(1.12) rotate(4deg); } 100% { opacity: 1; transform: scale(1) rotate(0); } }
-@keyframes correct-points { 0% { opacity: 0; transform: translateY(12px); } 35% { opacity: 1; } 100% { opacity: 1; transform: translateY(0); } }
-@keyframes correct-score-pop { 0%, 100% { transform: scale(1); } 38% { transform: scale(var(--score-peak)); color: #c3f54c; } 68% { transform: scale(.95); } }
-@keyframes correct-number-reveal { from { opacity: .15; transform: translateY(8px) scale(.92); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes correct-light-pulse { 0% { opacity: 0; } 40% { opacity: var(--light-peak); } 100% { opacity: .35; } }
+@keyframes correct-stamp {
+  from { opacity: 0; transform: translateY(4px) scale(.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes correct-points {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes correct-score-pop {
+  0%, 100% { transform: scale(1); }
+  42% { transform: scale(var(--score-peak)); color: #c3f54c; }
+}
+@keyframes correct-number-reveal {
+  from { opacity: .3; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 @media (prefers-reduced-motion: reduce) {
   .round-success-effect::before, .round-success-check, .round-success-points,
   .game-shell.round-positive .score-pop,
@@ -50,43 +64,39 @@
 .success-splash { position: absolute; top: 42%; right: calc(16px + clamp(58px, 20%, 88px) / 2); width: 0; height: 0; }
 .success-splash::before, .success-splash::after {
   content: ''; position: absolute; left: 0; top: 0; width: 220px; height: 220px;
-  border: 4px solid #126c3f80; border-radius: 50%;
-  animation: success-shockwave .75s ease-out both;
+  border: 4px solid #69e995; border-radius: 50%;
+  box-shadow: 0 0 14px #4bff9666, inset 0 0 10px #4bff9633;
+  animation: success-shockwave .95s var(--success-ease) both;
 }
-.success-splash::after { border-width: 2px; border-color: #e5ffbbaa; animation-delay: .09s; }
+.success-splash::after { border-width: 2px; border-color: #d8ffbd; animation-delay: .14s; }
 .success-splash i {
   position: absolute; left: -4px; top: -7px; width: 8px; height: 14px;
   border-radius: 3px; background: #176a40;
-  animation: success-particle .85s cubic-bezier(.1,.55,.2,1) var(--splash-delay) both;
+  animation: success-particle .85s var(--success-ease) var(--splash-delay) both;
 }
 .success-splash i:nth-child(3n) { width: 10px; height: 10px; border-radius: 50%; background: #f0ffd8; }
 .success-splash i:nth-child(3n + 1) { background: #248f59; }
 @keyframes success-shockwave {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.15); }
-  15% { opacity: .9; }
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.4); }
+  25%, 45% { opacity: .8; }
   100% { opacity: 0; transform: translate(-50%, -50%) scale(var(--success-ring-scale)); }
 }
 @keyframes success-particle {
-  0% { opacity: 0; transform: translate(0, 0) scale(.3); }
-  12% { opacity: 1; }
-  70% { opacity: .8; }
-  100% { opacity: 0; transform: translate(calc(var(--splash-x) * var(--particle-travel)), calc(var(--splash-y) * var(--particle-travel))) rotate(150deg) scale(.5); }
+  0% { opacity: 0; transform: translate(0, 0) scale(.65); }
+  30% { opacity: .75; }
+  100% { opacity: 0; transform: translate(calc(var(--splash-x) * var(--particle-travel)), calc(var(--splash-y) * var(--particle-travel))) rotate(35deg) scale(.5); }
 }
 @media (prefers-reduced-motion: reduce) {
   .success-splash { display: none; }
 }
-/* A single physical impact, then settle well before the next player appears. */
+/* A restrained pulse settles before the next player appears. */
 .game-playing.round-positive .player-card-challenger {
-  animation: correct-card-impact var(--impact-duration) cubic-bezier(.2,.7,.3,1) both;
+  animation: correct-card-impact var(--impact-duration) cubic-bezier(.45,0,.25,1) both;
   transform-origin: center;
 }
 @keyframes correct-card-impact {
-  0%, 100% { transform: translate(0, 0) rotate(0); }
-  15% { transform: translate(calc(-1 * var(--impact-x)), var(--impact-y)) rotate(calc(-1 * var(--impact-tilt))) scale(var(--impact-scale)); }
-  30% { transform: translate(var(--impact-x), calc(-1 * var(--impact-y))) rotate(var(--impact-tilt)) scale(var(--impact-scale)); }
-  46% { transform: translate(calc(-.75 * var(--impact-x)), calc(.5 * var(--impact-y))) rotate(calc(-.7 * var(--impact-tilt))) scale(var(--impact-scale)); }
-  64% { transform: translate(calc(.5 * var(--impact-x)), 0) rotate(calc(.4 * var(--impact-tilt))) scale(var(--impact-scale)); }
-  82% { transform: translate(calc(-.2 * var(--impact-x)), 0) rotate(calc(-.2 * var(--impact-tilt))) scale(var(--impact-scale)); }
+  0%, 100% { transform: scale(1); }
+  40% { transform: scale(var(--impact-scale)); }
 }
 @media (prefers-reduced-motion: reduce) {
   .game-playing.round-positive .player-card-challenger { animation: none !important; transform: none; }
@@ -94,8 +104,8 @@
 
 /* From ten points, spread the splash across the field instead of clipping it at the right edge. */
 .game-shell:is([data-celebration="3"], [data-celebration="4"]) .success-splash { left: 50%; right: auto; top: 50%; }
-.game-shell:is([data-celebration="3"], [data-celebration="4"]) .success-splash i { width: 12px; height: 19px; }
-.game-shell:is([data-celebration="3"], [data-celebration="4"]) .success-splash i:nth-child(3n) { width: 14px; height: 14px; }
+.game-shell:is([data-celebration="3"], [data-celebration="4"]) .success-splash i { width: 8px; height: 12px; }
+.game-shell:is([data-celebration="3"], [data-celebration="4"]) .success-splash i:nth-child(3n) { width: 9px; height: 9px; }
 .game-shell:is([data-celebration="3"], [data-celebration="4"]) .round-success-effect::after {
   content: ''; position: absolute; inset: 0; border-radius: inherit;
   background: repeating-conic-gradient(from 10deg at 50% 50%, #e6ffc96b 0deg 7deg, transparent 7deg 30deg);
@@ -103,9 +113,9 @@
   animation: streak-energy .65s ease-out both;
 }
 @keyframes streak-energy {
-  0% { opacity: 0; transform: scale(.7); }
-  20% { opacity: .7; }
-  100% { opacity: 0; transform: scale(1.15); }
+  0% { opacity: 0; transform: scale(.94); }
+  40% { opacity: .25; }
+  100% { opacity: 0; transform: scale(1.04); }
 }
 @media (prefers-reduced-motion: reduce) {
   .round-success-effect::after { display: none; animation: none !important; }
@@ -115,11 +125,11 @@
 .streak-impact {
   position: absolute; inset: 0; z-index: 12; pointer-events: none;
   overflow: clip; isolation: isolate;
-  --arena-strength: .35; --arena-ring: 6px;
+  --arena-strength: .16; --arena-ring: 2px;
 }
-[data-celebration="2"] .streak-impact { --arena-strength: .5; --arena-ring: 9px; }
-[data-celebration="3"] .streak-impact { --arena-strength: .8; --arena-ring: 16px; }
-[data-celebration="4"] .streak-impact { --arena-strength: 1; --arena-ring: 24px; }
+[data-celebration="2"] .streak-impact { --arena-strength: .2; --arena-ring: 3px; }
+[data-celebration="3"] .streak-impact { --arena-strength: .25; --arena-ring: 4px; }
+[data-celebration="4"] .streak-impact { --arena-strength: .3; --arena-ring: 5px; }
 .streak-impact::before {
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(ellipse at center, transparent 30%, #c3f54c99 100%);
@@ -130,44 +140,38 @@
   position: absolute; left: 50%; top: 50%; width: 110vmax; aspect-ratio: 1;
   border: var(--arena-ring) solid #c3f54c; border-radius: 50%;
   box-shadow: 0 0 35px #c3f54c88, inset 0 0 35px #c3f54c66;
-  animation: arena-wave .85s cubic-bezier(.1,.6,.2,1) both;
+  animation: arena-wave .9s var(--success-ease) both;
 }
 .streak-impact-wave-second { border-color: #a88aff; animation-delay: .12s; }
 .streak-impact-title {
   position: absolute; inset: 0; display: grid; place-items: center;
   color: #c3f54c; font-size: clamp(40px, 12vw, 100px); font-weight: 950;
   letter-spacing: -.06em; text-shadow: 3px 5px 0 #171326, 0 0 32px #171326;
-  animation: arena-title .85s cubic-bezier(.16,.8,.2,1) both;
+  animation: arena-title .95s var(--success-ease) both;
 }
 [data-celebration="4"] .streak-impact-title { font-size: clamp(36px, 10vw, 110px); color: #fff; }
 .game-playing.round-positive:is([data-celebration="3"], [data-celebration="4"]) .player-comparison {
-  animation: arena-kick .72s linear both; transform-origin: center;
+  animation: arena-kick .8s cubic-bezier(.45,0,.25,1) both; transform-origin: center;
 }
-/* Inward zoom gives the shake room, keeping both cards within the viewport. */
+/* Long streaks retain a gentle pulse without translating or shaking the field. */
 @keyframes arena-kick {
   0%, 100% { transform: scale(1); }
-  10% { transform: scale(.90) translate(-10px, 5px) rotate(-1deg); }
-  22% { transform: scale(.90) translate(10px, -5px) rotate(1deg); }
-  34% { transform: scale(.92) translate(-8px, 4px) rotate(-.7deg); }
-  46% { transform: scale(.94) translate(6px, -3px) rotate(.5deg); }
-  60% { transform: scale(.96) translate(-4px, 2px); }
-  78% { transform: scale(.98) translate(2px, -1px); }
+  40% { transform: scale(.997); }
 }
 @keyframes arena-light {
   0% { opacity: 0; }
-  15% { opacity: var(--arena-strength); }
+  40% { opacity: var(--arena-strength); }
   100% { opacity: 0; }
 }
 @keyframes arena-wave {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.02); }
-  12% { opacity: var(--arena-strength); }
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.65); }
+  30%, 45% { opacity: .6; }
   100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
 }
 @keyframes arena-title {
-  0% { opacity: 0; transform: scale(2) rotate(-9deg); }
-  20% { opacity: 1; transform: scale(.94) rotate(-5deg); }
-  35%, 52% { opacity: 1; transform: scale(1) rotate(-5deg); }
-  100% { opacity: 0; transform: scale(1.15) translateY(-35px) rotate(-5deg); }
+  0% { opacity: 0; transform: translateY(6px) scale(.97); }
+  30%, 65% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-4px) scale(1); }
 }
 @media (prefers-reduced-motion: reduce) {
   .streak-impact { display: none; }
@@ -183,8 +187,8 @@
   mask-image: radial-gradient(ellipse, #000 5%, transparent 75%);
   animation: milestone-rays 1s ease-out both;
 }
-.streak-impact[data-milestone="50"] { --arena-ring: 32px; }
-.streak-impact[data-milestone="100"] { --arena-ring: 48px; }
+.streak-impact[data-milestone="50"] { --arena-ring: 6px; }
+.streak-impact[data-milestone="100"] { --arena-ring: 8px; }
 .streak-impact[data-milestone="100"]::after {
   background: repeating-conic-gradient(#c3f54cbb 0deg 6deg, transparent 6deg 18deg, #b394ffbb 18deg 24deg, transparent 24deg 36deg);
   animation-name: century-rays;
@@ -196,25 +200,44 @@
   animation-duration: 1.05s;
 }
 .milestone-spark {
-  position: absolute; left: 50%; top: 50%; width: 10px; height: 22px;
+  position: absolute; left: 50%; top: 50%; width: 7px; height: 14px;
   border-radius: 2px; background: #c3f54c;
-  animation: milestone-sparks 1s cubic-bezier(.12,.65,.2,1) var(--spark-delay) both;
+  animation: milestone-sparks 1s var(--success-ease) var(--spark-delay) both;
 }
 .milestone-spark:nth-of-type(3n) { background: #a88aff; }
 .milestone-spark:nth-of-type(3n + 1) { background: #fff; width: 7px; height: 7px; }
 [data-milestone="100"] .milestone-spark { box-shadow: 0 0 14px currentColor; color: #c3f54c; }
 @keyframes milestone-sparks {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(.1); }
-  12%, 60% { opacity: 1; }
-  100% { opacity: 0; transform: translate(var(--spark-x), var(--spark-y)) rotate(var(--spark-angle)) scale(.65); }
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.6); }
+  30% { opacity: .75; }
+  100% { opacity: 0; transform: translate(calc(var(--spark-x) * .55), calc(var(--spark-y) * .55)) rotate(calc(var(--spark-angle) * .25)) scale(.65); }
 }
 @keyframes milestone-rays {
-  0% { opacity: 0; transform: scale(.6) rotate(-15deg); }
-  20% { opacity: 1; }
-  100% { opacity: 0; transform: scale(1.25) rotate(25deg); }
+  0% { opacity: 0; transform: scale(.95) rotate(-3deg); }
+  40% { opacity: .3; }
+  100% { opacity: 0; transform: scale(1.05) rotate(3deg); }
 }
 @keyframes century-rays {
-  0% { opacity: 0; transform: scale(.4) rotate(-35deg); }
-  20%, 45% { opacity: 1; }
-  100% { opacity: 0; transform: scale(1.4) rotate(65deg); }
+  0% { opacity: 0; transform: scale(.95) rotate(-4deg); }
+  35%, 55% { opacity: .35; }
+  100% { opacity: 0; transform: scale(1.06) rotate(4deg); }
+}
+
+.round-positive .stat-reveal { animation: correct-number-reveal .5s var(--success-ease) both; }
+
+/* A clear, softly expanding halo around the success check, contained by the card. */
+.round-success-check::after {
+  content: ''; position: absolute; inset: -7px; border-radius: 50%;
+  border: 2px solid #81efa6; pointer-events: none;
+  box-shadow: 0 0 12px #4bff9666, inset 0 0 8px #4bff9633;
+  animation: correct-check-halo 1.05s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes correct-check-halo {
+  0% { opacity: 0; transform: scale(.96); }
+  25% { opacity: .95; }
+  65% { opacity: .7; }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .round-success-check::after { animation: none !important; opacity: .65; transform: none; }
 }

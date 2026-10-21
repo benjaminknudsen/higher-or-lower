@@ -6,11 +6,13 @@ import CommunityHeader from './CommunityHeader'
 import Icon from '../Icon'
 
 function LeaderboardEntry({ entry, podium = false, unit = 'i træk' }) {
-  return <li className={`${podium ? 'podium-entry' : 'leaderboard-row'} ${entry.isSelf ? 'is-self' : ''}`}>
+  const href = entry.isSelf ? '#profil' : `#profil/${encodeURIComponent(entry.playerId)}`
+  return <li className={`${podium ? 'podium-entry' : 'leaderboard-row'} leaderboard-entry-clickable ${entry.isSelf ? 'is-self' : ''}`}>
     <span className="leaderboard-rank" aria-label={`Placering ${entry.rank}`}>#{entry.rank}</span>
     <Avatar self={entry.isSelf} avatarPath={entry.avatarPath} />
     <span className="leaderboard-name"><span>{entry.name}{entry.isSelf && <small>Dig</small>}</span></span>
     <strong className="leaderboard-score">{entry.score}<small> {unit}</small></strong>
+    <a className="leaderboard-entry-link" href={href} aria-label={`${entry.isSelf ? 'Vis din profil' : `Vis profil for ${entry.name}`}, placering ${entry.rank}`} />
   </li>
 }
 

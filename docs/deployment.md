@@ -19,7 +19,7 @@ aldrig en `service_role`- eller `sb_secret_...`-nøgle her. Workflowet stopper f
 build, hvis en af variablerne mangler. Lokalt kommer de samme værdier fra `.env`,
 som fortsat er gitignored.
 
-Vite bruger `base: '/higher-or-lower/'`. JavaScript-genererede billedstier bruger `import.meta.env.BASE_URL`; Vite omskriver selv CSS- og HTML-assets. Hash-navigationen kræver ikke server-rewrites.
+Vite bruger `base: '/higher-or-lower/'`. JavaScript-genererede billedstier bruger `import.meta.env.BASE_URL`; Vite omskriver selv CSS- og HTML-assets. Hash-navigationen kræver ikke server-rewrites. Offentlige spillerprofiler har direkte links under appens base-sti, fx `/higher-or-lower/#profil/<supabase-user-id>`, og virker derfor også ved genindlæsning på GitHub Pages.
 
 ## Få rettelsen online
 

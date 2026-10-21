@@ -26,6 +26,36 @@ test('no result for a new account is represented as empty cloud data, not guest 
   assert.equal(stats.games_played,0);assert.equal(stats.best_score,0);assert.equal(stats.game_type,'lineup')
 })
 
+test('public profiles request only the public profile RPC and map aggregate and top-three data',async()=>{
+  const calls=[]
+  const userId='3cb94eb4-8278-4ac8-b80a-a821bac0cf01'
+  const client={rpc:async(name,args)=>{calls.push({name,args});return {data:{
+    public_profile_version:1,
+    profile:{id:userId,username:'midtjyllandfan',avatar_path:`${userId}/photo.webp`},
+    stats:[
+      {game_type:'appearances',games_played:8,best_score:17,total_answers:70,total_correct:61,perfect_games:1},
+      {game_type:'lineup',games_played:4,best_score:85,total_answers:44,total_correct:35,perfect_games:1},
+    ],
+    attempts:{
+      appearances:[{score:17,created_at:'2026-10-19T12:00:00Z'}],
+      lineup:[{score:85,created_at:'2026-10-20T12:00:00Z'}],
+    },
+  },error:null}}}
+  const profile=await createOnlinePlatform(client).getPublicProfile(userId)
+  assert.deepEqual(calls,[{name:'get_public_player_profile',args:{p_user_id:userId}}])
+  assert.deepEqual(profile.profile,{id:userId,username:'midtjyllandfan',avatar_path:`${userId}/photo.webp`})
+  assert.equal(profile.stats.appearances.best_score,17)
+  assert.deepEqual(profile.attempts.lineup,[{id:'lineup:0',score:85,createdAt:'2026-10-20T12:00:00.000Z'}])
+})
+
+test('public profile rejects invalid IDs before querying and returns missing profiles as null',async()=>{
+  let calls=0
+  const service=createOnlinePlatform({rpc:async()=>{calls++;return {data:null,error:null}}})
+  await assert.rejects(service.getPublicProfile('not-a-user-id'),/link er ugyldigt/)
+  assert.equal(await service.getPublicProfile('3cb94eb4-8278-4ac8-b80a-a821bac0cf01'),null)
+  assert.equal(calls,1)
+})
+
 test('leaderboard service maps attempt rows and the current user’s up to three global placements',async()=>{
   const calls=[]
   const client={rpc:async(name,args)=>{calls.push({name,args});return {data:{

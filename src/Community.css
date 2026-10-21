@@ -33,6 +33,9 @@
 .community-wordmark > span { margin-left: 5px; color: var(--tone-a39bb4,#a39bb4); font-size: 11px; font-weight: 650; }
 .community-header h1 { max-width: 12ch; margin: 18px 0 8px; font-size: clamp(33px, 9vw, 48px); line-height: 1.03; letter-spacing: -1.4px; font-weight: 950; outline: none; }
 .community-header p { color: var(--tone-a39bb4,#a39bb4); font-size: 13px; line-height: 1.5; }
+.profile-back-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin: -8px 0 10px; color: var(--color-primary); font-size: 12px; font-weight: 800; text-decoration: none; }
+.profile-back-link:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: 6px; }
+.profile-back-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 .community-section-title { margin-bottom: 13px; font-size: 18px; letter-spacing: -.45px; line-height: 1.2; }
 .fan-avatar { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border-radius: 50%; background: var(--tone-302146,#302146); color: var(--tone-bca2ff,#bca2ff); }
 .fan-avatar-self { background: var(--game-lime); color: var(--game-dark); }
@@ -81,11 +84,17 @@
 .leaderboard-filters small { display: block; margin-top: 4px; font-size: 9px; font-weight: 500; }
 .leaderboard-demo-notice { margin-bottom: 26px; color: var(--tone-b6acc7,#b6acc7); font-size: 11px; line-height: 1.6; }
 .leaderboard-demo-notice strong { display: block; color: var(--tone-c4abff,#c4abff); font-size: 12px; margin-bottom: 3px; }
-.leaderboard-podium { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: end; gap: 8px; padding-top: 18px; }
+.leaderboard-podium { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 8px; padding-top: 18px; }
 .podium-entry { --podium-metal: #c9a16d; display: flex; align-items: center; flex-direction: column; gap: 10px; min-width: 0; min-height: 194px; padding: 13px 5px; border-radius: 20px 20px 12px 12px; background: linear-gradient(155deg, var(--tone-292233,#292233), var(--tone-1d1925,#1d1925)); box-shadow: inset 0 2px var(--podium-metal); text-align: center; }
+.leaderboard-entry-clickable { position: relative; cursor: pointer; transition: filter .15s ease, transform .15s ease; }
+.leaderboard-entry-link { position: absolute; z-index: 1; inset: 0; border-radius: inherit; color: inherit; }
+.leaderboard-entry-link:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; }
+.leaderboard-entry-clickable:active { filter: brightness(1.12); }
 .podium-entry:first-child { --podium-metal: #f0cd62; grid-column: 2; grid-row: 1; min-height: 222px; background: linear-gradient(155deg, var(--tone-47315f,#47315f), var(--tone-281f36,#281f36)); }
 .podium-entry:nth-child(2) { --podium-metal: var(--tone-c1c6d2,#c1c6d2); grid-column: 1; grid-row: 1; }
 .podium-entry:nth-child(3) { grid-column: 3; grid-row: 1; }
+/* Shared podium height, independent of wrapped names and the own-player label. */
+.podium-entry:nth-child(n + 2) { margin-top: 16px; }
 .podium-entry .leaderboard-rank { color: var(--podium-metal); font-size: 17px; font-weight: 900; }
 .podium-entry .fan-avatar { width: 42px; height: 42px; }
 .leaderboard-name { min-width: 0; overflow-wrap: anywhere; font-size: 12px; line-height: 1.25; font-weight: 750; }
@@ -106,6 +115,8 @@
 .leaderboard-row .leaderboard-rank { color: var(--tone-a39bb4,#a39bb4); font-size: 13px; font-weight: 750; text-align: center; }
 .leaderboard-row .leaderboard-score { font-size: 25px; text-align: right; }
 .leaderboard-row.is-self, .podium-entry.is-self { box-shadow: inset 0 0 0 2px var(--game-lime); }
+@media(hover:hover) and (pointer:fine) { .leaderboard-entry-clickable:hover { filter: brightness(1.12); transform: translateY(-1px); } }
+@media(prefers-reduced-motion:reduce) { .leaderboard-entry-clickable { transition: none; } }
 .top-three-results { margin: 20px 0 28px; }
 .top-three-results > div { display: grid; gap: 10px; }
 .top-three-game { min-width: 0; padding: 14px; border: 1px solid var(--color-border); border-radius: 16px; background: color-mix(in srgb,var(--color-secondary) 8%,var(--color-surface)); }

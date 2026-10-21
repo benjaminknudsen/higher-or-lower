@@ -1,0 +1,103 @@
+.tenable { width:min(100%,850px); margin:auto; padding:20px 24px 50px; color:var(--color-text)}
+
+.tenable * { box-sizing:border-box}
+.tenable-nav { display:flex; align-items:center; justify-content:space-between; gap:16px}
+.tenable-nav a,.tenable-link { color:var(--color-text-muted); text-decoration:none}
+.tenable button,.tenable input { font:inherit}
+.tenable button { cursor:pointer}
+.tenable button:focus-visible,.tenable a:focus-visible,.tenable input:focus-visible { outline:3px solid var(--color-primary); outline-offset:4px}
+
+.tenable-heading { text-align:center; margin:6px 0 10px}
+.tenable h1 { font-size:clamp(32px,7vw,54px); margin:2px 0 0; line-height:1.1; letter-spacing:-1.5px}
+.tenable h2 { font-size:24px; margin:6px 0}
+.tenable-eyebrow { color:var(--color-primary); font-size:12px; font-weight:800; letter-spacing:2px}
+.tenable-description { color:var(--color-text-muted); line-height:1.4}
+
+.tenable-choices { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin:12px 0 0}
+.tenable-choice { display:flex; flex-direction:column; gap:12px; padding:20px; text-align:left; border:1px solid var(--color-border); border-radius:20px; background:linear-gradient(145deg,var(--color-surface-raised),var(--color-surface)); color:var(--color-text); transition:transform .18s,border-color .18s}
+.tenable-choice:hover { transform:translateY(-3px); border-color:var(--color-primary)}
+.tenable-choice strong { font-size:20px; line-height:1.25}
+.tenable-choice small,.tenable-choice b { color:var(--color-primary)}
+.tenable-choice span { font-size:14px; line-height:1.5; color:var(--color-text-muted); flex:1}
+
+.tenable-link { border:0; background:none; padding:10px 0}
+.tenable-note { color:var(--color-text-muted); font-size:12px; line-height:1.6; margin-top:24px}
+.tenable-board { max-width:620px; margin:6px auto}
+.tenable-stats { display:flex; justify-content:space-between; align-items:center; gap:16px; padding:6px 0; font-variant-numeric:tabular-nums}
+.tenable-stats strong { font-size:30px}
+.tenable-stats small { font-size:18px; color:var(--color-text-muted)}
+.tenable-hearts { display:flex; align-items:center; gap:6px; }
+.tenable-heart { width:30px; height:30px; overflow:visible; fill:#a52b40; stroke:#d45a6c; stroke-width:1.1; stroke-linejoin:round; filter:drop-shadow(0 2px 3px #0004); }
+.tenable-heart-shine { fill:none; stroke:#ed9ba7; stroke-width:1.8; stroke-linecap:round; opacity:.65; }
+.tenable-heart.is-lost { fill:#291c25; stroke:#6d4652; filter:none; }
+.tenable-heart.is-lost .tenable-heart-shine { display:none; }
+.tenable progress { width:100%; height:6px; accent-color:var(--color-primary); display:block; margin-bottom:18px}
+
+.tenable-answers { list-style:none; margin:0; padding:0; display:grid; gap:8px}
+.tenable-answers li { display:flex; align-items:center; gap:14px; min-height:58px; padding:8px 16px; border:1px solid #8061c6; border-radius:12px; background:linear-gradient(110deg,#38215d,#51308a); color:#fff; font-weight:700; box-shadow:0 4px 12px #0002}
+.tenable-rank { display:grid; place-items:center; flex:0 0 32px; height:32px; border-radius:9px; background:#ffffff16; font-variant-numeric:tabular-nums}
+.tenable-hidden { color:#d2c3ee; font-size:13px; font-weight:400}
+.tenable-answer-status { margin-left:auto; font-size:12px}
+.tenable-answers li.found { background:linear-gradient(110deg,#14523b,#207751); border-color:#69d9a1; animation:tenable-reveal .3s ease-out}
+.tenable-answers li.revealed { background:var(--color-surface-raised); border-color:var(--color-border); color:var(--color-text-muted)}
+
+.tenable-controls { position:sticky; bottom:0; padding:10px 0 max(14px,env(safe-area-inset-bottom)); background:var(--color-background); z-index:2}
+.tenable-controls label { display:block; font-size:13px; margin-bottom:7px}
+.tenable-controls>div { display:flex; gap:8px}
+.tenable-controls input { min-width:0; width:100%; padding:14px; background:var(--color-surface); color:var(--color-text); border:1px solid var(--color-border); border-radius:10px; font-size:16px}
+.tenable-controls button,.tenable-actions button { border:0; border-radius:10px; padding:14px 18px; font-weight:800; background:var(--color-primary); color:var(--color-primary-text); white-space:nowrap}
+.tenable-feedback { min-height:36px; margin:0 0 7px; font-size:14px; line-height:1.4}
+.tenable-feedback.correct { color:#85edb7}
+.tenable-feedback.wrong,.tenable-urgent { color:#ff9bad}
+.tenable-result { border:1px solid var(--color-primary); background:var(--color-surface); padding:20px; border-radius:16px; margin:20px 0}
+.tenable-actions { display:flex; gap:10px; flex-wrap:wrap}
+
+:root[data-theme="fcm"] .tenable-answers li:not(.found):not(.revealed) { background:linear-gradient(110deg,#302039,#4c2a50); border-color:#79517e}
+.menu-mode-tenable { background:var(--game-purple); color:#fff}
+
+@keyframes tenable-reveal { from { transform:scale(.98); opacity:.65}
+to { transform:scale(1); opacity:1}
+}
+
+@media(max-width:600px) { .tenable { padding:16px 16px 24px}
+.tenable-choices { grid-template-columns:1fr; gap:12px}
+.tenable-choice { padding:22px; gap:10px}
+.tenable-heading { margin:6px 0 10px}
+.tenable-nav { font-size:14px}
+.tenable-answers li { min-height:52px}
+.tenable-stats strong { font-size:26px}
+.tenable-controls { padding-bottom:max(10px,env(safe-area-inset-bottom))}
+}
+
+@media(prefers-reduced-motion:reduce) { .tenable * { animation:none!important; transition:none!important}
+}
+
+
+.tenable  {  padding-top:max(10px,env(safe-area-inset-top));  }
+
+.tenable-controls input  {  color-scheme:dark;  }
+
+
+.tenable-selection { max-width:620px; margin-inline:auto; }
+.tenable-challenge-section + .tenable-challenge-section { margin-top:24px; }
+.tenable-challenge-section h2 { display:flex; align-items:center; gap:12px; margin:0; font-size:14px; font-weight:850; letter-spacing:2px; color:var(--color-primary); }
+.tenable-challenge-section h2::after { content:''; height:1px; flex:1; background:var(--color-border); }
+.tenable-selection .tenable-choices { grid-template-columns:1fr; }
+.tenable-selection .tenable-choice { padding:16px 18px; gap:8px; border-radius:16px; }
+.tenable-selection .tenable-choice strong { font-size:18px; }
+.tenable-selection .tenable-choice small,.tenable-selection .tenable-choice b { font-size:12px; }
+@media(max-width:600px) {
+  .tenable-heading { margin:6px 0 10px; }
+}
+
+.tenable-level-easy { --level-background:#215e3c; --level-ink:#e5f9eb; }
+.tenable-level-medium { --level-background:#796019; --level-ink:#fff2bd; }
+.tenable-level-hard { --level-background:#852e3c; --level-ink:#ffe8ec; }
+.tenable-challenge-section h2 { min-height:44px; padding:10px 16px; border-radius:12px; background:var(--level-background); color:var(--level-ink); letter-spacing:1.5px; }
+.tenable-challenge-section h2::after { display:none; }
+.tenable-challenge-section + .tenable-challenge-section { margin-top:20px; }
+.tenable-selection .tenable-choices { gap:7px; margin-top:9px; }
+.tenable-selection .tenable-choice { display:grid; grid-template-columns:minmax(0,1fr) 24px; gap:2px 10px; padding:10px 14px; border-radius:12px; min-height:65px; }
+.tenable-selection .tenable-choice small { grid-column:1; font-size:10px; letter-spacing:1px; }
+.tenable-selection .tenable-choice strong { grid-column:1; font-size:16px; }
+.tenable-selection .tenable-choice b { grid-column:2; grid-row:1 / 3; align-self:center; justify-self:end; font-size:22px; }
