@@ -1,10 +1,10 @@
 // Presentation only. Anonymous silhouettes never represent actual player appearance.
 export const SILHOUETTES = Object.freeze([
-  '/images/silhouettes/stocky-crop.webp',
-  '/images/silhouettes/slim-curls.webp',
-  '/images/silhouettes/athletic-bun.webp',
-  '/images/silhouettes/broad-bald.webp',
-  '/images/silhouettes/lean-locks.webp',
+  '/images/footballers/player-1.png',
+  '/images/footballers/player-2.png',
+  '/images/footballers/player-3.png',
+  '/images/footballers/player-4.png',
+  '/images/footballers/player-5.png',
 ])
 
 export function assignSilhouettes(players, random = Math.random) {

@@ -1,5 +1,6 @@
 // Validate generated deployment assets, not just the source configuration.
 import assert from 'node:assert/strict'
+import { SILHOUETTES } from '../src/game/silhouettes.js'
 import { readFileSync, existsSync } from 'node:fs'
 
 const base = '/higher-or-lower/'
@@ -48,7 +49,7 @@ for (const icon of manifest.icons) checkIcon(icon.src, Number(icon.sizes.split('
 assert.ok(html.includes(`href="${base}icons/apple-touch-icon.png"`))
 checkIcon('icons/apple-touch-icon.png', 180)
 
-for (const path of ['index.html', 'manifest.webmanifest', 'images/card-grain.svg', 'images/player-silhouette.webp', ...['stocky-crop', 'slim-curls', 'athletic-bun', 'broad-bald', 'lean-locks'].map(name => `images/silhouettes/${name}.webp`)]) {
+for (const path of [...SILHOUETTES.map(path => path.slice(1)), 'index.html', 'manifest.webmanifest', 'images/card-grain.svg', 'images/player-silhouette.webp', ...['stocky-crop', 'slim-curls', 'athletic-bun', 'broad-bald', 'lean-locks'].map(name => `images/silhouettes/${name}.webp`)]) {
   assert.ok(cached.has(path), `Missing offline asset: ${path}`)
 }
 for (const [, path] of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {

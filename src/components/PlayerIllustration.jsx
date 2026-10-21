@@ -14,10 +14,17 @@ function localImagePath(value) {
 }
 
 // One original anonymous asset for every player. No real-player likeness or number.
-export default function PlayerIllustration({ name, imageSrc, silhouetteSrc = STANDARD_IMAGE, shadow = false }) {
+export default function PlayerIllustration({ name, imageSrc, silhouetteSrc = STANDARD_IMAGE, shadow = false, broadcast = false }) {
   const standardImage = localImagePath(silhouetteSrc) ?? STANDARD_IMAGE
   const [failedImages, setFailedImages] = useState([])
   const fail = path => setFailedImages(previous => previous.includes(path) ? previous : [...previous, path])
+  // Broadcast cards reveal existing artwork detail without inventing player portraits.
+  if (broadcast) {
+    const customImage = localImagePath(imageSrc)
+    const path = [customImage, standardImage, STANDARD_IMAGE].find(value => value && !failedImages.includes(value))
+    return path ? <img className={`player-illustration player-illustration-broadcast ${path === customImage ? 'player-illustration-photo' : 'player-illustration-artwork'}`}
+      src={deployedImagePath(path)} alt="" draggable="false" onError={() => fail(path)} /> : <PlayerSilhouetteFallback name={name} />
+  }
   // Gameplay shadows use anonymous contours: no real player photo or shirt print.
   if (shadow) {
     const shadowImage = failedImages.includes(standardImage) ? STANDARD_IMAGE : standardImage

@@ -1,0 +1,22 @@
+<!-- Original decorative vector artwork created for FCM Games. No third-party imagery.
+     Replace via --profile-cover-image in ProfileCard.css when a licensed photo is available. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="660" viewBox="0 0 1200 660" fill="none">
+  <defs>
+    <linearGradient id="sky" x2="1000" y2="660" gradientUnits="userSpaceOnUse"><stop stop-color="#172c36"/><stop offset=".6" stop-color="#29242a"/><stop offset="1" stop-color="#761f30"/></linearGradient>
+    <radialGradient id="light"><stop stop-color="#f5e9dc" stop-opacity=".6"/><stop offset="1" stop-color="#f5e9dc" stop-opacity="0"/></radialGradient>
+    <pattern id="crowd" width="44" height="54" patternUnits="userSpaceOnUse"><circle cx="14" cy="12" r="7" fill="#7e7980"/><path d="M2 40V30a12 12 0 0 1 24 0v10" fill="#59505b"/><circle cx="36" cy="40" r="6" fill="#a39496"/><path d="M25 54a11 11 0 0 1 22 0" fill="#6f3441"/></pattern>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h1200v660H0z"/>
+  <ellipse cx="930" cy="65" rx="350" ry="300" fill="url(#light)"/>
+  <ellipse cx="190" cy="80" rx="260" ry="180" fill="url(#light)"/>
+  <path d="M-50 160Q600 360 1250 115M-50 180Q600 380 1250 135" stroke="#b5b0aa" stroke-opacity=".25" stroke-width="5"/>
+  <path d="M0 275Q600 425 1200 230V660H0Z" fill="url(#crowd)" opacity=".85"/>
+  <path d="M0 365Q600 510 1200 330M0 470Q600 600 1200 435" stroke="#c8bab6" stroke-opacity=".2" stroke-width="8"/>
+  <g stroke="#d3c4c0" stroke-width="5"><path d="m790 570 47-390M1000 600l-35-355M480 600l-20-300"/></g>
+  <path d="m837 180 15-103c80-30 113 62 205 12l-14 112c-84 39-124-41-206-21Z" fill="#cf3348"/>
+  <path d="m846 132 6-55c80-30 113 62 205 12l-7 57c-91 47-123-44-204-14Z" fill="#17181e"/>
+  <path d="m965 245-9-90c-65 18-100-32-171-7l9 96c67-34 111 19 171 1Z" fill="#b32139"/>
+  <path d="m460 300-6-98c-78-16-102 40-180 15l7 102c77 22 107-34 179-19Z" fill="#a9a0a1"/>
+  <path d="m457 250-3-48c-78-16-102 40-180 15l3 50c77 23 106-36 180-17Z" fill="#8c2032"/>
+  <g fill="#14141c"><path d="M0 565q80-110 160 0t160 0 160 0 160 0 160 0 160 0 240 0v95H0Z"/><circle cx="1070" cy="492" r="28"/><path d="m1040 553-44-102 17-8 56 87 56-115 18 8-42 135Z"/></g>
+</svg>

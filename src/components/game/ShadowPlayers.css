@@ -1,94 +1,100 @@
-/* Use the photographic alpha contour as an atmospheric background shadow only. */
+/* Broadcast / Matchday cards. Scoped to Higher or Lower; no game rules or controls. */
 .game-playing .player-card {
-  --player-field: var(--tone-6743e7,#6743e7);
-  isolation: isolate;
-  background-image: radial-gradient(ellipse at 86% 12%, #ffffff0d, transparent 65%);
+  --card-accent:var(--color-primary);
+  --card-secondary:var(--color-secondary);
+  --card-base:color-mix(in srgb,var(--color-secondary) 26%,var(--color-background));
+  --card-ink:var(--color-text);
+  isolation:isolate;
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto minmax(0,1fr);
+  row-gap:8px;
+  padding:18px 20px;
+  border:1px solid color-mix(in srgb,var(--card-secondary) 55%,var(--color-border));
+  border-radius:18px;
+  color:var(--card-ink);
+  background:
+    radial-gradient(ellipse at 90% 22%,color-mix(in srgb,var(--card-secondary) 60%,transparent),transparent 68%),
+    linear-gradient(115deg,var(--color-background),var(--card-base));
+  box-shadow:inset 0 1px 0 #ffffff0a,0 6px 18px #0003;
 }
-.game-playing .player-card-challenger { --player-field: var(--tone-c3f54c,#c3f54c); }
-.game-playing .player-avatar,
-.game-playing .player-card-challenger .player-avatar {
-  width: 68%; height: 100%; right: 0; bottom: 0;
-  z-index: 1; opacity: .76; transform: none;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #0004 32%, #000 73%);
-  mask-image: linear-gradient(to right, transparent 0%, #0004 32%, #000 73%);
+.game-playing .player-card-challenger {
+  --card-base:color-mix(in srgb,var(--color-secondary) 42%,var(--color-background));
+  border-top-color:color-mix(in srgb,var(--card-accent) 65%,var(--color-border));
+  border-radius:18px;
 }
-.game-playing .player-illustration-shadow {
-  width: 100%; height: 100%; object-fit: cover; object-position: center top;
-  /* brightness(0) removes all skin, fabric and other photographic detail. */
-  filter: brightness(0) drop-shadow(0 0 9px var(--tone-100c1c55,#100c1c55));
-  -webkit-mask-image: linear-gradient(to bottom, #000b 0%, #000 20%, #000c 60%, #0004 85%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000b 0%, #000 20%, #000c 60%, #0004 85%, transparent 100%);
+:root[data-theme="fcm"] .game-playing .player-card {
+  --card-base:#21141b;
+  --card-secondary:var(--color-primary);
 }
+:root[data-theme="fcm"] .game-playing .player-card-challenger { --card-base:#33131e; }
+/* Keep the name and statistic dark-backed; light remains on the artwork at right. */
 .game-playing .player-card::before {
-  content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: linear-gradient(to right, var(--player-field) 3%, transparent 76%);
+  content:''; position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:
+    linear-gradient(90deg,color-mix(in srgb,var(--color-background) 94%,transparent),color-mix(in srgb,var(--color-background) 50%,transparent) 42%,transparent 76%),
+    linear-gradient(0deg,color-mix(in srgb,var(--color-background) 72%,transparent),transparent 43%);
 }
 .game-playing .player-card::after {
-  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none;
-  background: url('/images/card-grain.svg'); opacity: .035; mix-blend-mode: soft-light;
+  content:''; position:absolute; inset:0; z-index:3; pointer-events:none;
+  background:
+    linear-gradient(var(--card-accent),var(--card-accent)) 20px 16px / 24px 3px no-repeat,
+    linear-gradient(125deg,transparent 75%,color-mix(in srgb,var(--card-accent) 22%,transparent) 75.2%,transparent 75.6%),
+    radial-gradient(circle,#ffffff09 .5px,transparent .9px);
+  background-size:24px 3px,100% 100%,4px 4px;
+  opacity:.7;
 }
-.game-playing .player-details,
-.game-playing .player-stat { z-index: 4; }
-@media (min-width: 700px) {
-  .game-playing .player-avatar,
-  .game-playing .player-card-challenger .player-avatar { width: 65%; }
+.game-playing .player-details {
+  grid-area:1 / 1; align-self:start; width:74%; min-width:0; z-index:4;
+  padding-top:11px;
 }
-/* Larger figure, anchored below the name rather than against the card's top. */
-.game-playing .player-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto minmax(0, 1fr);
-  row-gap: 8px;
+.game-playing .player-details h2 {
+  max-width:15ch; font-size:clamp(24px,11cqh,38px); font-weight:900;
+  line-height:1.06; letter-spacing:-.8px; color:var(--card-ink);
+  text-wrap:balance; overflow-wrap:anywhere; text-shadow:0 2px 14px #0006;
 }
-.game-playing .player-details { grid-area: 1 / 1; align-self: start; }
-.game-playing .player-stat { grid-area: 2 / 1; align-self: end; }
 .game-playing .player-avatar,
 .game-playing .player-card-challenger .player-avatar {
-  grid-area: 2 / 1;
-  position: relative;
-  align-self: stretch;
-  justify-self: end;
-  width: 100%;
-  height: 100%;
-  min-height: 0;
-  right: auto;
-  bottom: auto;
+  position:absolute; grid-area:auto; top:24px; right:-8px; bottom:0;
+  width:65%; height:calc(100% - 24px); min-height:0; z-index:1;
+  opacity:1; transform:none; filter:none; pointer-events:none;
+  -webkit-mask-image:linear-gradient(0deg,transparent,#000 14%);
+  mask-image:linear-gradient(0deg,transparent,#000 14%);
 }
-.game-playing .player-illustration-shadow {
-  object-position: center top;
+.game-playing .player-illustration-broadcast {
+  width:100%; height:100%; object-fit:cover; object-position:50% 8%;
 }
-@media (min-width: 700px) {
-  .game-playing .player-avatar,
-  .game-playing .player-card-challenger .player-avatar { width: 100%; }
+.game-playing .player-illustration-artwork {
+  filter:brightness(1.03) contrast(1.01) drop-shadow(-6px 4px 10px #0005);
 }
-/* Anchor the silhouette to the card, independent of the number of name lines. */
-.game-playing .player-avatar,
-.game-playing .player-card-challenger .player-avatar {
-  position: absolute;
-  grid-area: auto;
-  top: 112px;
-  right: 24px;
-  bottom: 0;
-  width: calc(100% - 48px);
-  height: auto;
+.game-playing .player-illustration-photo { filter:none; }
+.game-playing .player-avatar .player-illustration-realistic { opacity:1; }
+.game-playing .player-stat {
+  grid-area:2 / 1; align-self:end; z-index:4;
+  width:max-content; max-width:100%; display:flex; flex-direction:column; align-items:flex-start; gap:2px;
 }
-@media (max-width: 699px) and (max-height: 620px) {
-  .game-playing .player-avatar,
-  .game-playing .player-card-challenger .player-avatar { top: 88px; }
+.game-playing .player-stat strong {
+  font-size:clamp(58px,27cqh,92px); line-height:1.05; letter-spacing:-3px;
+  color:var(--card-accent); text-shadow:0 3px 18px #0005;
 }
-@media (min-width: 700px) {
-  .game-playing .player-avatar,
-  .game-playing .player-card-challenger .player-avatar {
-    top: 190px;
-    right: 48px;
-    width: calc(100% - 96px);
-  }
+.game-playing .player-stat .concealed-statistic { width:3ch; }
+.game-playing .player-stat .concealed-statistic-number,
+.game-playing .player-stat .concealed-statistic-number.statistic-three-digits { font-size:1em; line-height:1.05; }
+.game-playing .player-stat .concealed-statistic-bars { left:0; gap:.09em; }
+.game-playing .player-stat .concealed-statistic-bars i { width:.25em; }
+.game-playing .player-stat > span { position:static; color:var(--color-text-muted); font-size:10px; line-height:1.2; font-weight:700; letter-spacing:1.8px; text-transform:uppercase; }
+@media(max-width:699px) and (max-height:620px) {
+  .game-playing .player-card { padding:12px 16px; }
+  .game-playing .player-card::after { background-position:16px 12px,center,center; }
+  .game-playing .player-details { padding-top:9px; }
+  .game-playing .player-details h2 { font-size:clamp(21px,12cqh,28px); }
+  .game-playing .player-stat strong { font-size:clamp(46px,26cqh,62px); }
 }
-/* Offset the artwork to the right without changing its vertical anchor or size. */
-.game-playing .player-avatar,
-.game-playing .player-card-challenger .player-avatar { right: -44px; }
-@media (min-width: 700px) {
-  .game-playing .player-avatar,
-  .game-playing .player-card-challenger .player-avatar { right: -44px; }
+@media(min-width:700px) {
+  .game-playing .player-card { padding:26px 28px; border-radius:22px; }
+  .game-playing .player-card::after { background-position:28px 24px,center,center; }
+  .game-playing .player-details { width:85%; padding-top:12px; }
+  .game-playing .player-details h2 { font-size:clamp(30px,4vw,58px); max-width:14ch; }
+  .game-playing .player-stat strong { font-size:clamp(80px,9vw,140px); }
+  .game-playing .player-avatar,.game-playing .player-card-challenger .player-avatar { top:60px; width:85%; height:calc(100% - 60px); }
 }

@@ -26,11 +26,13 @@ test('fresh random assignments can give the same player a different silhouette n
   assert.notDeepEqual(assignSilhouettes(players, () => 0), assignSilhouettes(players, () => .999))
 })
 
-test('all five variants have distinct local WebP assets', () => {
+test('all five variants have distinct local PNG assets', () => {
   const hashes = SILHOUETTES.map(path => {
     const bytes = readFileSync(new URL(`../../public${path}`, import.meta.url))
-    assert.equal(bytes.toString('ascii', 0, 4), 'RIFF')
-    assert.equal(bytes.toString('ascii', 8, 12), 'WEBP')
+    assert.equal(bytes.toString('hex', 0, 8), '89504e470d0a1a0a')
+    assert.equal(bytes.readUInt32BE(16), 512)
+    assert.equal(bytes.readUInt32BE(20), 768)
+    assert.equal(bytes[25], 6, 'RGBA artwork must preserve transparency')
     return createHash('sha256').update(bytes).digest('hex')
   })
   assert.equal(new Set(hashes).size, 5)
