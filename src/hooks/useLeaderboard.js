@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react'
 import { onlinePlatform } from '../services/onlinePlatformRuntime.js'
 
 const PAGE_SIZE = 25
+// The public leaderboard is exclusively Higher or Lower – Flest kampe.
+const GAME_TYPE = 'appearances'
 
-export default function useLeaderboard(modeId, userId) {
-  const key=`${modeId}:${userId??''}`
+export default function useLeaderboard(userId) {
+  const key=`${GAME_TYPE}:${userId??''}`
   const [result, setResult] = useState({ key:'',entries: [], ownEntries: [], total: 0, loading: true, loadingMore: false, failed: false, error: '' })
   useEffect(() => {
     let current = true
-    onlinePlatform.listLeaderboard(modeId, { limit: PAGE_SIZE, offset: 0 }).then(data => {
+    onlinePlatform.listLeaderboard(GAME_TYPE, { limit: PAGE_SIZE, offset: 0 }).then(data => {
       if (current) setResult({
         key,
         ...data,
@@ -20,12 +22,12 @@ export default function useLeaderboard(modeId, userId) {
       if (current) setResult({ key,entries: [], ownEntries: [], total: 0, loading: false, loadingMore: false, failed: true, error: error.message })
     })
     return () => { current = false }
-  }, [modeId, userId, key])
+  }, [userId, key])
   async function loadMore() {
     if (result.key!==key||result.loading || result.loadingMore || result.failed || result.entries.length >= result.total) return
     setResult(previous => ({ ...previous, loadingMore: true }))
     try {
-      const data = await onlinePlatform.listLeaderboard(modeId, { limit: PAGE_SIZE, offset: result.entries.length })
+      const data = await onlinePlatform.listLeaderboard(GAME_TYPE, { limit: PAGE_SIZE, offset: result.entries.length })
       setResult(previous => ({
         ...previous,
         entries: [...previous.entries, ...data.entries.map(entry => ({ ...entry, isSelf: entry.playerId === userId }))],

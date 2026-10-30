@@ -17,7 +17,7 @@ export default function PlayerCard({ player, mode, hidden = false, challenger = 
       </span>
       <div className="round-success-burst"><span className="round-success-check">✓</span><span className="round-success-points">+1</span></div>
     </div>}
-    <div className="player-avatar" aria-hidden="true"><PlayerIllustration name={player.name} imageSrc={player.localImage} silhouetteSrc={silhouetteSrc} broadcast /></div>
+    <div className="player-avatar" aria-hidden="true"><PlayerIllustration name={player.name} imageSrc={player.localImage} silhouetteSrc={silhouetteSrc} shadow={mode.id === 'appearances'} broadcast={mode.id !== 'appearances'} /></div>
     <div className="player-details">
       <h2>{player.name}</h2>
     </div>

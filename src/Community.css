@@ -76,12 +76,6 @@
 .profile-mode-record .record-coming { display: flex; align-items: center; gap: 4px; color: var(--tone-a39bb4,#a39bb4); font-size: 10px; font-weight: 500; }
 .record-coming svg { width: 12px; height: 12px; }
 
-.leaderboard-filters { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-bottom: 16px; }
-.leaderboard-filters button { display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 54px; padding: 10px; border: 0; border-radius: 13px; background: var(--tone-221b31,#221b31); color: var(--tone-b7adc9,#b7adc9); text-align: left; line-height: 1.2; }
-.leaderboard-filters button[aria-pressed="true"] { background: var(--game-lime); color: var(--game-dark); }
-.leaderboard-filters svg { width: 18px; height: 18px; }
-.leaderboard-filters button span { font-size: 11px; font-weight: 800; }
-.leaderboard-filters small { display: block; margin-top: 4px; font-size: 9px; font-weight: 500; }
 .leaderboard-demo-notice { margin-bottom: 26px; color: var(--tone-b6acc7,#b6acc7); font-size: 11px; line-height: 1.6; }
 .leaderboard-demo-notice strong { display: block; color: var(--tone-c4abff,#c4abff); font-size: 12px; margin-bottom: 3px; }
 .leaderboard-podium { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 8px; padding-top: 18px; }
@@ -133,7 +127,6 @@
   .app.community-app { padding-top: calc(env(safe-area-inset-top, 0px) + 36px); }
   .profile-statistics > div { padding: 20px; }
   .profile-record .home-medal { width: 250px; }
-  .leaderboard-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .podium-entry { padding: 18px; min-height: 220px; }
   .podium-entry:first-child { min-height: 250px; }
   .podium-entry .fan-avatar { width: 55px; height: 55px; }

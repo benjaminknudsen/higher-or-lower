@@ -39,10 +39,10 @@ test('three errors finish once; double submission is ignored; substitutes are wr
  assert.equal(guess(r,'Lössl',14000).round,r)
 })
 test('deadline uses elapsed real time and disallows late guesses and hints', () => {
- const r=start();assert.equal(remaining(r,10000),180);assert.equal(remaining(r,189001),1)
- assert.equal(tick(r,190000).status,'time');assert.equal(remaining(r,999999),0)
- assert.equal(guess(r,'Lössl',190000).round.guessed.length,0)
- assert.equal(buyHint(r,'lossl',190000).status,'time')
+ const r=start();assert.equal(remaining(r,10000),300);assert.equal(remaining(r,309001),1)
+ assert.equal(tick(r,310000).status,'time');assert.equal(remaining(r,999999),0)
+ assert.equal(guess(r,'Lössl',310000).round.guessed.length,0)
+ assert.equal(buyHint(r,'lossl',310000).status,'time')
 })
 test('hints cost five, cannot repeat, require verified numbers and available points', () => {
  let r=start();assert.equal(buyHint(r,'dreyer',11000),r)
@@ -62,7 +62,7 @@ test('active snapshot restores guesses, hints, errors, match and original deadli
  let r=guess(start(),'Lössl',11000).round;r=buyHint(r,'sisto',12000);r=guess(r,'wrong',13000).round
  const store={...emptyStore(),played:[r.match.id],round:r}
  const storage={ getItem:key=>key===LINEUP_KEY?JSON.stringify(store):null }
- assert.deepEqual(readStore(storage),store);assert.equal(tick(readStore(storage).round,200000).status,'time')
+ assert.deepEqual(readStore(storage),store);assert.equal(tick(readStore(storage).round,310000).status,'time')
  assert.equal(readStore({getItem:()=>'{bad'}).round,null)
  assert.equal(readStore({getItem:()=>JSON.stringify({...store,round:{...r,errors:99}})}).round,null)
  assert.ok(validRound(r))
@@ -99,7 +99,7 @@ test('verified Viborg lineup has five formation chains and correct starters and 
 })
 test('retired saved Celtic rounds are archived without losing results or statistics', () => {
  const round=start();delete round.match.active
- const old=recordResult(emptyStore(),tick(round,200000))
+ const old=recordResult(emptyStore(),tick(round,round.deadline))
  const before=statistics(old)
  const migrated=retireInactiveRound(old,matches)
  assert.equal(migrated.round,null);assert.deepEqual(migrated.archivedRounds,[old.round]);assert.deepEqual(statistics(migrated),before)
@@ -222,9 +222,9 @@ test('all ten requested historical matches are accounted for without duplicates'
   assert.equal(m.players.length,11,m.id)
   assert.equal(new Set(m.players.map(p=>p.name)).size,11,m.id)
  }
- assert.equal(historical.length,6)
+ assert.equal(historical.length,7)
  assert.ok(historical.every(isActiveMatch))
- assert.equal(pending.length,4)
+ assert.equal(pending.length,3)
  for(const m of pending) {
   assert.equal(m.active,false);assert.equal(m.verified,false)
   assert.equal(m.formation,null);assert.ok(m.verificationNote)
@@ -242,7 +242,7 @@ test('new playable fixtures retain verified dates, scores and formation chains',
   ['fcm-southampton-2015-08-27','2015-08-27',[1,0],'4-1-4-1'],
   ['fcm-man-utd-2016-02-18','2016-02-18',[2,1],null],
   ['fcm-horsens-2018-05-21','2018-05-21',[1,0],null],
-  ['man-city-fcm-2008-08-14','2008-08-14',[0,1],null],
+  ['man-city-fcm-2008-08-14','2008-08-14',[0,1],'4-4-2'],
   ['brondby-fcm-2019-05-17','2019-05-17',[1,1],null],
  ]
  for(const [id,date,score,formation] of expected) {
@@ -255,7 +255,7 @@ test('new playable fixtures retain verified dates, scores and formation chains',
 test('every new starter accepts its full name, finishes perfectly and keeps hints separate', () => {
  for(const m of historical) {
   let r=createRound(m,10000,m.id)
-  assert.deepEqual(r.guessed,[]);assert.deepEqual(r.hints,[]);assert.equal(remaining(r,10000),180)
+  assert.deepEqual(r.guessed,[]);assert.deepEqual(r.hints,[]);assert.equal(remaining(r,10000),300)
   for(const [i,p] of m.players.entries()) r=guess(r,`  ${p.name.toUpperCase()}  `,11000+i*1000).round
   assert.equal(r.status,'perfect',m.id);assert.equal(scoreRound(r),110,m.id)
   assert.equal(statistics(recordResult(emptyStore(),r)).correct,11)

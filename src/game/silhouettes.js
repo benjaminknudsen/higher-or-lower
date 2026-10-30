@@ -7,12 +7,14 @@ export const SILHOUETTES = Object.freeze([
   '/images/footballers/player-5.png',
 ])
 
-export function assignSilhouettes(players, random = Math.random) {
+export const REAR_SILHOUETTES = Object.freeze(Array.from({ length:5 }, (_, index) => `/images/silhouettes/footballer-rear-${index+1}.png`))
+
+export function assignSilhouettes(players, random = Math.random, artwork = SILHOUETTES) {
   let bag = []
   let previous = null
   return Object.fromEntries(players.map(player => {
     if (!bag.length) {
-      bag = [...SILHOUETTES]
+      bag = [...artwork]
       for (let index = bag.length - 1; index > 0; index--) {
         const other = Math.floor(random() * (index + 1))
         ;[bag[index], bag[other]] = [bag[other], bag[index]]

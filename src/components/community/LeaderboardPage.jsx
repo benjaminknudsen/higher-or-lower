@@ -1,9 +1,7 @@
 import useAuthAccount from '../../hooks/useAuthAccount.js'
-import { useState } from 'react'
 import useLeaderboard from '../../hooks/useLeaderboard'
 import Avatar from './Avatar'
 import CommunityHeader from './CommunityHeader'
-import Icon from '../Icon'
 
 function LeaderboardEntry({ entry, podium = false, unit = 'i træk' }) {
   const href = entry.isSelf ? '#profil' : `#profil/${encodeURIComponent(entry.playerId)}`
@@ -16,32 +14,26 @@ function LeaderboardEntry({ entry, podium = false, unit = 'i træk' }) {
   </li>
 }
 
-export default function LeaderboardPage({ gameModes }) {
-  const [modeId, setModeId] = useState('appearances')
+export default function LeaderboardPage() {
   return <main className="community-content leaderboard-page" id="indhold">
-    <CommunityHeader title="Leaderboard" subtitle="Se de bedste spillere, og hvor du ligger på ranglisten." />
+    <CommunityHeader title="Leaderboard" subtitle="Higher or Lower – Flest kampe" />
     <p className="account-note">Leaderboardet viser hver spillers 3 bedste forsøg, rangeret efter score. Du kan derfor have op til tre individuelle placeringer på ranglisten.</p>
     <p className="account-note">Fælles leaderboard for registrerede spillere. Gæster kan se placeringerne, men deres resultater vises ikke online.</p>
-    <div className="leaderboard-filters" role="group" aria-label="Spiltype på ranglisten">
-      {gameModes.filter(mode => mode.available).map(mode => <button key={mode.id} type="button" aria-pressed={mode.id === modeId} onClick={() => setModeId(mode.id)}>
-        <Icon name={mode.icon} /><span>{mode.title}</span>
-      </button>)}
-    </div>
-    <Ranking key={modeId} modeId={modeId} />
+    <Ranking />
   </main>
 }
 
-function Ranking({ modeId }) {
+function Ranking() {
   const account=useAuthAccount()
   const userId=account.status==='signed-in'?account.userId:null
-  const result=useLeaderboard(modeId,userId)
+  const result=useLeaderboard(userId)
   return <RankingContent entries={result.entries} ownEntries={result.ownEntries} total={result.total} loading={result.loading}
     loadingMore={result.loadingMore} failed={result.failed} error={result.error} loadMore={result.loadMore}
-    lineup={modeId==='lineup'} signedIn={Boolean(userId)} />
+    signedIn={Boolean(userId)} />
 }
 
-function RankingContent({ entries, ownEntries, total, loading, loadingMore, failed, error, loadMore, lineup = false, signedIn }) {
-  const unit = lineup ? 'point' : 'i træk'
+function RankingContent({ entries, ownEntries, total, loading, loadingMore, failed, error, loadMore, signedIn }) {
+  const unit = 'i træk'
   return <>
     {loading ? <p role="status">Henter ranglisten…</p> : failed ? <p role="alert">Ranglisten kunne ikke vises. {error}</p> : entries.length === 0 ? <p>Ingen online-resultater endnu.</p> : <>
       <section aria-labelledby="podium-title"><h2 className="community-section-title" id="podium-title">Hall of Fame</h2>

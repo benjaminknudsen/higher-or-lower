@@ -1,0 +1,2855 @@
+[
+  {
+    "id": "fcm-tenable-1",
+    "number": 1,
+    "title": "Spillere i 2026/27",
+    "difficulty": "easy",
+    "description": "Nævn 10 spillere, der har spillet for FC Midtjylland i 2026/27-sæsonen.",
+    "type": "any10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "verified",
+    "rules": "Mindst én officiel førsteholdskamp i sæsonen før skæringsdatoen. Også tidligere spillere fra sæsonen tæller. Find 10 forskellige; svarene er ikke rangeret.",
+    "source": "SuperStats · Ligadeltagelse; FCM og Beşiktaş · Pokal- og UEFA-kampe.",
+    "answers": [
+      {
+        "label": "Elías Rafn Ólafsson",
+        "aliases": [
+          "Elias Olafsson",
+          "Elías Ólafsson"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Nordin Bakker",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Andreas Maxsø",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Magnus Jensen",
+        "aliases": [
+          "Magnus Riisgaard Jensen"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Ousmane Diao",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Rasmus Nissen Kristensen",
+        "aliases": [
+          "Rasmus Nissen",
+          "Rasmus Kristensen",
+          "NK"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026.",
+        "surnames": [
+          "Kristensen",
+          "Nissen"
+        ]
+      },
+      {
+        "label": "Martin Erlić",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Béni Junior Djé Bi Djé",
+        "aliases": [
+          "Béni Junior",
+          "Beni Djé",
+          "Djé Beni",
+          "Djé Bi",
+          "Beni"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026.",
+        "surnames": [
+          "Djé Bi"
+        ]
+      },
+      {
+        "label": "Mads Bech Sørensen",
+        "aliases": [
+          "Mads Bech"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Abdou Aziz Ndiaye",
+        "aliases": [
+          "Abdou Aziz"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Victor Bak Jensen",
+        "aliases": [
+          "Victor Bak"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026.",
+        "surnames": [
+          "Bak",
+          "Jensen"
+        ]
+      },
+      {
+        "label": "Philip Billing",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Pedro Bravo",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Hong Hyun-seok",
+        "aliases": [
+          "Hyun-seok Hong",
+          "Hong Hyun Seok",
+          "Hyun Seok Hong"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026.",
+        "surnames": [
+          "Hong"
+        ]
+      },
+      {
+        "label": "Denil Castillo",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Sofus Johannesen",
+        "aliases": [
+          "Sofus Østergaard Grandjean Johannesen"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Kjell Wätjen",
+        "aliases": [
+          "Kjell-Arik Wätjen"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Joseph Okuaghare",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Mileta Rajović",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Cho Gue-sung",
+        "aliases": [
+          "Gue-sung Cho",
+          "Cho Gue Sung",
+          "Gue Sung Cho"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026.",
+        "surnames": [
+          "Cho"
+        ]
+      },
+      {
+        "label": "Mikael Uhre",
+        "aliases": [
+          "Mikael Brandhof Uhre"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Stanley Iheanacho",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Julius Emefile",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Friday Etim",
+        "aliases": [
+          "Friday Ubi Etim"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "David Martínez",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Adam Gabriel",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Darío Osorio",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Valdemar Byskov Andreasen",
+        "aliases": [
+          "Valdemar Byskov"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026.",
+        "surnames": [
+          "Byskov",
+          "Andreasen"
+        ]
+      },
+      {
+        "label": "Franculino Djú",
+        "aliases": [
+          "Franculino",
+          "Franculino Gluda Djú"
+        ],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Edward Chilufya",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/hold/sason?id=5"
+        ],
+        "kind": "player",
+        "evidence": "Ligadeltagelse i 2026/27 dokumenteret til og med 25. oktober 2026."
+      },
+      {
+        "label": "Lee Han-beom",
+        "aliases": [
+          "Han-beom Lee",
+          "Han Beom Lee",
+          "Lee Han Beom"
+        ],
+        "sources": [
+          "https://bjk.com.tr/tr/mac_merkezi/canli/25405"
+        ],
+        "kind": "player",
+        "evidence": "Indskiftet mod Beşiktaş 30. juli 2026.",
+        "surnames": [
+          "Lee"
+        ]
+      },
+      {
+        "label": "Frederik Vestergaard",
+        "aliases": [],
+        "sources": [
+          "https://www.fcm.dk/kampe/sundby-boldklub-fc-midtjylland-10-09-2026/"
+        ],
+        "kind": "player",
+        "evidence": "Debut som indskifter mod Sundby 10. september 2026."
+      }
+    ]
+  },
+  {
+    "id": "fcm-tenable-2",
+    "number": 2,
+    "title": "Lande i FCM gennem tiden",
+    "difficulty": "easy",
+    "description": "Nævn 10 forskellige lande fra Transfermarkts oversigt over udenlandske spillere i FC Midtjylland.",
+    "type": "any10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "verified",
+    "rules": "Gæt 10 forskellige blandt alle lande på Transfermarkts tre tabelsider. Danmark er ikke med. Vi følger listens landeregistrering, også ved rækker uden registrerede kampe. Svar i valgfri rækkefølge.",
+    "source": "Transfermarkt · Udenlandske spillere gennem tiden, tabelside 1–3.",
+    "answers": [
+      {
+        "label": "Nigeria",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Sverige",
+        "aliases": [
+          "Sweden"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Norge",
+        "aliases": [
+          "Norway"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Brasilien",
+        "aliases": [
+          "Brazil",
+          "Brasil"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Island",
+        "aliases": [
+          "Iceland",
+          "Ísland"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Tjekkiet",
+        "aliases": [
+          "Czech Republic",
+          "Czechia",
+          "Den Tjekkiske Republik"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Finland",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Ghana",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Polen",
+        "aliases": [
+          "Poland",
+          "Polska"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Tyskland",
+        "aliases": [
+          "Germany",
+          "Deutschland"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Østrig",
+        "aliases": [
+          "Austria",
+          "Oestrig",
+          "Österreich"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Colombia",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "USA",
+        "aliases": [
+          "United States",
+          "United States of America",
+          "U.S.A.",
+          "US",
+          "Amerikas Forenede Stater"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Kroatien",
+        "aliases": [
+          "Croatia",
+          "Hrvatska"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Elfenbenskysten",
+        "aliases": [
+          "Côte d’Ivoire",
+          "Cote d'Ivoire",
+          "Cote d Ivoire",
+          "Ivory Coast"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Schweiz",
+        "aliases": [
+          "Switzerland",
+          "Suisse"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Sydkorea",
+        "aliases": [
+          "South Korea",
+          "Korea, South",
+          "Republic of Korea"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Færøerne",
+        "aliases": [
+          "Faroe Islands",
+          "Faeroe Islands",
+          "Faeroeerne"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Australien",
+        "aliases": [
+          "Australia"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Bulgarien",
+        "aliases": [
+          "Bulgaria"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Costa Rica",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Guinea-Bissau",
+        "aliases": [
+          "Guinea Bissau"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Egypten",
+        "aliases": [
+          "Egypt"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Nederlandene",
+        "aliases": [
+          "Netherlands",
+          "The Netherlands",
+          "Holland"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Slovakiet",
+        "aliases": [
+          "Slovakia"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865"
+        ]
+      },
+      {
+        "label": "Liberia",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Nordmakedonien",
+        "aliases": [
+          "North Macedonia",
+          "Macedonia",
+          "Makedonien"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Malaysia",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Moldova",
+        "aliases": [
+          "Moldavien"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Filippinerne",
+        "aliases": [
+          "Philippines",
+          "The Philippines"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Portugal",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Rumænien",
+        "aliases": [
+          "Romania",
+          "Rumaenien"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Zambia",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Senegal",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Sierra Leone",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "New Zealand",
+        "aliases": [
+          "Ny Zealand"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Tyrkiet",
+        "aliases": [
+          "Türkiye",
+          "Turkiye",
+          "Turkey"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Ukraine",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Ungarn",
+        "aliases": [
+          "Hungary"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Uruguay",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Cypern",
+        "aliases": [
+          "Cyprus"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "England",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Nordirland",
+        "aliases": [
+          "Northern Ireland"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "DR Congo",
+        "aliases": [
+          "DR Kongo",
+          "DRC",
+          "Congo-Kinshasa",
+          "Kongo-Kinshasa",
+          "Democratic Republic of the Congo",
+          "Democratic Republic of Congo",
+          "Den Demokratiske Republik Congo",
+          "Den Demokratiske Republik Kongo"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Kosovo",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Argentina",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Canada",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Guinea",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Bosnien-Hercegovina",
+        "aliases": [
+          "Bosnia-Herzegovina",
+          "Bosnia and Herzegovina",
+          "Bosnien Hercegovina",
+          "Bosnien",
+          "Bosnia"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Burkina Faso",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.co.uk/fc-midtjylland/gastarbeiter/verein/865/page/2"
+        ]
+      },
+      {
+        "label": "Chile",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/gastarbeiter/verein/865/page/3"
+        ]
+      },
+      {
+        "label": "Ecuador",
+        "aliases": [],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/gastarbeiter/verein/865/page/3"
+        ]
+      },
+      {
+        "label": "Gambia",
+        "aliases": [
+          "The Gambia"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/gastarbeiter/verein/865/page/3"
+        ]
+      },
+      {
+        "label": "Estland",
+        "aliases": [
+          "Estonia"
+        ],
+        "kind": "country",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/gastarbeiter/verein/865/page/3"
+        ]
+      }
+    ],
+    "researchNote": "De læsbare Transfermarkt-sider er cachede udgaver fra før skæringsdatoen. Alle 54 optagne lande er dokumenteret i disse tabeller; en fuldstændig liveopdatering frem til skæringsdatoen kunne ikke bekræftes. Ingen historiske spillertal eller rangering anvendes."
+  },
+  {
+    "id": "fcm-tenable-3",
+    "number": 3,
+    "title": "Europæiske modstandere",
+    "difficulty": "easy",
+    "description": "Nævn 10 forskellige klubber, FC Midtjylland har mødt i europæiske turneringer.",
+    "type": "any10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "verified",
+    "rules": "Officielle UEFA-klubkampe inklusive kvalifikation. Hver klub tæller én gang. Kun allerede spillede kampe; ingen Royal League eller træningskampe.",
+    "source": "SuperStats · Europæisk kamphistorik, sammenholdt med UEFA og sæsonoversigt.",
+    "answers": [
+      {
+        "label": "Glentoran",
+        "aliases": [
+          "Glentoran FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Sporting CP",
+        "aliases": [
+          "Sporting",
+          "Sporting Lissabon",
+          "Sporting Lisbon"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "FK Pobeda",
+        "aliases": [
+          "Pobeda",
+          "Pobeda Prilep"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Varteks",
+        "aliases": [
+          "NK Varteks",
+          "Varteks Varaždin"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "RSC Anderlecht",
+        "aliases": [
+          "Anderlecht"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "B36 Tórshavn",
+        "aliases": [
+          "B36",
+          "B36 Torshavn"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "CSKA Moskva",
+        "aliases": [
+          "CSKA Moscow",
+          "CSKA"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Keflavík",
+        "aliases": [
+          "Keflavik IF"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "FC Haka",
+        "aliases": [
+          "Haka"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Lokomotiv Moskva",
+        "aliases": [
+          "Lokomotiv Moscow"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Bangor City",
+        "aliases": [
+          "Bangor City FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Manchester City",
+        "aliases": [
+          "Man City",
+          "Manchester City FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "The New Saints",
+        "aliases": [
+          "TNS"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Vitória Guimarães",
+        "aliases": [
+          "Vitoria Guimaraes",
+          "Vitoria de Guimaraes",
+          "Vitoria SC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "BSC Young Boys",
+        "aliases": [
+          "Young Boys"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Panathinaikos",
+        "aliases": [
+          "Panathinaikos FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Lincoln Red Imps",
+        "aliases": [
+          "Lincoln",
+          "Lincoln FC",
+          "Lincoln Red Imps FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "APOEL",
+        "aliases": [
+          "APOEL Nicosia"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Southampton",
+        "aliases": [
+          "Southampton FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "SSC Napoli",
+        "aliases": [
+          "Napoli"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Club Brugge",
+        "aliases": [
+          "Club Brügge",
+          "Club Bruges",
+          "Brugge"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Legia Warszawa",
+        "aliases": [
+          "Legia Warsaw",
+          "Legia"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Manchester United",
+        "aliases": [
+          "Man United",
+          "Man Utd",
+          "Manchester Utd",
+          "MUFC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Sūduva",
+        "aliases": [
+          "Suduva Marijampole",
+          "FK Suduva"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "FC Vaduz",
+        "aliases": [
+          "Vaduz"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Videoton",
+        "aliases": [
+          "Videoton FC",
+          "Fehérvár",
+          "Fehervar",
+          "MOL Fehérvár",
+          "MOL Vidi",
+          "Vidi"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Osmanlıspor",
+        "aliases": [
+          "Osmanlispor",
+          "Ankaraspor"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Derry City",
+        "aliases": [
+          "Derry City FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Ferencváros",
+        "aliases": [
+          "Ferencvaros",
+          "Ferencvarosi TC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Arka Gdynia",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Apollon Limassol",
+        "aliases": [
+          "Apollon",
+          "Apollon Limassol FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "FC Astana",
+        "aliases": [
+          "Astana"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Malmö FF",
+        "aliases": [
+          "Malmo",
+          "Malmø",
+          "Malmo FF"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Rangers",
+        "aliases": [
+          "Glasgow Rangers",
+          "Rangers FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Ludogorets Razgrad",
+        "aliases": [
+          "Ludogorets",
+          "PFC Ludogorets"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Slavia Prag",
+        "aliases": [
+          "Slavia Prague",
+          "Slavia Praha",
+          "SK Slavia Praha"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Liverpool",
+        "aliases": [
+          "Liverpool FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "AFC Ajax",
+        "aliases": [
+          "Ajax",
+          "Ajax Amsterdam"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Atalanta",
+        "aliases": [
+          "Atalanta BC",
+          "Atalanta Bergamo"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Celtic",
+        "aliases": [
+          "Celtic FC",
+          "Celtic Glasgow"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "PSV Eindhoven",
+        "aliases": [
+          "PSV"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "SC Braga",
+        "aliases": [
+          "Braga",
+          "Sporting Braga"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Crvena zvezda",
+        "aliases": [
+          "Red Star Belgrade",
+          "Røde Stjerne",
+          "Røde Stjerne Beograd",
+          "Crvena Zvezda Beograd"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "PAOK",
+        "aliases": [
+          "PAOK Thessaloniki"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "AEK Larnaca",
+        "aliases": [
+          "AEK Larnaka"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "SL Benfica",
+        "aliases": [
+          "Benfica"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "SS Lazio",
+        "aliases": [
+          "Lazio",
+          "S.S. Lazio"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Feyenoord",
+        "aliases": [
+          "Feyenoord Rotterdam"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Sturm Graz",
+        "aliases": [
+          "SK Sturm Graz"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Progrès Niederkorn",
+        "aliases": [
+          "Progres Niederkorn",
+          "Progres Niedercorn"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Omonia Nicosia",
+        "aliases": [
+          "Omonia",
+          "AC Omonia",
+          "Omonia Nikosia"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "UE Santa Coloma",
+        "aliases": [
+          "Santa Coloma"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Slovan Bratislava",
+        "aliases": [
+          "SK Slovan Bratislava"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "TSG Hoffenheim",
+        "aliases": [
+          "Hoffenheim",
+          "TSG 1899 Hoffenheim"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Maccabi Tel Aviv",
+        "aliases": [
+          "Maccabi Tel-Aviv"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Union Saint-Gilloise",
+        "aliases": [
+          "Union SG",
+          "Union St Gilloise",
+          "USG"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "FCSB",
+        "aliases": [
+          "Steaua Bukarest",
+          "Steaua Bucuresti"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Eintracht Frankfurt",
+        "aliases": [
+          "Frankfurt"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "FC Porto",
+        "aliases": [
+          "Porto"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Fenerbahçe",
+        "aliases": [
+          "Fenerbahce"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Real Sociedad",
+        "aliases": [],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Hibernian",
+        "aliases": [
+          "Hibs",
+          "Hibernian FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Fredrikstad FK",
+        "aliases": [
+          "Fredrikstad",
+          "Frederiksstad"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "KuPS",
+        "aliases": [
+          "KuPS Kuopio",
+          "Kuopion Palloseura"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Nottingham Forest",
+        "aliases": [
+          "Nottingham Forest FC"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "AS Roma",
+        "aliases": [
+          "Roma"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "KRC Genk",
+        "aliases": [
+          "Genk",
+          "Racing Genk"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "SK Brann",
+        "aliases": [
+          "Brann",
+          "Brann Bergen"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Dinamo Zagreb",
+        "aliases": [
+          "GNK Dinamo Zagreb",
+          "Dynamo Zagreb"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Beşiktaş",
+        "aliases": [
+          "Besiktas",
+          "Besiktas JK",
+          "Besiktas Istanbul"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Bohemian FC",
+        "aliases": [
+          "Bohemians",
+          "Bohemians Dublin",
+          "Bohemian"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "HNK Rijeka",
+        "aliases": [
+          "Rijeka"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "KF Egnatia",
+        "aliases": [
+          "Egnatia",
+          "Egnatia Rrogozhine"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      },
+      {
+        "label": "Sint-Truidense VV",
+        "aliases": [
+          "Sint-Truiden",
+          "Sint Truidense",
+          "STVV",
+          "Sint-Truidense"
+        ],
+        "sources": [
+          "https://superstats.dk/europa/vishold?id=5",
+          "https://en.wikipedia.org/wiki/FC_Midtjylland_in_European_football"
+        ],
+        "kind": "club"
+      }
+    ]
+  },
+  {
+    "id": "fcm-tenable-4",
+    "number": 4,
+    "title": "Dyreste spillersalg",
+    "difficulty": "medium",
+    "description": "Nævn de 10 dyreste spillersalg i FC Midtjyllands historie.",
+    "type": "top10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "user-supplied",
+    "provenance": "Facit og eurobeløb oplyst og korrigeret af brugeren i samtalen. Ikke selvstændigt kildeverificeret.",
+    "exchangeRate": 7.46,
+    "rules": "De ti spillere og beløb i den oplyste rangliste. Beløbene er omregnet til danske kroner ved 7,46 DKK pr. EUR.",
+    "source": "Facit oplyst af brugeren · Omregning: 1 EUR = 7,46 DKK.",
+    "answers": [
+      {
+        "label": "Darío Osorio",
+        "aliases": [
+          "Dario Osorio"
+        ],
+        "kind": "player",
+        "buyer": "Crystal Palace",
+        "feeEur": 30000000,
+        "feeDkk": 223800000,
+        "sources": []
+      },
+      {
+        "label": "Franculino Djú",
+        "aliases": [
+          "Franculino",
+          "Franculino Gluda Djú"
+        ],
+        "kind": "player",
+        "buyer": "Trabzonspor",
+        "feeEur": 25000000,
+        "feeDkk": 186500000,
+        "sources": []
+      },
+      {
+        "label": "Alexander Sørloth",
+        "aliases": [
+          "Alexander Soerloth"
+        ],
+        "kind": "player",
+        "buyer": "Crystal Palace",
+        "feeEur": 16000000,
+        "feeDkk": 119360000,
+        "sources": []
+      },
+      {
+        "label": "Aral Şimşir",
+        "aliases": [
+          "Aral Simsir"
+        ],
+        "kind": "player",
+        "buyer": "Trabzonspor",
+        "feeEur": 15000000,
+        "feeDkk": 111900000,
+        "sources": []
+      },
+      {
+        "label": "Ousmane Diomande",
+        "aliases": [],
+        "kind": "player",
+        "buyer": "Sporting CP",
+        "feeEur": 15000000,
+        "feeDkk": 111900000,
+        "sources": []
+      },
+      {
+        "label": "Gustav Isaksen",
+        "aliases": [
+          "Gustav Tang Isaksen"
+        ],
+        "kind": "player",
+        "buyer": "Lazio",
+        "feeEur": 14000000,
+        "feeDkk": 104440000,
+        "sources": []
+      },
+      {
+        "label": "Artem Dovbyk",
+        "aliases": [],
+        "kind": "player",
+        "buyer": "SC Dnipro-1",
+        "feeEur": 11000000,
+        "feeDkk": 82060000,
+        "sources": []
+      },
+      {
+        "label": "Frank Onyeka",
+        "aliases": [],
+        "kind": "player",
+        "buyer": "Brentford",
+        "feeEur": 10000000,
+        "feeDkk": 74600000,
+        "sources": []
+      },
+      {
+        "label": "Jens-Lys Cajuste",
+        "aliases": [
+          "Jens Cajuste"
+        ],
+        "kind": "player",
+        "buyer": "Stade de Reims",
+        "feeEur": 10000000,
+        "feeDkk": 74600000,
+        "sources": []
+      },
+      {
+        "label": "Evander",
+        "aliases": [],
+        "kind": "player",
+        "buyer": "Portland Timbers",
+        "feeEur": 9500000,
+        "feeDkk": 70870000,
+        "sources": []
+      }
+    ]
+  },
+  {
+    "id": "fcm-tenable-5",
+    "number": 5,
+    "title": "Flest officielle kampe",
+    "difficulty": "medium",
+    "description": "Nævn de 10 spillere med flest registrerede kampe for FC Midtjylland ifølge Transfermarkt.",
+    "type": "top10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "user-supplied",
+    "provenance": "Transfermarkts Top 10 og Apps-tal indsat af brugeren i samtalen. Rækkefølge og tal gengivet uden selvstændig onlineverifikation.",
+    "rules": "Transfermarkts registrerede Apps for FC Midtjylland. Rækkefølgen følger den oplyste liste, også ved samme kamptal. Find de ti spillere; hvert entydigt navneled accepteres.",
+    "source": "Transfermarkt · Apps-kolonnen · Facit og kamptal oplyst af brugeren.",
+    "statisticDefinition": "Transfermarkts registrerede Apps for FC Midtjylland; ikke en garanti for alle faktisk spillede officielle førsteholdskampe.",
+    "answers": [
+      {
+        "label": "Erik Sviatchenko",
+        "aliases": [],
+        "kind": "player",
+        "appearances": 322,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Frank Kristensen",
+        "aliases": [],
+        "kind": "player",
+        "appearances": 299,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Jakob Poulsen",
+        "aliases": [],
+        "kind": "player",
+        "appearances": 286,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Kristian Bach Bak",
+        "aliases": [
+          "Kristian Bak",
+          "Kristian Bak Nielsen",
+          "Kristian Bach Bak Nielsen"
+        ],
+        "kind": "player",
+        "appearances": 285,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Jonas Lössl",
+        "aliases": [
+          "Jonas Loessl",
+          "Jonas Løssl"
+        ],
+        "kind": "player",
+        "appearances": 264,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Rilwan Hassan",
+        "aliases": [],
+        "kind": "player",
+        "appearances": 264,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Joel Andersson",
+        "aliases": [],
+        "kind": "player",
+        "appearances": 221,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Mikkel Thygesen",
+        "aliases": [],
+        "kind": "player",
+        "appearances": 220,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Paulinho",
+        "aliases": [],
+        "kind": "player",
+        "appearances": 217,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      },
+      {
+        "label": "Pione Sisto",
+        "aliases": [],
+        "kind": "player",
+        "appearances": 214,
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865/sort/einsaetze.desc"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fcm-tenable-6",
+    "number": 6,
+    "title": "Danske landsholdsspillere",
+    "difficulty": "medium",
+    "description": "Nævn 10 spillere, der har repræsenteret Danmarks A-landshold og spillet for FC Midtjyllands førstehold.",
+    "type": "any10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "verified",
+    "rules": "Mindst én officiel dansk A-landskamp og én officiel FCM-førsteholdskamp. A-kampen kan ligge før eller efter FCM-opholdet. Ungdoms- og ligalandshold tæller ikke.",
+    "source": "DBU · Officielle A-kampe; Haslund · A-landshold; SuperStats · FCM-kampdeltagelse.",
+    "answers": [
+      {
+        "label": "Philip Billing",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Jonas Borring",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Leon Jessen",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Jesper Juelsgård",
+        "aliases": [
+          "Jesper Juelsgaard"
+        ],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player",
+        "surnames": [
+          "Juelsgård",
+          "Juelsgaard"
+        ]
+      },
+      {
+        "label": "Christopher Poulsen",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Jakob Poulsen",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Simon Poulsen",
+        "aliases": [
+          "Simon Busk Poulsen"
+        ],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Morten 'Duncan' Rasmussen",
+        "aliases": [
+          "Morten Rasmussen",
+          "Morten Duncan Rasmussen",
+          "Duncan"
+        ],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Pione Sisto",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Peter Skov-Jensen",
+        "aliases": [
+          "Peter Skov Jensen"
+        ],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Erik Sviatchenko",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Dennis Sørensen",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Mikkel Thygesen",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/fc_midtjylland.asp"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Danny Olsen",
+        "aliases": [],
+        "sources": [
+          "https://www.dbu.dk/landshold/landsholdsdatabasen/playerInfo/4841",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Kian Hansen",
+        "aliases": [],
+        "sources": [
+          "https://www.dbu.dk/landshold/landsholdsdatabasen/PlayerInfo/6248",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Henrik Dalsgaard",
+        "aliases": [],
+        "sources": [
+          "https://www.dbu.dk/landshold/landsholdsdatabasen/playerInfo/6742",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Rasmus Nissen Kristensen",
+        "aliases": [
+          "Rasmus Nissen",
+          "Rasmus Kristensen",
+          "NK"
+        ],
+        "sources": [
+          "https://www.dbu.dk/landshold/herrelandshold/a-landsholdet/",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player",
+        "surnames": [
+          "Kristensen",
+          "Nissen"
+        ]
+      },
+      {
+        "label": "Gustav Isaksen",
+        "aliases": [
+          "Gustav Tang Isaksen"
+        ],
+        "sources": [
+          "https://www.dbu.dk/landshold/landsholdsdatabasen/playerInfo/7762",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Anders Dreyer",
+        "aliases": [],
+        "sources": [
+          "https://www.dbu.dk/landshold/landsholdsdatabasen/playerInfo/7433",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Andreas Maxsø",
+        "aliases": [],
+        "sources": [
+          "https://www.dbu.dk/landshold/landsholdsdatabasen/playerInfo/7271",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Mikael Uhre",
+        "aliases": [
+          "Mikael Brandhof Uhre"
+        ],
+        "sources": [
+          "https://www.dbu.dk/landshold/landsholdsdatabasen/PlayerInfo/7781/",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Simon Kjær",
+        "aliases": [
+          "Simon Kjaer"
+        ],
+        "sources": [
+          "https://www.dbu.dk/landshold/landsholdsdatabasen/PlayerInfo/5839",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Morten Skoubo",
+        "aliases": [],
+        "sources": [
+          "https://www.haslund.info/10_Danmark/20_spillere/skomor.asp",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Thomas Røll",
+        "aliases": [
+          "Thomas Røll Larsen",
+          "Thomas Christopher Røll Larsen"
+        ],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/l.asp",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player",
+        "surnames": [
+          "Røll",
+          "Larsen"
+        ]
+      },
+      {
+        "label": "Thomas Frandsen",
+        "aliases": [
+          "Thomas Kleis Frandsen"
+        ],
+        "sources": [
+          "https://www.haslund.info/10_danmark/20_spillere/fratho.asp",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Martin Albrechtsen",
+        "aliases": [],
+        "sources": [
+          "https://www.fck.dk/nyhed/2-nye-spillere-til-fc-koebenhavn",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player"
+      },
+      {
+        "label": "Jonas Lössl",
+        "aliases": [
+          "Jonas Lossl",
+          "Jonas Loessl",
+          "Jonas Løssl",
+          "Jonas Bybjerg Lössl"
+        ],
+        "sources": [
+          "https://www.haslund.info/10_danmark/21_spillere_oversigter/l.asp",
+          "https://superstats.dk/hold/alltime?id=5&vis=for-klubben"
+        ],
+        "kind": "player",
+        "surnames": [
+          "Lössl",
+          "Loessl",
+          "Løssl"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fcm-tenable-7",
+    "number": 7,
+    "title": "Cheftrænere i FCM",
+    "difficulty": "hard",
+    "description": "Nævn 10 cheftrænere, der har været i FC Midtjylland.",
+    "type": "any10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "verified",
+    "rules": "Førsteholdets cheftrænere, inklusive midlertidige cheftrænere. Hver person tæller én gang, uanset antal perioder. Gæt 10 forskellige blandt de dokumenterede svar.",
+    "source": "Transfermarkt · FC Midtjyllands trænerhistorik.",
+    "answers": [
+      {
+        "label": "Mike Tullberg",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Thomas Thomasberg",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Albert Capellas",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Henrik Jensen",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Bo Henriksen",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Brian Priske",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Kenneth Andersen",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Jess Thorup",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Glen Riddersholm",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Allan Kuhn",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Erik Rasmussen",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Jørn Aaes",
+        "aliases": [
+          "Joern Aaes"
+        ],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Troels Bech",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      },
+      {
+        "label": "Ove Pedersen",
+        "aliases": [],
+        "kind": "coach",
+        "sources": [
+          "https://www.transfermarkt.com/fc-midtjylland/mitarbeiterhistorie/verein/865"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fcm-tenable-8",
+    "number": 8,
+    "title": "Seneste målscorere mod FCK",
+    "difficulty": "hard",
+    "description": "Nævn de 10 seneste forskellige FC Midtjylland-spillere, der har scoret mod FC København.",
+    "type": "latest10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "verified",
+    "rules": "Superliga og pokal. Hver spiller tæller én gang, sorteret efter seneste mål. Ved samme kamp afgør seneste målminut rækkefølgen. Ingen selvmål.",
+    "source": "F.C. København · Officielle kampkort og målminutter.",
+    "answers": [
+      {
+        "label": "Denil Castillo",
+        "aliases": [],
+        "sources": [
+          "https://www.fck.dk/kamp/11-10-26/fc-midtjylland-fc-kobenhavn"
+        ],
+        "kind": "player",
+        "date": "2026-10-11",
+        "minute": 62
+      },
+      {
+        "label": "Friday Etim",
+        "aliases": [],
+        "sources": [
+          "https://www.fck.dk/kamp/11-10-26/fc-midtjylland-fc-kobenhavn"
+        ],
+        "kind": "player",
+        "date": "2026-10-11",
+        "minute": 12
+      },
+      {
+        "label": "Lee Han-beom",
+        "aliases": [
+          "Han-beom Lee",
+          "Han Beom Lee",
+          "Lee Han Beom"
+        ],
+        "sources": [
+          "https://www.fck.dk/kamp/14-05-26/fc-kobenhavn-fc-midtjylland"
+        ],
+        "kind": "player",
+        "date": "2026-05-14",
+        "minute": 82,
+        "surnames": [
+          "Lee"
+        ]
+      },
+      {
+        "label": "Victor Bak Jensen",
+        "aliases": [
+          "Victor Bak"
+        ],
+        "sources": [
+          "https://www.fck.dk/kamp/08-02-26/fc-midtjylland-fc-kobenhavn"
+        ],
+        "kind": "player",
+        "date": "2026-02-08",
+        "minute": 85,
+        "surnames": [
+          "Bak",
+          "Jensen"
+        ]
+      },
+      {
+        "label": "Aral Şimşir",
+        "aliases": [
+          "Aral Simsir"
+        ],
+        "sources": [
+          "https://www.fck.dk/kamp/08-02-26/fc-midtjylland-fc-kobenhavn"
+        ],
+        "kind": "player",
+        "date": "2026-02-08",
+        "minute": 83
+      },
+      {
+        "label": "Franculino Djú",
+        "aliases": [
+          "Franculino",
+          "Franculino Gluda Djú"
+        ],
+        "sources": [
+          "https://www.fck.dk/kamp/05-10-25/fc-kobenhavn-fc-midtjylland"
+        ],
+        "kind": "player",
+        "date": "2025-10-05",
+        "minute": 18
+      },
+      {
+        "label": "Oliver Sørensen",
+        "aliases": [],
+        "sources": [
+          "https://www.fck.dk/kamp/11-05-25/fc-kobenhavn-fc-midtjylland"
+        ],
+        "kind": "player",
+        "date": "2025-05-11",
+        "minute": 38
+      },
+      {
+        "label": "Adam Buksa",
+        "aliases": [],
+        "sources": [
+          "https://www.fck.dk/kamp/17-04-25/fc-midtjylland-fc-kobenhavn"
+        ],
+        "kind": "player",
+        "date": "2025-04-17",
+        "minute": 92
+      },
+      {
+        "label": "Ousmane Diao",
+        "aliases": [],
+        "sources": [
+          "https://www.fck.dk/kamp/17-04-25/fc-midtjylland-fc-kobenhavn"
+        ],
+        "kind": "player",
+        "date": "2025-04-17",
+        "minute": 86
+      },
+      {
+        "label": "Mikel Gogorza",
+        "aliases": [],
+        "sources": [
+          "https://www.fck.dk/kamp/17-04-25/fc-midtjylland-fc-kobenhavn"
+        ],
+        "kind": "player",
+        "date": "2025-04-17",
+        "minute": 39
+      }
+    ],
+    "matchLedger": [
+      {
+        "date": "2026-10-11",
+        "source": "https://www.fck.dk/kamp/11-10-26/fc-midtjylland-fc-kobenhavn",
+        "goals": [
+          {
+            "label": "Friday Etim",
+            "minute": 12
+          },
+          {
+            "label": "Denil Castillo",
+            "minute": 62
+          }
+        ]
+      },
+      {
+        "date": "2026-05-14",
+        "source": "https://www.fck.dk/kamp/14-05-26/fc-kobenhavn-fc-midtjylland",
+        "goals": [
+          {
+            "label": "Lee Han-beom",
+            "minute": 82
+          }
+        ]
+      },
+      {
+        "date": "2026-02-08",
+        "source": "https://www.fck.dk/kamp/08-02-26/fc-midtjylland-fc-kobenhavn",
+        "goals": [
+          {
+            "label": "Aral Şimşir",
+            "minute": 83
+          },
+          {
+            "label": "Victor Bak Jensen",
+            "minute": 85
+          }
+        ]
+      },
+      {
+        "date": "2025-10-05",
+        "source": "https://www.fck.dk/kamp/05-10-25/fc-kobenhavn-fc-midtjylland",
+        "goals": [
+          {
+            "label": "Franculino Djú",
+            "minute": 18
+          }
+        ]
+      },
+      {
+        "date": "2025-05-11",
+        "source": "https://www.fck.dk/kamp/11-05-25/fc-kobenhavn-fc-midtjylland",
+        "goals": [
+          {
+            "label": "Oliver Sørensen",
+            "minute": 38
+          }
+        ]
+      },
+      {
+        "date": "2025-04-17",
+        "source": "https://www.fck.dk/kamp/17-04-25/fc-midtjylland-fc-kobenhavn",
+        "goals": [
+          {
+            "label": "Adam Buksa",
+            "minute": 29
+          },
+          {
+            "label": "Mikel Gogorza",
+            "minute": 39
+          },
+          {
+            "label": "Ousmane Diao",
+            "minute": 86
+          },
+          {
+            "label": "Adam Buksa",
+            "minute": 92
+          }
+        ]
+      },
+      {
+        "date": "2025-02-23",
+        "source": "https://www.fck.dk/kamp/23-02-25/fc-kobenhavn-fc-midtjylland",
+        "goals": []
+      },
+      {
+        "date": "2024-09-14",
+        "source": "https://www.fck.dk/kamp/14-09-24/fc-midtjylland-fc-kobenhavn",
+        "goals": [
+          {
+            "label": "Oliver Sørensen",
+            "minute": 69
+          },
+          {
+            "label": "Ousmane Diao",
+            "minute": 79
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fcm-tenable-9",
+    "number": 9,
+    "title": "Seneste salg til Top 5-ligaer",
+    "difficulty": "hard",
+    "description": "Nævn de 10 seneste spillere, FC Midtjylland har solgt til en klub i en af Europas fem største ligaer.",
+    "type": "latest10",
+    "asOf": "2026-10-30",
+    "durationSeconds": 60,
+    "status": "verified",
+    "rules": "Kun permanente direkte salg til Premier League, La Liga, Bundesliga, Serie A eller Ligue 1. Køberklubbens liga på skiftedatoen afgør det. Akademisalg tæller også. Ingen lejeaftaler eller senere videresalg. Samme dato vises alfabetisk.",
+    "source": "FCM, køberklubber og ligaernes meddelelser · Permanente skifter og ikrafttrædelsesdatoer.",
+    "answers": [
+      {
+        "label": "Malik Pimpong",
+        "aliases": [
+          "Malik Razak Engholm Pimpong"
+        ],
+        "sources": [
+          "https://profis.eintracht.de/news/eintracht-frankfurt-verpflichtet-malik-pimpong-178041/",
+          "https://www.bundesliga.com/en/bundesliga/videos/watch/malik-pimpong-signs-for-eintracht-frankfurt-AnZSLqVE"
+        ],
+        "kind": "player",
+        "date": "2026-07-01",
+        "buyer": "Eintracht Frankfurt",
+        "league": "Bundesliga",
+        "permanent": true
+      },
+      {
+        "label": "Adam Buksa",
+        "aliases": [],
+        "sources": [
+          "https://www.fcm.dk/nyheder/adam-buksa-solgt-til-udinese-calcio/"
+        ],
+        "kind": "player",
+        "date": "2025-08-26",
+        "buyer": "Udinese",
+        "league": "Serie A",
+        "permanent": true
+      },
+      {
+        "label": "Oliver Sørensen",
+        "aliases": [],
+        "sources": [
+          "https://www.fcm.dk/nyheder/fra-heden-til-serie-a-oliver-soerensen-solgt-til-parma/"
+        ],
+        "kind": "player",
+        "date": "2025-08-13",
+        "buyer": "Parma",
+        "league": "Serie A",
+        "permanent": true
+      },
+      {
+        "label": "Gustav Isaksen",
+        "aliases": [
+          "Gustav Tang Isaksen"
+        ],
+        "sources": [
+          "https://www.fcm.dk/nyheder/gustav-isaksen-solgt-til-de-italienske-soelvvindere-fra-lazio/"
+        ],
+        "kind": "player",
+        "date": "2023-08-08",
+        "buyer": "Lazio",
+        "league": "Serie A",
+        "permanent": true
+      },
+      {
+        "label": "Luca Pfeiffer",
+        "aliases": [],
+        "sources": [
+          "https://www.vfb.de/en/vfb/latest/news/professionals/2223/transfer-luca-pfeiffer/"
+        ],
+        "kind": "player",
+        "date": "2022-08-02",
+        "buyer": "VfB Stuttgart",
+        "league": "Bundesliga",
+        "permanent": true
+      },
+      {
+        "label": "Jonathan Asp Jensen",
+        "aliases": [
+          "Jonathan Asp",
+          "Asp Jensen"
+        ],
+        "sources": [
+          "https://fcbayern.com/de/news/2026/07/jonathan-asp-jensen-wechselt-nach-spanien",
+          "https://www.soccerway.com/player/asp-jonathan/A7cWLnKO/transfers/",
+          "https://www.tipsbladet.dk/nyhed/superliga/officielt-bayern-koeber-dansk-supertalent"
+        ],
+        "kind": "player",
+        "date": "2022-07-01",
+        "buyer": "Bayern München",
+        "league": "Bundesliga",
+        "permanent": true
+      },
+      {
+        "label": "Oscar Fraulo",
+        "aliases": [],
+        "sources": [
+          "https://www.fcm.dk/nyheder/oscar-fraulo-solgt-til-bundesligaklub/",
+          "https://www.transfermarkt.com/oscar-fraulo/transfers/spieler/610428/transfer_id/3901523"
+        ],
+        "kind": "player",
+        "date": "2022-07-01",
+        "buyer": "Borussia Mönchengladbach",
+        "league": "Bundesliga",
+        "permanent": true
+      },
+      {
+        "label": "Jens-Lys Cajuste",
+        "aliases": [
+          "Jens Cajuste",
+          "Jens Lys Michel Cajuste"
+        ],
+        "sources": [
+          "https://www.fcm.dk/nyheder/jens-lys-cajuste-solgt-til-stade-de-reims/",
+          "https://www.stade-de-reims.com/jens-cajuste-lart-de-la-simplicite/"
+        ],
+        "kind": "player",
+        "date": "2022-01-10",
+        "buyer": "Stade de Reims",
+        "league": "Ligue 1",
+        "permanent": true
+      },
+      {
+        "label": "Frank Onyeka",
+        "aliases": [],
+        "sources": [
+          "https://www.premierleague.com/en/news/2193424"
+        ],
+        "kind": "player",
+        "date": "2021-07-20",
+        "buyer": "Brentford",
+        "league": "Premier League",
+        "permanent": true
+      },
+      {
+        "label": "Andreas Poulsen",
+        "aliases": [],
+        "sources": [
+          "https://www.transfermarkt.com/andreas-poulsen/transfers/spieler/345746/transfer_id/2138192",
+          "https://www.silkeborgif.com/sif-henter-andreas-poulsen/"
+        ],
+        "kind": "player",
+        "date": "2018-07-01",
+        "buyer": "Borussia Mönchengladbach",
+        "league": "Bundesliga",
+        "permanent": true
+      }
+    ]
+  }
+]

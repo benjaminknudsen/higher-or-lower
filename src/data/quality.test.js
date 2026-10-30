@@ -12,13 +12,13 @@ const eligible = data => getVerifiedPlayers(data, 'fcm', 'appearances')
 
 test('all 150 supplied Apps values match the manually supplied list exactly', () => {
   assert.equal(validateDatabase(database).valid, true)
-  assert.equal(eligible(database).length, 150)
-  assert.equal(database.players.length, 161)
+  assert.equal(eligible(database).length, 162)
+  assert.equal(database.players.length, 169)
   assert.equal(database.asOf, null)
-  assert.equal(new Set(database.players.map(player => player.id)).size, 161)
-  assert.equal(new Set(database.players.map(player => player.name)).size, 161)
+  assert.equal(new Set(database.players.map(player => player.id)).size, 169)
+  assert.equal(new Set(database.players.map(player => player.name)).size, 169)
   assert.deepEqual(getVerifiedPlayers(database, 'fcm', 'goals'), [])
-  const imported = database.players.filter(player => player.verified === true)
+  const imported = database.players.filter(player => player.verified === true && player.lastChecked === '2026-10-17')
   // Digest of ordered [name, Apps] pairs parsed from the user's attachment,
   // not from the finished JSON. Detects column shifts, omissions and changed values.
   const digest = createHash('sha256').update(JSON.stringify(imported.map(({ name, appearances }) => [name, appearances]))).digest('hex')
@@ -33,9 +33,9 @@ test('all 150 supplied Apps values match the manually supplied list exactly', ()
 test('existing records retain identity and provenance; absent players stay excluded', () => {
   const historical = database.players.filter(player => player.previousVerification)
   assert.equal(historical.length, 42)
-  assert.equal(historical.filter(player => player.verified).length, 31)
+  assert.equal(historical.filter(player => player.verified).length, 35)
   const pending = historical.filter(player => !player.verified)
-  assert.equal(pending.length, 11)
+  assert.equal(pending.length, 7)
   for (const player of pending) {
     assert.ok(player.source && player.lastChecked && player.note)
     assert.equal(player.scopeId, database.previousDefinition.scopeId)
@@ -116,12 +116,12 @@ test('the game uses every eligible fixture exactly once and retains tie/score/co
   assert.equal(state.score, players.length - 1)
 })
 
-test('the playable production pool completes 149 questions using all 150 distinct players', () => {
+test('the playable production pool completes 161 questions using all 162 distinct players', () => {
   const players = eligible(database)
   let state = createGame({ players, statisticKey: 'appearances' }, () => .99999)
   assert.equal(state.phase, 'asking')
-  assert.equal(state.deck.length, 150)
-  assert.equal(new Set(state.deck.map(player => player.id)).size, 150)
+  assert.equal(state.deck.length, 162)
+  assert.equal(new Set(state.deck.map(player => player.id)).size, 162)
   let questions = 0
   while (state.phase === 'asking') {
     const first = state.deck[state.index - 1].stats.appearances
@@ -130,7 +130,37 @@ test('the playable production pool completes 149 questions using all 150 distinc
     questions++
     state = gameReducer(state, { type: 'continue', questionId: state.index })
   }
-  assert.equal(questions, 149)
+  assert.equal(questions, 161)
   assert.equal(state.phase, 'complete')
-  assert.equal(state.score, 149)
+  assert.equal(state.score, 161)
+})
+
+
+test('all twelve requested players have exact supplied counts, unique identities and reach the shuffled deck',()=>{
+ const requested=[['Artem Dovbyk',22],['Simon Okosun',21],['Kristoffer Askildsen',21],['Rafael van der Vaart',20],['Simon Kjær',19],['Brian Priske',18],['Marrony',18],['Luca Pfeiffer',18],['Ronnie Schwartz',16],['Emiliano Marcondes',12],['Vagner Love',10],['Emam Ashour',7]]
+ const players=eligible(database)
+ for(const [name,count] of requested){
+  const matches=database.players.filter(p=>p.name===name)
+  assert.equal(matches.length,1,name)
+  assert.equal(matches[0].appearances,count,name)
+  assert.equal(matches[0].lastChecked,'2026-10-30')
+  for(const random of [()=>0,()=>.999]){
+   const state=createGame({players,statisticKey:'appearances'},random)
+   assert.equal(state.deck.filter(p=>p.id===matches[0].id).length,1,name)
+  }
+ }
+ for(const [id,oldCount] of [['fcm:simon-kjaer',19],['fcm:kristoffer-askildsen',21],['fcm:luca-pfeiffer',17],['fcm:emam-ashour',7]]){
+  const row=database.players.find(p=>p.id===id)
+  assert.equal(row.previousVerification.appearances,oldCount)
+  assert.ok(row.previousVerification.source)
+ }
+ for(const names of [['Simon Okosun','Kristoffer Askildsen'],['Brian Priske','Marrony'],['Marrony','Luca Pfeiffer']]){
+  const pair=names.map(name=>players.find(p=>p.name===name))
+  for(const direction of ['higher','lower']){
+   const state=createGame({players:pair,statisticKey:'appearances'},()=>.999)
+   const next=gameReducer(state,{type:'guess',direction,questionId:state.index})
+   assert.equal(next.correct,true)
+   assert.equal(next.score,1)
+  }
+ }
 })

@@ -111,3 +111,24 @@ test('retry deduplicates identical payloads regardless of property order and rej
  assert.equal((await sync.submit(userA,reordered)).ok,true)
  assert.equal(sync.pendingCount(userA),0);assert.equal(server.rows.size,1)
 })
+
+
+test('five-minute lineup results sync while results beyond the deadline are rejected',async()=>{
+  const server=rpcServer(),sync=createOnlineGameResults(server.client,localStorageDouble())
+  const lineup={...result,gameType:'lineup',score:10,answers:11,correct:1,hints:0,errors:0,isPerfect:false,durationMs:300000}
+  assert.equal((await sync.submit(userA,lineup)).ok,true)
+  assert.equal(server.calls[0].p_duration_ms,300000)
+  assert.equal((await sync.submit(userA,{...lineup,resultId:'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',durationMs:300001})).ok,false)
+  assert.equal(server.calls.length,1)
+})
+
+
+test('the expanded appearances pool can submit all 161 comparisons without widening other games',async()=>{
+ const server=rpcServer(),sync=createOnlineGameResults(server.client,localStorageDouble())
+ const completed={...result,score:161,correct:161,answers:161}
+ assert.equal((await sync.submit(userA,completed)).ok,true)
+ assert.equal(server.calls[0].p_score,161)
+ assert.equal((await sync.submit(userA,{...completed,resultId:'bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb',score:162,correct:162,answers:162})).ok,false)
+ assert.equal((await sync.submit(userA,{...completed,gameType:'goals'})).ok,false)
+ assert.equal(server.calls.length,1)
+})

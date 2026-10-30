@@ -1,7 +1,7 @@
 import ThemeToggle from '../ThemeToggle'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import matches from '../../data/lineupMatches.json'
-import { recordResult, createRound, selectMatch, tick, guess, buyHint, scoreRound, remaining, maskName, letterCount, emptyStore } from '../../game/lineup'
+import { DURATION, recordResult, createRound, selectMatch, tick, guess, buyHint, scoreRound, remaining, maskName, letterCount, emptyStore } from '../../game/lineup'
 import Icon from '../Icon'
 import { loadLineupStore, saveLineupStore, clearSavedLineupRound } from '../../services/lineupStorage'
 import useAuthAccount from '../../hooks/useAuthAccount.js'
@@ -132,14 +132,14 @@ function LineupSession({owner}) {
   }
   function closeHint() { setSelected(null); focusOrigin.current?.focus({ preventScroll: true }) }
   const player = round?.match.players.find(p => p.id === selected)
-  const seconds = round ? remaining(round,now) : 180
+  const seconds = round ? remaining(round,now) : DURATION / 1000
   return <main className={`lineup-shell ${playing ? 'is-playing' : ''} ${round?.status === 'perfect' ? 'is-perfect' : ''}`}>
     <header className="lineup-top"><a href="#forside" aria-label="Tilbage til spilmenu"><Icon name="arrow" /></a><span>FCM <b>STARTOPSTILLINGEN</b></span><ThemeToggle /></header>
     {!persistent && <p className="lineup-warning" role="alert">Lokal lagring er blokeret. Rundens resultat kan ikke gemmes.</p>}
     {!round ? <section className="lineup-intro">
       <div className="lineup-intro-icon"><Icon name="pitch" /><span>11</span></div><p className="lineup-eyebrow">KAN DU HUSKE DE 11?</p>
       <h1>GÆT<br /><em>STARTOPSTILLINGEN</em></h1><p>Kan du huske, hvem der startede inde for FC Midtjylland?</p>
-      <div className="lineup-rules"><div><strong>3 minutter</strong><span>Find alle 11 spillere, inden tiden løber ud.</span></div><div><strong>3 fejl</strong><span>Spillet slutter efter tre forkerte gæt.</span></div><div><strong>10 point pr. spiller</strong><span>Optjen point for hvert korrekt navn.</span></div></div>
+      <div className="lineup-rules"><div><strong>5 minutter</strong><span>Find alle 11 spillere, inden tiden løber ud.</span></div><div><strong>3 fejl</strong><span>Spillet slutter efter tre forkerte gæt.</span></div><div><strong>10 point pr. spiller</strong><span>Optjen point for hvert korrekt navn.</span></div></div>
       <button className="lineup-primary" onClick={start}>START SPILLET <Icon name="arrow" /></button><small>Historiske kampe · Hints koster 5 point</small>
     </section> : <>
       {!playing && <div className="lineup-result-heading"><p className="lineup-eyebrow">{round.status === 'perfect' ? 'ALLE 11 FUNDET' : round.status === 'time' ? 'TIDEN ER GÅET' : 'TRE FEJL'}</p><h2>{round.status === 'perfect' ? 'PERFEKT OPSTILLING!' : 'FÆRDIG!'}</h2></div>}
