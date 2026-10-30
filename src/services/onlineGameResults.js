@@ -23,9 +23,11 @@ function validResult(result) {
     && result.hints * 5 <= result.correct * 10
     && result.score === Math.max(0, result.correct * 10 - result.hints * 5)
     && result.correct + result.errors <= 13 && (result.correct < 11 || result.errors < 3)
-    && result.durationMs <= 180000
+    && result.durationMs <= 300000
     && result.isPerfect === (result.correct === 11)
-  return result.score <= 160 && result.answers >= 1 && result.answers <= 160
+  // 162 playable appearances players yield at most 161 comparisons.
+  const maxAnswers = result.gameType === 'appearances' ? 161 : 160
+  return result.score <= maxAnswers && result.answers >= 1 && result.answers <= maxAnswers
     && result.score <= result.answers && result.answers <= result.score + 1
     && result.correct === result.score && result.hints === null && result.errors === null
     && !result.isPerfect && result.durationMs === 0

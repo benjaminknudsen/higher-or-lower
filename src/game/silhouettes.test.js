@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { createHash } from 'node:crypto'
-import { assignSilhouettes, SILHOUETTES } from './silhouettes.js'
+import { assignSilhouettes, SILHOUETTES, REAR_SILHOUETTES } from './silhouettes.js'
 
 const players = Array.from({ length: 150 }, (_, index) => ({ id: `test:${index}` }))
 test('all five anonymous figures are used without neighbouring duplicates', () => {
@@ -36,4 +36,20 @@ test('all five variants have distinct local PNG assets', () => {
     return createHash('sha256').update(bytes).digest('hex')
   })
   assert.equal(new Set(hashes).size, 5)
+})
+
+
+
+test('lean rear-view footballer assets are distinct transparent PNGs and alternate on adjacent cards', () => {
+  const sources=Object.values(assignSilhouettes(players,()=>0,REAR_SILHOUETTES))
+  for(let i=1;i<sources.length;i++) assert.notEqual(sources[i],sources[i-1])
+  const hashes=REAR_SILHOUETTES.map(path=>{
+    const bytes=readFileSync(new URL(`../../public${path}`,import.meta.url))
+    assert.equal(bytes.toString('hex',0,8),'89504e470d0a1a0a')
+    assert.equal(bytes.readUInt32BE(16),512)
+    assert.equal(bytes.readUInt32BE(20),768)
+    assert.equal(bytes[25],6)
+    return createHash('sha256').update(bytes).digest('hex')
+  })
+  assert.equal(new Set(hashes).size,5)
 })

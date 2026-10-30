@@ -19,7 +19,7 @@ test('old saved round is cleared without touching results, match history or othe
  assert.equal(storage.getItem('profile'),'Benjamin');assert.equal(storage.getItem('theme'),'fcm')
  assert.equal(averageCorrectPercentage(statistics(reloaded)),9)
 })
-test('rounds are never persisted, and a new round starts fully concealed with three minutes',()=>{
+test('rounds are never persisted, and a new round starts fully concealed with five minutes',()=>{
  const storage=storageDouble()
  let round=createRound(match,10000,'old');round=guess(round,match.players[0].name,11000).round
  round=buyHint(round,match.players[1].id,12000)
@@ -27,7 +27,7 @@ test('rounds are never persisted, and a new round starts fully concealed with th
  assert.equal(loadLineupStore(storage).round,null);assert.equal(loadLineupStore(storage).results.length,0)
  const next=createRound(match,300000,'new')
  assert.deepEqual(next.guessed,[]);assert.deepEqual(next.hints,[]);assert.equal(next.errors,0)
- assert.equal(next.status,'playing');assert.equal(remaining(next,300000),180)
+ assert.equal(next.status,'playing');assert.equal(remaining(next,300000),300)
 })
 test('a completed round counts once and survives leaving or reload; abandonment does not count',()=>{
  const storage=storageDouble();let round=createRound(match,10000,'finished')

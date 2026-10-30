@@ -1250,5 +1250,138 @@
         "numberSource": "https://www.fotmob.com/en-GB/matches/midtjylland-vs-southampton/29tzug"
       }
     ]
+  },
+  {
+    "id": "man-city-fcm-2008-08-14",
+    "active": true,
+    "verified": true,
+    "date": "2008-08-14",
+    "home": "Manchester City",
+    "away": "FC Midtjylland",
+    "score": [
+      0,
+      1
+    ],
+    "resultNote": "Mål: Danny Olsen, 15'",
+    "competition": "UEFA Cup · 2. kvalifikationsrunde",
+    "formation": "4-4-2",
+    "sources": [
+      "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770",
+      "https://www.mancity.com/news/first-team/match-report/2008/august/city-v-fc-midtjylland-14-aug-2008"
+    ],
+    "players": [
+      {
+        "id": "lasse-heinze",
+        "name": "Lasse Heinze",
+        "aliases": [],
+        "row": 0,
+        "slot": 0,
+        "position": "GK",
+        "shirtNumber": 1,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "kolja-afriyie",
+        "name": "Kolja Afriyie",
+        "aliases": [],
+        "row": 1,
+        "slot": 3,
+        "position": "DEF",
+        "shirtNumber": 3,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "danny-califf",
+        "name": "Danny Califf",
+        "aliases": [],
+        "row": 1,
+        "slot": 2,
+        "position": "DEF",
+        "shirtNumber": 4,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "winston-reid",
+        "name": "Winston Reid",
+        "aliases": [],
+        "row": 1,
+        "slot": 1,
+        "position": "DEF",
+        "shirtNumber": 29,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "christopher-poulsen",
+        "name": "Christopher Poulsen",
+        "aliases": [],
+        "row": 1,
+        "slot": 0,
+        "position": "DEF",
+        "shirtNumber": 15,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "jonas-borring",
+        "name": "Jonas Borring",
+        "aliases": [],
+        "row": 2,
+        "slot": 0,
+        "position": "MID",
+        "shirtNumber": 8,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "george-florescu",
+        "name": "George Florescu",
+        "aliases": [],
+        "row": 3,
+        "slot": 0,
+        "position": "FWD",
+        "shirtNumber": 9,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "mikkel-thygesen",
+        "name": "Mikkel Thygesen",
+        "aliases": [],
+        "row": 2,
+        "slot": 2,
+        "position": "MID",
+        "shirtNumber": 10,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "danny-olsen",
+        "name": "Danny Olsen",
+        "aliases": [],
+        "row": 2,
+        "slot": 3,
+        "position": "MID",
+        "shirtNumber": 21,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "adigun-salami",
+        "name": "Adigun Salami",
+        "aliases": [],
+        "row": 2,
+        "slot": 1,
+        "position": "MID",
+        "shirtNumber": 27,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      },
+      {
+        "id": "jude-nworuh",
+        "name": "Jude Nworuh",
+        "aliases": [],
+        "row": 3,
+        "slot": 1,
+        "position": "FWD",
+        "shirtNumber": 39,
+        "numberSource": "https://www.skysports.com/football/manchester-city-vs-fc-midtjylland/teams/1770"
+      }
+    ],
+    "verifiedAt": "2026-10-30",
+    "positionNote": "Startere og trøjenumre verificeret. 4-4-2 er en skematisk visning til spillet; den præcise startformation er ikke bekræftet."
   }
 ]

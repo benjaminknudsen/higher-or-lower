@@ -1,5 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import { createOnlinePlatform, rankLeaderboard } from '../services/onlinePlatform.js'
 
 test('attempt rankings are deterministic, preserve input and assign consecutive places for equal scores',()=>{
@@ -28,4 +29,16 @@ test('online leaderboard uses bounded server pages of individual attempts',async
   const result=await repository.listLeaderboard('lineup',{limit:25,offset:25})
   assert.equal(result.source,'online');assert.deepEqual(result.entries,[]);assert.deepEqual(result.ownEntries,[]);assert.equal(result.total,0)
   assert.deepEqual(calls,[{name:'get_game_leaderboard',args:{p_game_type:'lineup',p_limit:25,p_offset:25}}])
+})
+
+
+test('public leaderboard UI has one game and locks initial and further pages to appearances',()=>{
+  const page=readFileSync(new URL('../components/community/LeaderboardPage.jsx',import.meta.url),'utf8')
+  const hook=readFileSync(new URL('../hooks/useLeaderboard.js',import.meta.url),'utf8')
+  assert.match(page,/title="Leaderboard" subtitle="Higher or Lower – Flest kampe"/)
+  assert.doesNotMatch(page,/leaderboard-filters|setModeId|gameModes|lineup=/)
+  assert.match(page,/useLeaderboard\(userId\)/)
+  assert.match(hook,/const GAME_TYPE = 'appearances'/)
+  assert.equal([...hook.matchAll(/listLeaderboard\(GAME_TYPE,/g)].length,2)
+  assert.doesNotMatch(hook,/modeId/)
 })

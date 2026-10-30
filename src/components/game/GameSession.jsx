@@ -2,7 +2,7 @@ import ThemeToggle from '../ThemeToggle'
 import { useEffect, useReducer, useRef, useState } from 'react'
 import { createGame, gameReducer } from '../../game/engine'
 import { scheduleNextRound } from '../../game/roundTiming'
-import { assignSilhouettes } from '../../game/silhouettes'
+import { assignSilhouettes, REAR_SILHOUETTES } from '../../game/silhouettes'
 import { celebrationForScore, milestoneForScore } from '../../game/celebration'
 import useHighScore from '../../hooks/useHighScore'
 import { localAccountStore } from '../../services/localAccount'
@@ -24,7 +24,7 @@ import './CorrectAnswer.css'
 export default function GameSession({ club, mode, players, dataNotice, testData = false, onRestart }) {
   const [state, dispatch] = useReducer(gameReducer, { players, statisticKey: mode.statisticKey }, createGame)
   const account=useAuthAccount()
-  const [silhouettes] = useState(() => assignSilhouettes(state.deck))
+  const [silhouettes] = useState(() => assignSilhouettes(state.deck, Math.random, mode.id === 'appearances' ? REAR_SILHOUETTES : undefined))
   const celebration = celebrationForScore(state.score)
   const milestone = milestoneForScore(state.score)
   const headingRef = useRef(null)

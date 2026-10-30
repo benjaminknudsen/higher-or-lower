@@ -62,7 +62,7 @@ function App() {
       gameModes={gameModes.filter(mode => mode.id !== 'goals')}
       onSelect={startGame}
     /> : <div className="app community-app">
-      {page === 'profile' ? <ProfilePage clubId={club.id} gameModes={gameModes.filter(mode => mode.id !== 'tenable')} userId={publicProfileId} /> : <LeaderboardPage clubId={club.id} gameModes={gameModes.filter(mode => mode.id !== 'tenable')} />}
+      {page === 'profile' ? <ProfilePage clubId={club.id} gameModes={gameModes.filter(mode => mode.id !== 'tenable')} userId={publicProfileId} /> : <LeaderboardPage />}
     </div>}
     <BottomNavigation active={page} />
   </>

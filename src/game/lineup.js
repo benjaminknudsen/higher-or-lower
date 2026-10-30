@@ -1,5 +1,5 @@
 export const LINEUP_KEY = 'fcm.lineup.v1'
-export const DURATION = 180000
+export const DURATION = 300000
 export const normalizeName = name => name.normalize('NFD').replace(/\p{M}/gu, '').toLocaleLowerCase('da').replace(/ø/g, 'o').replace(/æ/g, 'ae').replace(/[‐‑–]/g, '-').trim().replace(/\s+/g, ' ')
 export const maskName = name => name.normalize('NFC').replace(/\p{L}/gu, '•')
 export const letterCount = name => [...name.normalize('NFC')].filter(c => /\p{L}/u.test(c)).length

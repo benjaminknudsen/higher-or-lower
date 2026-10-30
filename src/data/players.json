@@ -1975,17 +1975,22 @@
       "id": "fcm:simon-kjaer",
       "name": "Simon Kjær",
       "appearances": 19,
-      "source": "https://www.fcm.dk/nyheder/historiske-kjaer/",
-      "lastChecked": "2026-10-17",
-      "verified": false,
-      "note": "Club career list and narrative both give 19 FCM first-team appearances; national-team number not used.",
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
       "previousVerification": {
         "verified": true,
         "scopeId": "fcm-men-first-team-all-official-v1",
-        "asOf": "2026-04-04"
+        "asOf": "2026-04-04",
+        "name": "Simon Kjær",
+        "appearances": 19,
+        "source": "https://www.fcm.dk/nyheder/historiske-kjaer/",
+        "lastChecked": "2026-10-17",
+        "note": "Club career list and narrative both give 19 FCM first-team appearances; national-team number not used."
       },
-      "scopeId": "fcm-men-first-team-all-official-v1",
-      "verificationStatus": "pending-transfermarkt-total-review"
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
     },
     {
       "id": "fcm:mads-hansen",
@@ -2054,34 +2059,44 @@
     {
       "id": "fcm:luca-pfeiffer",
       "name": "Luca Pfeiffer",
-      "appearances": 17,
-      "source": "https://www.fcm.dk/nyheder/fcm-saelger-luca-pfeiffer-til-bundesligaklub/",
-      "lastChecked": "2026-10-17",
-      "verified": false,
-      "note": "17 FCM-kampe, gentaget i indledning og brødtekst. Darmstadts 32 ligakampe er ikke medregnet.",
+      "appearances": 18,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
       "previousVerification": {
         "verified": true,
         "scopeId": "fcm-men-first-team-all-official-v1",
-        "asOf": "2026-04-04"
+        "asOf": "2026-04-04",
+        "name": "Luca Pfeiffer",
+        "appearances": 17,
+        "source": "https://www.fcm.dk/nyheder/fcm-saelger-luca-pfeiffer-til-bundesligaklub/",
+        "lastChecked": "2026-10-17",
+        "note": "17 FCM-kampe, gentaget i indledning og brødtekst. Darmstadts 32 ligakampe er ikke medregnet."
       },
-      "scopeId": "fcm-men-first-team-all-official-v1",
-      "verificationStatus": "pending-transfermarkt-total-review"
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
     },
     {
       "id": "fcm:emam-ashour",
       "name": "Emam Ashour",
       "appearances": 7,
-      "source": "https://www.fcm.dk/nyheder/emam-ashour-solgt-til-al-ahly/",
-      "lastChecked": "2026-10-17",
-      "verified": false,
-      "note": "Syv FCM-kampe i det afsluttede førsteholdsophold frem til salget til Al Ahly.",
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
       "previousVerification": {
         "verified": true,
         "scopeId": "fcm-men-first-team-all-official-v1",
-        "asOf": "2026-04-04"
+        "asOf": "2026-04-04",
+        "name": "Emam Ashour",
+        "appearances": 7,
+        "source": "https://www.fcm.dk/nyheder/emam-ashour-solgt-til-al-ahly/",
+        "lastChecked": "2026-10-17",
+        "note": "Syv FCM-kampe i det afsluttede førsteholdsophold frem til salget til Al Ahly."
       },
-      "scopeId": "fcm-men-first-team-all-official-v1",
-      "verificationStatus": "pending-transfermarkt-total-review"
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
     },
     {
       "id": "fcm:august-priske",
@@ -2135,17 +2150,110 @@
       "id": "fcm:kristoffer-askildsen",
       "name": "Kristoffer Askildsen",
       "appearances": 21,
-      "source": "https://www.fcm.dk/nyheder/kristoffer-askildsen-solgt-til-viking/",
-      "lastChecked": "2026-10-17",
-      "verified": false,
-      "note": "FCMs afskedsopgørelse efter det afsluttede førsteholdsophold fra sommeren 2024 til marts 2025.",
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
       "previousVerification": {
         "verified": true,
         "scopeId": "fcm-men-first-team-all-official-v1",
-        "asOf": "2026-04-04"
+        "asOf": "2026-04-04",
+        "name": "Kristoffer Askildsen",
+        "appearances": 21,
+        "source": "https://www.fcm.dk/nyheder/kristoffer-askildsen-solgt-til-viking/",
+        "lastChecked": "2026-10-17",
+        "note": "FCMs afskedsopgørelse efter det afsluttede førsteholdsophold fra sommeren 2024 til marts 2025."
       },
-      "scopeId": "fcm-men-first-team-all-official-v1",
-      "verificationStatus": "pending-transfermarkt-total-review"
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
+    },
+    {
+      "id": "fcm:artem-dovbyk",
+      "name": "Artem Dovbyk",
+      "appearances": 22,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
+    },
+    {
+      "id": "fcm:simon-okosun",
+      "name": "Simon Okosun",
+      "appearances": 21,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
+    },
+    {
+      "id": "fcm:rafael-van-der-vaart",
+      "name": "Rafael van der Vaart",
+      "appearances": 20,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
+    },
+    {
+      "id": "fcm:brian-priske",
+      "name": "Brian Priske",
+      "appearances": 18,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
+    },
+    {
+      "id": "fcm:marrony",
+      "name": "Marrony",
+      "appearances": 18,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
+    },
+    {
+      "id": "fcm:ronnie-schwartz",
+      "name": "Ronnie Schwartz",
+      "appearances": 16,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
+    },
+    {
+      "id": "fcm:emiliano-marcondes",
+      "name": "Emiliano Marcondes",
+      "appearances": 12,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
+    },
+    {
+      "id": "fcm:vagner-love",
+      "name": "Vagner Love",
+      "appearances": 10,
+      "source": "https://www.transfermarkt.com/fc-midtjylland/rekordspieler/verein/865",
+      "lastChecked": "2026-10-30",
+      "verified": true,
+      "scopeId": "fcm-transfermarkt-competition-total-v1",
+      "verificationStatus": "user-supplied-transfermarkt-total",
+      "verificationNote": "Brugeroplyst kamptal modtaget 2026-10-30 til Higher or Lower – Flest kampe. Brug præcis dette tal i den eksisterende Competition: Total-pulje; ingen selvstændig kildeverifikation udført."
     }
   ],
   "previousDefinition": {

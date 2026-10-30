@@ -49,3 +49,22 @@ test('RPCs are SECURITY DEFINER with an empty search path and restricted execute
   assert.match(migration, /grant execute on function public\.submit_game_result\(uuid, text, uuid, integer, integer, integer, integer, integer, boolean, integer\) to authenticated/)
   assert.match(migration, /grant execute on function public\.get_game_leaderboard\([\s\S]*?to anon, authenticated/)
 })
+
+
+test('five-minute migration changes only lineup duration bounds and preserves submission checks',()=>{
+  const update=readFileSync(new URL('../../supabase/migrations/202610300007_lineup_five_minutes.sql',import.meta.url),'utf8')
+  const originalFunction=migration.match(/create function public\.submit_game_result\([\s\S]*?\n\$\$;/)[0]
+  assert.ok(update.includes(originalFunction.replace('create function','create or replace function').replace('180000','300000')))
+  assert.match(update,/duration_ms <= 300000/)
+  assert.doesNotMatch(update,/delete from|drop table|truncate/i)
+})
+
+
+test('expanded appearances migration preserves all submission checks except its comparison limit',()=>{
+ const previous=readFileSync(new URL('../../supabase/migrations/202610300007_lineup_five_minutes.sql',import.meta.url),'utf8')
+ const update=readFileSync(new URL('../../supabase/migrations/202610300008_appearances_162_players.sql',import.meta.url),'utf8')
+ const originalFunction=previous.match(/create or replace function public\.submit_game_result\([\s\S]*?\n\$\$;/)[0]
+ assert.ok(update.includes(originalFunction.replace('p_score > 160 or p_answers not between 1 and 160',"p_score > case when p_game_type = 'appearances' then 161 else 160 end or p_answers not between 1 and case when p_game_type = 'appearances' then 161 else 160 end")))
+ assert.match(update,/game_type = 'appearances' then 161 else 160 end/)
+ assert.doesNotMatch(update,/delete from|drop table|truncate/i)
+})
